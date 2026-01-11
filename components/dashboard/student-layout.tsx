@@ -36,10 +36,10 @@ export function StudentLayout({ children, title, showBackButton = false }: Stude
           </div>
 
           <div className="flex items-center gap-2">
-            <button className="p-2 hover:bg-muted rounded-lg relative text-muted-foreground hover:text-foreground transition">
+            <Link href="/dashboard/student/announcements" className="p-2 hover:bg-muted rounded-lg relative text-muted-foreground hover:text-foreground transition">
               <Bell className="w-5 h-5" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
+            </Link>
             <button className="p-2 hover:bg-muted rounded-lg text-muted-foreground hover:text-foreground transition">
               <Search className="w-5 h-5" />
             </button>

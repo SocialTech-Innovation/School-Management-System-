@@ -59,7 +59,27 @@ export default function AuthPage() {
     setError("")
     setLoading(true)
 
+    // Mock authentication validation
+    const validCredentials = [
+      { email: "student@school.edu", password: "password", role: "student" },
+      { email: "teacher@school.edu", password: "password", role: "teacher" },
+      { email: "admin@school.edu", password: "password", role: "admin" },
+    ]
+
+    const isValid = validCredentials.some(
+      (cred) =>
+        cred.email === signInData.email &&
+        cred.password === signInData.password &&
+        cred.role === signInData.role
+    )
+
     setTimeout(() => {
+      if (!isValid) {
+        setError("Invalid credentials. Please check your email, password, and selected role.")
+        setLoading(false)
+        return
+      }
+
       if (signInData.role === "student") router.push("/dashboard/student")
       else if (signInData.role === "admin") router.push("/dashboard/admin")
       else if (signInData.role === "teacher") router.push("/dashboard/teacher")
@@ -251,7 +271,13 @@ export default function AuthPage() {
                     <span className="font-semibold">Student:</span> student@school.edu / password
                   </p>
                   <p>
+                    <span className="font-semibold">Teacher:</span> teacher@school.edu / password
+                  </p>
+                  <p>
                     <span className="font-semibold">Admin:</span> admin@school.edu / password
+                  </p>
+                  <p className="mt-2 text-gray-500 italic">
+                    Remember to select the correct role before signing in!
                   </p>
                 </div>
               </div>

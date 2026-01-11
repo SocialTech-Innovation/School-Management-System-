@@ -47,7 +47,6 @@ export default function StudentProfile() {
               <InfoRow label="Full Name" value="Alexander Michael Johnson" />
               <InfoRow label="Date of Birth" value="January 15, 2009" />
               <InfoRow label="Gender" value="Male" />
-              <InfoRow label="Blood Group" value="O+" />
               <InfoRow label="Nationality" value="American" />
             </div>
           </Card>

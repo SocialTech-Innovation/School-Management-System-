@@ -39,7 +39,7 @@ export function TeacherLayout({ children, title, showBackButton = false }: Teach
           </div>
 
           <div className="flex items-center gap-2">
-            <Link href="/dashboard/teacher/notifications" className="p-2 hover:bg-muted rounded-lg relative text-muted-foreground hover:text-foreground transition">
+            <Link href="/dashboard/teacher/announcements" className="p-2 hover:bg-muted rounded-lg relative text-muted-foreground hover:text-foreground transition">
               <Bell className="w-5 h-5" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </Link>

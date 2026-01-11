@@ -147,7 +147,7 @@ export default function TeacherTimetable() {
             </CardContent>
           </Card>
         )}
-                  className={currentWeek === 0 ? "hidden" : ""}
+
         {/* Subject Legend */}
         <Card className="animate-slide-up" style={{ animationDelay: viewMode === 'exam' && isExamPeriod() ? "100ms" : "50ms" }}>
           <CardContent className="pt-6">
@@ -193,6 +193,7 @@ export default function TeacherTimetable() {
                     {weekDays.map((day) => {
                       const classItem = getClassForTimeSlot(day, timeSlot)
                       
+                      return (
                         <div key={`${day}-${timeSlot}`} className="min-h-[80px]">
                           {classItem ? (
                             <div className={`${viewMode === 'exam' ? 'bg-red-500 text-white border-red-600' : subjectColors[classItem.subject]} h-full p-3 rounded-lg border-2 shadow-sm hover:shadow-md transition-all cursor-pointer`}>

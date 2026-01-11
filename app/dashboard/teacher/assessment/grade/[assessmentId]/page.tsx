@@ -90,14 +90,16 @@ export default function GradeAssessmentPage({ params }: { params: { assessmentId
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500))
     
-    // Create notification
+    // Create notification with unique ID
     const notification = {
+      id: `grade-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       type: "grade_submitted",
       title: `${assessmentDetails.class} ${assessmentDetails.type} Submitted`,
       message: `Grades for "${assessmentDetails.title}" have been submitted successfully.`,
       timestamp: new Date().toISOString(),
       class: assessmentDetails.class,
-      assessment: assessmentDetails.title
+      assessment: assessmentDetails.title,
+      isRead: false
     }
     
     // Store notification in localStorage

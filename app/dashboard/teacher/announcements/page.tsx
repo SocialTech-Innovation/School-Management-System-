@@ -25,7 +25,7 @@ interface Notification {
 
 const mockAnnouncements: Notification[] = [
   {
-    id: "1",
+    id: "ann-1",
     type: "announcement",
     title: "School Assembly Next Monday",
     message: "All teachers are required to attend the annual school assembly on Monday, March 18th at 9:00 AM.",
@@ -33,7 +33,7 @@ const mockAnnouncements: Notification[] = [
     isRead: false
   },
   {
-    id: "2",
+    id: "ann-2",
     type: "reminder",
     title: "Exam Schedule Upload Deadline",
     message: "Please upload your exam schedules by Friday, March 15th.",
@@ -41,11 +41,35 @@ const mockAnnouncements: Notification[] = [
     isRead: true
   },
   {
-    id: "3",
+    id: "ann-3",
     type: "system",
     title: "System Maintenance",
     message: "The grading system will be under maintenance on Sunday from 2 AM to 6 AM.",
     timestamp: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+    isRead: true
+  },
+  {
+    id: "ann-4",
+    type: "announcement",
+    title: "Parent-Teacher Meeting Schedule",
+    message: "Parent-teacher meetings will be held on March 20th-22nd. Please check your assigned time slots in the calendar.",
+    timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+    isRead: false
+  },
+  {
+    id: "ann-5",
+    type: "reminder",
+    title: "Submit Lesson Plans",
+    message: "Reminder: Monthly lesson plans are due by end of this week. Please submit them through the portal.",
+    timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
+    isRead: false
+  },
+  {
+    id: "ann-6",
+    type: "announcement",
+    title: "Professional Development Workshop",
+    message: "Join us for a workshop on 'Innovative Teaching Methods' on March 25th at 3:00 PM in the auditorium.",
+    timestamp: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString(),
     isRead: true
   }
 ]

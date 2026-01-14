@@ -2,6 +2,7 @@
 
 import { ReactNode, useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Menu, X, Bell, Search, ChevronLeft } from "lucide-react"
 import { TeacherSidebar } from "./teacher-sidebar"
 
@@ -13,6 +14,7 @@ interface TeacherLayoutProps {
 
 export function TeacherLayout({ children, title, showBackButton = false }: TeacherLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const router = useRouter()
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">
@@ -31,9 +33,12 @@ export function TeacherLayout({ children, title, showBackButton = false }: Teach
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
             {showBackButton && (
-              <Link href="/dashboard/teacher" className="flex items-center gap-2 text-primary hover:text-primary/80 transition">
+              <button 
+                onClick={() => router.back()} 
+                className="flex items-center gap-2 text-primary hover:text-primary/80 transition"
+              >
                 <ChevronLeft size={20} />
-              </Link>
+              </button>
             )}
             <h1 className="text-xl font-semibold text-foreground">{title}</h1>
           </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { LogOut, LayoutDashboard, BookOpen, Users, ClipboardCheck, FileText, Calendar, User, Wallet, ChevronLeft, ChevronRight, GraduationCap, Bell } from "lucide-react"
+import { LogOut, LayoutDashboard, BookOpen, Users, ClipboardCheck, FileText, Calendar, User, Wallet, ChevronLeft, ChevronRight, GraduationCap, Bell, MessageCircle, FolderOpen } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useState } from "react"
 
@@ -13,6 +13,8 @@ const menuItems = [
   { name: "Attendance", href: "/dashboard/teacher/attendance", icon: ClipboardCheck },
   { name: "Assessment", href: "/dashboard/teacher/assessment", icon: FileText },
   { name: "Timetable", href: "/dashboard/teacher/timetable", icon: Calendar },
+  { name: "Messages", href: "/dashboard/teacher/messages", icon: MessageCircle },
+  { name: "Materials", href: "/dashboard/teacher/materials", icon: FolderOpen },
   { name: "Announcements", href: "/dashboard/teacher/announcements", icon: Bell },
 ]
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { LogOut, LayoutDashboard, User, Clock, BookOpen, CreditCard, Calendar, Megaphone, ChevronLeft, ChevronRight, GraduationCap, Settings } from "lucide-react"
+import { LogOut, LayoutDashboard, User, Clock, BookOpen, CreditCard, Calendar, Megaphone, ChevronLeft, ChevronRight, GraduationCap, Settings, FolderOpen } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useState } from "react"
 
@@ -10,6 +10,7 @@ const menuItems = [
   { name: "Dashboard", href: "/dashboard/student", icon: LayoutDashboard },
   { name: "My Attendance", href: "/dashboard/student/attendance", icon: Clock },
   { name: "My Grades", href: "/dashboard/student/grades", icon: BookOpen },
+  { name: "Materials", href: "/dashboard/student/materials", icon: FolderOpen },
   { name: "Fee Status", href: "/dashboard/student/fees", icon: CreditCard },
   { name: "Timetable", href: "/dashboard/student/timetable", icon: Calendar },
   { name: "Announcements", href: "/dashboard/student/announcements", icon: Megaphone },

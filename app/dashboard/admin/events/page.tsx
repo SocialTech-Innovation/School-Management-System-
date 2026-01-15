@@ -1,6 +1,9 @@
-"use client"
+import { redirect } from "next/navigation"
 
-import { AdminLayout } from "@/components/dashboard/admin-layout"
+export default function EventsPage() {
+  redirect("/dashboard/admin/calendar")
+}
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"

@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { StudentLayout } from "@/components/dashboard/student-layout"
 import { Button } from "@/components/ui/button"
@@ -73,6 +74,10 @@ const subjectColors: Record<string, string> = {
 const currentDay = new Date().toLocaleDateString("en-US", { weekday: "long" })
 
 export default function StudentTimetable() {
+  useEffect(() => {
+    document.title = "My Timetable - Skops"
+  }, [])
+
   return (
     <StudentLayout title="My Timetable" showBackButton>
       <div className="space-y-6 animate-fade-in">

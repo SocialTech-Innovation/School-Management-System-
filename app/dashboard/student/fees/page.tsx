@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { StudentLayout } from "@/components/dashboard/student-layout"
 import { CreditCard, Clock, CheckCircle, Download, AlertCircle, TrendingUp, Wallet } from "lucide-react"
@@ -28,6 +29,10 @@ const feeStructure = [
 ]
 
 export default function StudentFees() {
+  useEffect(() => {
+    document.title = "Fee Status - Skops"
+  }, [])
+
   const paidPercentage = Math.round((feeStatus.paid / feeStatus.totalFee) * 100)
 
   return (

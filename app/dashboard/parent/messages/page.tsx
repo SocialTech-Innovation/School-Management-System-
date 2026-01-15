@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ParentLayout } from "@/components/dashboard/parent-layout"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"

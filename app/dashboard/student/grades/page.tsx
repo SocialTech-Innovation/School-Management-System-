@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { StudentLayout } from "@/components/dashboard/student-layout"
@@ -8,6 +9,10 @@ import { Button } from "@/components/ui/button"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 
 export default function StudentGrades() {
+  useEffect(() => {
+    document.title = "My Grades - Skops"
+  }, [])
+
   const currentGrades = [
     { subject: "Mathematics", grade: "A", percentage: 92, teacher: "Mr. Anderson" },
     { subject: "Physics", grade: "B+", percentage: 87, teacher: "Ms. Curie" },

@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { TeacherLayout } from "@/components/dashboard/teacher-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -19,6 +20,10 @@ const paymentHistory = [
 ]
 
 export default function TeacherPayroll() {
+  useEffect(() => {
+    document.title = "Payroll - Skops"
+  }, [])
+
   return (
     <TeacherLayout title="Payroll" showBackButton>
       <div className="space-y-6">

@@ -12,9 +12,9 @@ import {
   Search, Download, Eye, Mail, Phone, MapPin, 
   TrendingUp, BookOpen, Award, Calendar, Users
 } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const studentsData = [
+const students = [
   { 
     id: 1, 
     name: "Emma Johnson", 

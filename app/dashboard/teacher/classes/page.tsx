@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { TeacherLayout } from "@/components/dashboard/teacher-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BookOpen, Users, TrendingUp } from "lucide-react"
@@ -12,6 +13,10 @@ const classes = [
 ]
 
 export default function TeacherClasses() {
+  useEffect(() => {
+    document.title = "My Classes - Skops"
+  }, [])
+
   return (
     <TeacherLayout title="My Classes" showBackButton>
       <div className="space-y-6 animate-fade-in">

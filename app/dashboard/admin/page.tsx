@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { AdminLayout } from "@/components/dashboard/admin-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -120,8 +121,12 @@ const systemAlerts = [
 ]
 
 export default function AdminDashboard() {
+  useEffect(() => {
+    document.title = "Dashboard - Skops"
+  }, [])
+
   return (
-    <AdminLayout title="Dashboard Overview">
+    <AdminLayout title="Dashboard">
       <div className="space-y-6">
         {/* Welcome Banner */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white animate-slide-up">

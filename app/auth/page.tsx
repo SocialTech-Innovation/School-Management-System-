@@ -144,87 +144,50 @@ export default function AuthPage() {
   if (step === "role") {
     return (
       <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
-        {/* Animated background effects */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: "2s" }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: "4s" }}></div>
+        {/* Simplified background - removed heavy blur animations */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500/10 rounded-full"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8">
           {/* Logo and branding */}
-          <div className="text-center mb-12 animate-fade-in">
+          <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-2xl">
                 <BookOpen className="w-8 h-8 text-white" />
               </div>
-              <h1 className="text-5xl font-bold text-white">EduManage</h1>
+              <h1 className="text-5xl font-bold text-white">Skops</h1>
             </div>
-            <p className="text-xl text-blue-200 font-light">Choose Your Role to Continue</p>
+            <p className="text-xl text-blue-200 font-light">School Management System</p>
           </div>
 
-          {/* Role selection cards */}
+          {/* Role selection cards - optimized */}
           <div className="flex flex-wrap items-center justify-center gap-6 max-w-5xl">
-            {roles.map((role, index) => {
+            {roles.map((role) => {
               const IconComponent = role.icon
               return (
                 <button
                   key={role.value}
                   onClick={() => handleRoleSelect(role.value)}
-                  className="group relative"
-                  style={{
-                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
-                  }}
+                  className="group relative w-40 h-40 rounded-3xl bg-white/10 border border-white/20 shadow-xl transition-all duration-200 hover:scale-105 hover:bg-white/15 hover:-translate-y-1 flex flex-col items-center justify-center gap-4"
                 >
-                  <div className="relative w-40 h-40 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-white/20 hover:shadow-blue-500/50 hover:-translate-y-2 flex flex-col items-center justify-center gap-4 group-hover:border-white/40">
-                    {/* Icon container with gradient */}
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${role.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className="w-8 h-8 text-white" />
-                    </div>
-                    
-                    {/* Role label */}
-                    <div className="text-center">
-                      <p className="text-lg font-semibold text-white">{role.label}</p>
-                    </div>
-
-                    {/* Glow effect on hover */}
-                    <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${role.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}></div>
+                  {/* Icon container with gradient */}
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${role.color} flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110`}>
+                    <IconComponent className="w-8 h-8 text-white" />
                   </div>
+                  
+                  {/* Role label */}
+                  <p className="text-lg font-semibold text-white">{role.label}</p>
                 </button>
               )
             })}
           </div>
 
           {/* Subtle footer hint */}
-          <p className="mt-16 text-blue-300/60 text-sm animate-pulse">Select your role to access the platform</p>
+          <p className="mt-16 text-blue-300/60 text-sm">Select your role to access the platform</p>
         </div>
-
-        <style jsx>{`
-          @keyframes fadeInUp {
-            from {
-              opacity: 0;
-              transform: translateY(30px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-          @keyframes fade-in {
-            from {
-              opacity: 0;
-              transform: translateY(-20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-          .animate-fade-in {
-            animation: fade-in 0.8s ease-out;
-          }
-        `}</style>
       </div>
     )
   }

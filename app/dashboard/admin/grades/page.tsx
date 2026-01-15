@@ -6,6 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -25,6 +31,7 @@ import {
   Users,
   FileText,
 } from "lucide-react"
+import { useState, useEffect } from "react"
 import {
   BarChart,
   Bar,
@@ -104,6 +111,27 @@ const studentGrades = [
 ]
 
 export default function GradesPage() {
+  useEffect(() => {
+    document.title = "Grades - Skops"
+  }, [])
+
+  const [searchQuery, setSearchQuery] = useState("")
+  const [classFilter, setClassFilter] = useState("all")
+  const [termFilter, setTermFilter] = useState("all")
+  const [statusFilter, setStatusFilter] = useState("all")
+  const [isReportDialogOpen, setIsReportDialogOpen] = useState(false)
+  const [selectedStudent, setSelectedStudent] = useState<any>(null)
+
+  // Filter grades
+  const filteredGrades = studentGrades.filter((student) => {
+    const matchesSearch = student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         student.studentId.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesClass = classFilter === "all" || student.class.includes(classFilter)
+    const matchesTerm = termFilter === "all" || student.term === termFilter
+    const matchesStatus = statusFilter === "all" || student.status === statusFilter
+    return matchesSearch && matchesClass && matchesTerm && matchesStatus
+  })
+
   return (
     <AdminLayout title="Grades">
       <div className="space-y-6">
@@ -119,8 +147,8 @@ export default function GradesPage() {
               Export Results
             </Button>
             <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              <Plus className="w-4 h-4 mr-2" />
-              Enter Grades
+              <FileText className="w-4 h-4 mr-2" />
+              Generate Report Cards
             </Button>
           </div>
         </div>
@@ -214,53 +242,67 @@ export default function GradesPage() {
           </CardContent>
         </Card>
 
-        {/* Filters */}
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input placeholder="Search by student name or ID..." className="pl-10" />
-              </div>
-              <Select>
-                <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="Class" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Classes</SelectItem>
-                  <SelectItem value="9-a">Grade 9-A</SelectItem>
-                  <SelectItem value="10-a">Grade 10-A</SelectItem>
-                  <SelectItem value="11-a">Grade 11-A</SelectItem>
-                  <SelectItem value="12-a">Grade 12-A</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select>
-                <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="Term" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="mid-2026">Mid-Term 2026</SelectItem>
-                  <SelectItem value="final-2025">Final 2025</SelectItem>
-                  <SelectItem value="mid-2025">Mid-Term 2025</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button variant="outline">
-                <Filter className="w-4 h-4 mr-2" />
-                More Filters
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Student Grades Table */}
         <Card>
           <CardHeader>
-            <CardTitle>Student Results</CardTitle>
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <CardTitle>Student Grades ({filteredGrades.length})</CardTitle>
+              
+              {/* Search and Filters inside card */}
+              <div className="flex gap-3 flex-wrap w-full sm:w-auto">
+                <div className="relative flex-1 sm:flex-initial sm:w-64">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input 
+                    placeholder="Search students..." 
+                    className="pl-10"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+                <Select value={classFilter} onValueChange={setClassFilter}>
+                  <SelectTrigger className="w-full sm:w-36">
+                    <SelectValue placeholder="Class" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Classes</SelectItem>
+                    <SelectItem value="9">Grade 9</SelectItem>
+                    <SelectItem value="10">Grade 10</SelectItem>
+                    <SelectItem value="11">Grade 11</SelectItem>
+                    <SelectItem value="12">Grade 12</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={termFilter} onValueChange={setTermFilter}>
+                  <SelectTrigger className="w-full sm:w-36">
+                    <SelectValue placeholder="Term" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Terms</SelectItem>
+                    <SelectItem value="Mid-Term 2026">Mid-Term 2026</SelectItem>
+                    <SelectItem value="Final 2025">Final 2025</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                  <SelectTrigger className="w-full sm:w-32">
+                    <SelectValue placeholder="Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Status</SelectItem>
+                    <SelectItem value="Published">Published</SelectItem>
+                    <SelectItem value="Draft">Draft</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {studentGrades.map((student) => (
-                <div key={student.id} className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
+            {filteredGrades.length === 0 ? (
+              <div className="py-12 text-center text-muted-foreground">
+                No grades found matching your criteria
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {filteredGrades.map((student) => (
+                  <div key={student.id} className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
@@ -313,24 +355,117 @@ export default function GradesPage() {
                   </div>
 
                   <div className="flex items-center gap-2 pt-3 border-t">
-                    <Button variant="outline" size="sm">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => {
+                        setSelectedStudent(student)
+                        setIsReportDialogOpen(true)
+                      }}
+                    >
                       <Eye className="w-4 h-4 mr-1" />
                       View Report Card
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Edit className="w-4 h-4 mr-1" />
-                      Edit Grades
                     </Button>
                     <Button variant="outline" size="sm" className="ml-auto">
                       <Download className="w-4 h-4 mr-1" />
                       Download
                     </Button>
                   </div>
-                </div>
-              ))}
-            </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </CardContent>
         </Card>
+
+        {/* View Report Card Dialog */}
+        <Dialog open={isReportDialogOpen} onOpenChange={setIsReportDialogOpen}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Student Report Card</DialogTitle>
+            </DialogHeader>
+            {selectedStudent && (
+              <div className="space-y-6 mt-4">
+                {/* Student Header */}
+                <div className="flex items-center justify-between pb-4 border-b">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl font-bold">
+                      {selectedStudent.name.charAt(0)}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground">{selectedStudent.name}</h3>
+                      <p className="text-sm text-muted-foreground">{selectedStudent.studentId} • {selectedStudent.class}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{selectedStudent.term}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex items-center gap-6">
+                      <div>
+                        <p className="text-xs text-muted-foreground">Overall Grade</p>
+                        <p className="text-3xl font-bold text-blue-600">{selectedStudent.overall}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">Average</p>
+                        <p className="text-3xl font-bold text-foreground">{selectedStudent.average}%</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground">Class Rank</p>
+                        <p className="text-3xl font-bold text-foreground">#{selectedStudent.rank}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Grades Table */}
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Subject Performance</h4>
+                  <div className="border rounded-lg overflow-hidden">
+                    <table className="w-full">
+                      <thead className="bg-blue-50">
+                        <tr>
+                          <th className="text-left py-3 px-4 text-sm font-semibold text-blue-900">Subject</th>
+                          <th className="text-left py-3 px-4 text-sm font-semibold text-blue-900">Teacher</th>
+                          <th className="text-center py-3 px-4 text-sm font-semibold text-blue-900">Marks</th>
+                          <th className="text-center py-3 px-4 text-sm font-semibold text-blue-900">Grade</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {selectedStudent.subjects.map((subj: any, idx: number) => (
+                          <tr key={idx} className="border-t hover:bg-muted/50">
+                            <td className="py-3 px-4 font-medium text-foreground">{subj.subject}</td>
+                            <td className="py-3 px-4 text-muted-foreground">{subj.teacher}</td>
+                            <td className="py-3 px-4 text-center font-semibold text-foreground">{subj.marks}</td>
+                            <td className="py-3 px-4 text-center">
+                              <Badge variant="outline" className="font-medium">{subj.grade}</Badge>
+                            </td>
+                          </tr>
+                        ))}
+                        <tr className="border-t bg-blue-50 font-semibold">
+                          <td className="py-3 px-4 text-blue-900" colSpan={2}>Overall</td>
+                          <td className="py-3 px-4 text-center text-blue-900">{selectedStudent.average}%</td>
+                          <td className="py-3 px-4 text-center">
+                            <Badge className="bg-blue-600 text-white font-medium">{selectedStudent.overall}</Badge>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex justify-end gap-2 pt-4 border-t">
+                  <Button variant="outline" onClick={() => setIsReportDialogOpen(false)}>
+                    Close
+                  </Button>
+                  <Button className="bg-blue-600 hover:bg-blue-700">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Report
+                  </Button>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </AdminLayout>
   )

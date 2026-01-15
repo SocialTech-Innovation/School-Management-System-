@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { StudentLayout } from "@/components/dashboard/student-layout"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -15,6 +16,10 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 }
 
 export default function StudentProfile() {
+  useEffect(() => {
+    document.title = "My Profile - Skops"
+  }, [])
+
   return (
     <StudentLayout title="My Profile" showBackButton>
       <div className="space-y-6 animate-fade-in">

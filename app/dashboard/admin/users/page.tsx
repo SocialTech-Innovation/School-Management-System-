@@ -26,6 +26,7 @@ import {
   UserCheck,
   UserX,
 } from "lucide-react"
+import { useState, useEffect } from "react"
 
 const users = [
   {
@@ -108,6 +109,20 @@ const roles = [
 ]
 
 export default function UserManagementPage() {
+  const [searchQuery, setSearchQuery] = useState("")
+  const [roleFilter, setRoleFilter] = useState("all")
+  const [statusFilter, setStatusFilter] = useState("all")
+
+  // Filter users
+  const filteredUsers = users.filter((user) => {
+    const matchesSearch = user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         user.department.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesRole = roleFilter === "all" || user.role.toLowerCase() === roleFilter.toLowerCase()
+    const matchesStatus = statusFilter === "all" || user.status.toLowerCase() === statusFilter.toLowerCase()
+    return matchesSearch && matchesRole && matchesStatus
+  })
+
   return (
     <AdminLayout title="Users">
       <div className="space-y-6">
@@ -208,66 +223,70 @@ export default function UserManagementPage() {
           </CardContent>
         </Card>
 
-        {/* Filters */}
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input placeholder="Search by name or email..." className="pl-10" />
-              </div>
-              <Select>
-                <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="Role" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Roles</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
-                  <SelectItem value="teacher">Teacher</SelectItem>
-                  <SelectItem value="student">Student</SelectItem>
-                  <SelectItem value="parent">Parent</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select>
-                <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="inactive">Inactive</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button variant="outline">
-                <Filter className="w-4 h-4 mr-2" />
-                More Filters
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Users Table */}
         <Card>
           <CardHeader>
-            <CardTitle>All Users</CardTitle>
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <CardTitle>All Users ({filteredUsers.length})</CardTitle>
+              
+              {/* Search and Filters inside card */}
+              <div className="flex gap-3 flex-wrap w-full sm:w-auto">
+                <div className="relative flex-1 sm:flex-initial sm:w-64">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input 
+                    placeholder="Search users..." 
+                    className="pl-10"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+                <Select value={roleFilter} onValueChange={setRoleFilter}>
+                  <SelectTrigger className="w-full sm:w-32">
+                    <SelectValue placeholder="Role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Roles</SelectItem>
+                    <SelectItem value="admin">Admin</SelectItem>
+                    <SelectItem value="teacher">Teacher</SelectItem>
+                    <SelectItem value="student">Student</SelectItem>
+                    <SelectItem value="parent">Parent</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                  <SelectTrigger className="w-full sm:w-32">
+                    <SelectValue placeholder="Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Status</SelectItem>
+                    <SelectItem value="active">Active</SelectItem>
+                    <SelectItem value="inactive">Inactive</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">User</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Email</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Role</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Department</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Last Login</th>
-                    <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map((user) => (
-                    <tr key={user.id} className="border-b hover:bg-muted/50 transition-colors">
+            {filteredUsers.length === 0 ? (
+              <div className="py-12 text-center text-muted-foreground">
+                No users found matching your criteria
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">User</th>
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Email</th>
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Role</th>
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Department</th>
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Last Login</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredUsers.map((user) => (
+                      <tr key={user.id} className="border-b hover:bg-muted/50 transition-colors">
                       <td className="py-4 px-4">
                         <div>
                           <p className="font-semibold text-foreground">{user.name}</p>
@@ -329,10 +348,11 @@ export default function UserManagementPage() {
                         </div>
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

@@ -34,7 +34,6 @@ const menuItems = [
   { name: "Examinations", href: "/dashboard/admin/exams", icon: BarChart3, section: "academic" },
   { name: "Grades", href: "/dashboard/admin/grades", icon: Award, section: "academic" },
   { name: "Attendance", href: "/dashboard/admin/attendance", icon: Clock, section: "records" },
-  { name: "Events", href: "/dashboard/admin/events", icon: Calendar, section: "records" },
   { name: "Academic Calendar", href: "/dashboard/admin/calendar", icon: CalendarDays, section: "records" },
   { name: "Announcements", href: "/dashboard/admin/announcements", icon: Megaphone, section: "records" },
   { name: "Reports", href: "/dashboard/admin/reports", icon: BarChart3, section: "system" },

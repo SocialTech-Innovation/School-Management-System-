@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Bell, Search, Menu, X, Users, GraduationCap, BookOpen, Calendar } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -14,6 +14,10 @@ import { RecentGrades } from "@/components/dashboard/recent-grades"
 import Link from "next/link"
 
 export default function StudentDashboard() {
+  useEffect(() => {
+    document.title = "Dashboard - Skops"
+  }, [])
+
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (

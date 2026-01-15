@@ -27,8 +27,13 @@ import {
   Save,
   RefreshCw,
 } from "lucide-react"
+import { useEffect } from "react"
 
 export default function SettingsPage() {
+  useEffect(() => {
+    document.title = "Settings - Skops"
+  }, [])
+
   return (
     <AdminLayout title="Settings">
       <div className="space-y-6">

@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { TeacherLayout } from "@/components/dashboard/teacher-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { StudentLayout } from "@/components/dashboard/student-layout"
 import { Bell, Mail, Phone, Lock, Globe, Moon, Sun } from "lucide-react"
@@ -11,6 +11,10 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
 export default function StudentSettings() {
+  useEffect(() => {
+    document.title = "Settings - Skops"
+  }, [])
+
   const [emailNotifications, setEmailNotifications] = useState(true)
   const [pushNotifications, setPushNotifications] = useState(true)
   const [gradeAlerts, setGradeAlerts] = useState(true)

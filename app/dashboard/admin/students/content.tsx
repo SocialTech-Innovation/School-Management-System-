@@ -26,7 +26,7 @@ import { useState, useEffect } from "react"
 
 export default function StudentPageContent() {
   useEffect(() => {
-    document.title = "Students - Skops"
+    document.title = "Students"
   }, [])
 
   const [searchQuery, setSearchQuery] = useState("")

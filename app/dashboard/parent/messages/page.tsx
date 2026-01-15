@@ -101,6 +101,9 @@ const teachers = [
 ]
 
 export default function TeacherMessagesPage() {
+  useEffect(() => {
+      document.title = "Teacher Messages"
+    }, [])
   const { toast } = useToast()
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
   const [conversations, setConversations] = useState<Message[]>(mockConversations)

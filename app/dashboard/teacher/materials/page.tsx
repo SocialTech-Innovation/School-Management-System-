@@ -97,6 +97,9 @@ const classes = [
 ]
 
 export default function ClassMaterialsPage() {
+  useEffect(() => {
+      document.title = "Class Materials"
+    }, [])
   const { toast } = useToast()
   const [materials, setMaterials] = useState<Material[]>(mockMaterials)
   const [searchQuery, setSearchQuery] = useState("")

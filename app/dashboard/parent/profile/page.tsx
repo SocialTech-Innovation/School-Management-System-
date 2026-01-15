@@ -18,7 +18,6 @@ const studentInfo = {
   studentId: 'STU-2024-0024',
   dateOfBirth: 'March 15, 2010',
   gender: 'Male',
-  bloodGroup: 'O+',
   address: '123 Maple Street, Springfield, IL 62701',
   phone: '+1 (555) 123-4567',
   email: 'alex.johnson@student.edu',
@@ -52,7 +51,9 @@ const emergencyContacts = [
 
 export default function ChildProfilePage() {
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
-
+  useEffect(() => {
+      document.title = "Child's Profile"
+    }, [])
   return (
     <ParentLayout title="Child's Profile" selectedChild={selectedChild} onChildSelect={setSelectedChild}>
       <div className="space-y-6">
@@ -102,10 +103,7 @@ export default function ChildProfilePage() {
                   <p className="text-sm text-muted-foreground">Gender</p>
                   <p className="font-medium text-foreground">{studentInfo.gender}</p>
                 </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Blood Group</p>
-                  <p className="font-medium text-foreground">{studentInfo.bloodGroup}</p>
-                </div>
+                
               </div>
               <Separator />
               <div className="space-y-3">

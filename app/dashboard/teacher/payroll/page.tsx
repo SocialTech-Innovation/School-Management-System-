@@ -21,7 +21,7 @@ const paymentHistory = [
 
 export default function TeacherPayroll() {
   useEffect(() => {
-    document.title = "Payroll - Skops"
+    document.title = "Payroll"
   }, [])
 
   return (

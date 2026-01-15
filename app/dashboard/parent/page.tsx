@@ -58,6 +58,9 @@ const todaySchedule = [
 ]
 
 export default function ParentDashboard() {
+  useEffect(() => {
+      document.title = "Dashboard"
+    }, [])
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
 
   return (

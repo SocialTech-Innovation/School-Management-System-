@@ -64,6 +64,9 @@ const paymentHistory = [
 ]
 
 export default function FeesPage() {
+  useEffect(() => {
+      document.title = "Fee Management"
+    }, [])
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
 
   return (

@@ -112,7 +112,7 @@ const studentGrades = [
 
 export default function GradesPage() {
   useEffect(() => {
-    document.title = "Grades - Skops"
+    document.title = "Grades"
   }, [])
 
   const [searchQuery, setSearchQuery] = useState("")

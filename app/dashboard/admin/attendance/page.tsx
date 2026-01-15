@@ -59,6 +59,9 @@ const recentRecords = [
 ]
 
 export default function AttendancePage() {
+  useEffect(() => {
+      document.title = "Attendance"
+    }, [])
   const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (

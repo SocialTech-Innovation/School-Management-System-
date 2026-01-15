@@ -14,7 +14,7 @@ const classes = [
 
 export default function TeacherClasses() {
   useEffect(() => {
-    document.title = "My Classes - Skops"
+    document.title = "My Classes"
   }, [])
 
   return (

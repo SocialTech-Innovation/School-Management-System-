@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { TeacherLayout } from "@/components/dashboard/teacher-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -81,6 +81,9 @@ const performanceData = [
 ]
 
 export default function ClassDetailPage() {
+  useEffect(() => {
+      document.title = `${classData[classId].name}`
+    }, [])
   const params = useParams()
   const classId = params.classId as string
   const classInfo = classData[classId]

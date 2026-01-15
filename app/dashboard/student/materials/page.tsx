@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { StudentLayout } from "@/components/dashboard/student-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -144,6 +144,9 @@ const mockMaterials: Material[] = [
 ]
 
 export default function StudentMaterialsPage() {
+  useEffect(() => {
+      document.title = "My Class Materials"
+    }, [])
   const { toast } = useToast()
   const [materials, setMaterials] = useState<Material[]>(mockMaterials)
   const [searchQuery, setSearchQuery] = useState("")

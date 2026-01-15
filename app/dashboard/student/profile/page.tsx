@@ -17,7 +17,7 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 
 export default function StudentProfile() {
   useEffect(() => {
-    document.title = "My Profile - Skops"
+    document.title = "My Profile"
   }, [])
 
   return (

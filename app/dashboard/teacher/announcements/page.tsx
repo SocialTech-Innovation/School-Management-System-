@@ -75,6 +75,9 @@ const mockAnnouncements: Notification[] = [
 ]
 
 export default function AnnouncementsPage() {
+  useEffect(() => {
+      document.title = "Announcements & Notifications"
+    }, [])
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [activeTab, setActiveTab] = useState("all")

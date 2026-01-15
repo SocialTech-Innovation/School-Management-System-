@@ -78,6 +78,9 @@ const timetableData = {
 }
 
 export default function TimetablePage() {
+  useEffect(() => {
+      document.title = "Class Timetable"
+    }, [])
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
   const [selectedDay, setSelectedDay] = useState<keyof typeof timetableData>("Monday")
 

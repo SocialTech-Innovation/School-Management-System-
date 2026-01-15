@@ -108,10 +108,17 @@ const subjects = [
 const categories = ["Core", "Science", "Languages", "Social Studies", "Technology", "Arts", "Physical Education"]
 
 export default function SubjectsPage() {
+  useEffect(() => {
+      document.title = "Subjects"
+    }, [])
   const [searchQuery, setSearchQuery] = useState("")
   const [categoryFilter, setCategoryFilter] = useState("all")
   const [gradeFilter, setGradeFilter] = useState("all")
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+
+  useEffect(() => {
+      document.title = "Subjects"
+    }, [])
 
   // Filter subjects
   const filteredSubjects = subjects.filter((subject) => {
@@ -141,7 +148,7 @@ export default function SubjectsPage() {
               <Download className="w-4 h-4 mr-2" />
               Export
             </Button>
-            <Dialog open={isAddDialogOpen} onValueChange={setIsAddDialogOpen}>
+            <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">
                   <Plus className="w-4 h-4 mr-2" />

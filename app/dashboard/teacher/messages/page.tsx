@@ -94,6 +94,9 @@ const mockMessages: Message[] = [
 ]
 
 export default function ParentCommunicationPage() {
+  useEffect(() => {
+      document.title = "Parent Messages"
+    }, [])
   const { toast } = useToast()
   const [messages, setMessages] = useState<Message[]>(mockMessages)
   const [searchQuery, setSearchQuery] = useState("")

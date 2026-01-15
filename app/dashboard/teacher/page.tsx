@@ -33,6 +33,9 @@ const quickActions = [
 ]
 
 export default function TeacherDashboard() {
+  useEffect(() => {
+      document.title = "Dashboard"
+    }, [])
   return (
     <TeacherLayout title="Dashboard">
       <div className="space-y-6">

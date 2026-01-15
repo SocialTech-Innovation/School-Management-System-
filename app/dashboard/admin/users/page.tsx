@@ -113,6 +113,10 @@ export default function UserManagementPage() {
   const [roleFilter, setRoleFilter] = useState("all")
   const [statusFilter, setStatusFilter] = useState("all")
 
+  useEffect(() => {
+    document.title = "Users"
+  }, [])
+
   // Filter users
   const filteredUsers = users.filter((user) => {
     const matchesSearch = user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||

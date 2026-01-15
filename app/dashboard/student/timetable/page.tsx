@@ -75,7 +75,7 @@ const currentDay = new Date().toLocaleDateString("en-US", { weekday: "long" })
 
 export default function StudentTimetable() {
   useEffect(() => {
-    document.title = "My Timetable - Skops"
+    document.title = "My Timetable"
   }, [])
 
   return (

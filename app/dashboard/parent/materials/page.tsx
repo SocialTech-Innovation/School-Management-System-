@@ -112,6 +112,9 @@ const mockMaterials: Material[] = [
 ]
 
 export default function ClassMaterialsPage() {
+  useEffect(() => {
+      document.title = "Class Materials"
+    }, [])
   const { toast } = useToast()
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
   const [materials, setMaterials] = useState<Material[]>(mockMaterials)

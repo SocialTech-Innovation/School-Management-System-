@@ -17,7 +17,7 @@ import { useState, useEffect } from "react"
 
 export default function AdminClasses() {
   useEffect(() => {
-    document.title = "Classes - Skops"
+    document.title = "Classes"
   }, [])
 
   const [searchQuery, setSearchQuery] = useState("")

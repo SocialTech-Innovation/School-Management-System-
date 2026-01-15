@@ -78,6 +78,9 @@ const categoryStyles: Record<string, string> = {
 }
 
 export default function StudentAnnouncements() {
+  useEffect(() => {
+      document.title = "Announcements"
+    }, [])
   const [filter, setFilter] = useState("all")
 
   const filteredAnnouncements =

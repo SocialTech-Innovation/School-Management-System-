@@ -82,7 +82,7 @@ const generateWeekData = (weekOffset: number = 0) => {
     }))
     
     const statusCounts = periods.reduce((acc, p) => {
-      acc[p.status]++
+      acc[p.status as keyof typeof acc]++
       return acc
     }, { present: 0, late: 0, absent: 0 })
     
@@ -124,6 +124,9 @@ const statusColors = {
 }
 
 export default function StudentAttendance() {
+  useEffect(() => {
+      document.title = "Attendance"
+    }, [])
   const [selectedView, setSelectedView] = useState<'week' | 'month'>('week')
   const [weekOffset, setWeekOffset] = useState(0)
   const [monthOffset, setMonthOffset] = useState(0)

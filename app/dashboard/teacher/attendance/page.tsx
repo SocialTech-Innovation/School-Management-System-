@@ -55,6 +55,9 @@ const classSchedules: ClassSchedule[] = [
 ]
 
 export default function TeacherAttendance() {
+  useEffect(() => {
+      document.title = "Attendance"
+    }, [])
   const { toast } = useToast()
   const [selectedClass, setSelectedClass] = useState(classSchedules[0].id)
   const [selectedDate, setSelectedDate] = useState(new Date())

@@ -4,7 +4,6 @@ import { AdminLayout } from "@/components/dashboard/admin-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { useEffect } from "react"
 import {
   Select,
   SelectContent,
@@ -129,7 +128,7 @@ const reportTypes = [
 
 export default function ReportsPage() {
   useEffect(() => {
-    document.title = "Reports - Skops"
+    document.title = "Reports"
   }, [])
 
   return (

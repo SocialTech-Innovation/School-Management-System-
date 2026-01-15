@@ -114,6 +114,9 @@ const announcements = [
 ]
 
 export default function AnnouncementsPage() {
+  useEffect(() => {
+      document.title = "Announcements"
+    }, [])
   const [searchQuery, setSearchQuery] = useState("")
   const [categoryFilter, setCategoryFilter] = useState("all")
   const [priorityFilter, setPriorityFilter] = useState("all")

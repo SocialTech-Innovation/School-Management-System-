@@ -122,7 +122,7 @@ const systemAlerts = [
 
 export default function AdminDashboard() {
   useEffect(() => {
-    document.title = "Dashboard - Skops"
+    document.title = "Dashboard"
   }, [])
 
   return (

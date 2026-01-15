@@ -10,7 +10,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 export default function StudentGrades() {
   useEffect(() => {
-    document.title = "My Grades - Skops"
+    document.title = "My Grades & Report Cards"
   }, [])
 
   const currentGrades = [

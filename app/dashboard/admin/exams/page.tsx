@@ -118,6 +118,9 @@ export default function ExaminationsPage() {
   const [classFilter, setClassFilter] = useState("all")
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
 
+  useEffect(() => {
+      document.title = "Examinations"
+    }, [])
   // Filter exams
   const filteredExams = exams.filter((exam) => {
     const matchesSearch = exam.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||

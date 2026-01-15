@@ -70,6 +70,9 @@ const teacherComments = [
 ]
 
 export default function PerformancePage() {
+  useEffect(() => {
+      document.title = "Academic Performance"
+    }, [])
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
 
   return (

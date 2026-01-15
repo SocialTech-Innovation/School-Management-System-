@@ -14,7 +14,7 @@ import {
   FileText, Plus, Clock, Users, CheckCircle, AlertCircle,
   Calendar, BookOpen, TrendingUp, Eye, Edit, Trash2
 } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 
 const assessmentsData = {
@@ -101,6 +101,9 @@ const assessmentsData = {
 }
 
 export default function TeacherAssessment() {
+  useEffect(() => {
+      document.title = "Assessment"
+    }, [])
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
 
   return (

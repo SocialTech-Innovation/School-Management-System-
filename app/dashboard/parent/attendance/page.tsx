@@ -178,6 +178,9 @@ const dateAttendanceDetails: Record<string, { present: number; absent: number; l
 }
 
 export default function AttendancePage() {
+  useEffect(() => {
+      document.title = "Attendance Monitoring"
+    }, [])
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
   const [date, setDate] = useState<Date | undefined>(new Date())
 

@@ -30,7 +30,7 @@ const feeStructure = [
 
 export default function StudentFees() {
   useEffect(() => {
-    document.title = "Fee Status - Skops"
+    document.title = "Fee Status"
   }, [])
 
   const paidPercentage = Math.round((feeStatus.paid / feeStatus.totalFee) * 100)

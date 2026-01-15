@@ -12,7 +12,7 @@ import {
   User, Mail, Phone, MapPin, Calendar, BookOpen, 
   Award, Edit, Save, X, Building2, GraduationCap
 } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const teacherData = {
   name: "Prof. Sarah Anderson",
@@ -36,6 +36,9 @@ const teacherData = {
 }
 
 export default function TeacherProfile() {
+  useEffect(() => {
+      document.title = "My Profile"
+    }, [])
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState(teacherData)
 

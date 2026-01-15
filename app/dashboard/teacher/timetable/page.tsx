@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { 
   Calendar, Clock, MapPin, BookOpen, Download, AlertCircle
 } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 const timeSlots = [
@@ -89,6 +89,9 @@ const isExamPeriod = () => {
 }
 
 export default function TeacherTimetable() {
+  useEffect(() => {
+      document.title = "Timetable"
+    }, [])
   const [viewMode, setViewMode] = useState<'regular' | 'exam'>(isExamPeriod() ? 'exam' : 'regular')
   
   const currentTimetable = viewMode === 'exam' ? examTimetable : regularTimetable

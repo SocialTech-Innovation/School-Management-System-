@@ -15,7 +15,7 @@ import Link from "next/link"
 
 export default function StudentDashboard() {
   useEffect(() => {
-    document.title = "Dashboard - Skops"
+    document.title = "Dashboard"
   }, [])
 
   const [sidebarOpen, setSidebarOpen] = useState(true)

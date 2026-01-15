@@ -116,11 +116,14 @@ const students = [
 ]
 
 export default function TeacherStudents() {
+  useEffect(() => {
+      document.title = "Students"
+    }, [])
   const [searchQuery, setSearchQuery] = useState("")
   const [classFilter, setClassFilter] = useState("all")
-  const [selectedStudent, setSelectedStudent] = useState<typeof studentsData[0] | null>(null)
+  const [selectedStudent, setSelectedStudent] = useState<typeof students[0] | null>(null)
 
-  const filteredStudents = studentsData.filter(student => {
+  const filteredStudents = students.filter(student => {
     const matchesSearch = student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          student.rollNo.includes(searchQuery)
     const matchesClass = classFilter === "all" || student.class === classFilter
@@ -149,7 +152,7 @@ export default function TeacherStudents() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">Total Students</p>
-                  <p className="text-3xl font-bold text-foreground">{studentsData.length}</p>
+                  <p className="text-3xl font-bold text-foreground">{students.length}</p>
                 </div>
                 <div className="w-12 h-12 rounded-lg bg-primary-light flex items-center justify-center">
                   <Users className="w-6 h-6 text-primary" />

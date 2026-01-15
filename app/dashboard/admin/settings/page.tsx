@@ -31,7 +31,7 @@ import { useEffect } from "react"
 
 export default function SettingsPage() {
   useEffect(() => {
-    document.title = "Settings - Skops"
+    document.title = "Settings"
   }, [])
 
   return (

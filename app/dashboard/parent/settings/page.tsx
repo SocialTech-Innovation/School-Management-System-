@@ -28,6 +28,9 @@ const childrenData = [
 ]
 
 export default function ProfileSettingsPage() {
+  useEffect(() => {
+      document.title = "Profile Settings"
+    }, [])
   const { toast } = useToast()
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
   const [profileData, setProfileData] = useState({

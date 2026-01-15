@@ -55,7 +55,7 @@ const academicEvents = [
 
 export default function AcademicCalendarPage() {
   useEffect(() => {
-    document.title = "Academic Calendar - Skops"
+    document.title = "Academic Calendar"
   }, [])
 
   const [currentDate, setCurrentDate] = useState(new Date(2026, 0, 1))

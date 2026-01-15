@@ -12,7 +12,7 @@ import { Separator } from "@/components/ui/separator"
 
 export default function StudentSettings() {
   useEffect(() => {
-    document.title = "Settings - Skops"
+    document.title = "Settings"
   }, [])
 
   const [emailNotifications, setEmailNotifications] = useState(true)

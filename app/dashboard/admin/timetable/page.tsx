@@ -80,6 +80,10 @@ export default function TimetablePage() {
   const [selectedClass, setSelectedClass] = useState("10-A")
   const [selectedView, setSelectedView] = useState<"class" | "teacher">("class")
 
+  useEffect(() => {
+      document.title = "Timetable"
+    }, [])
+
   return (
     <AdminLayout title="Timetable">
       <div className="space-y-6">

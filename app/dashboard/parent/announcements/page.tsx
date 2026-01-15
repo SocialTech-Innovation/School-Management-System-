@@ -118,6 +118,10 @@ export default function AnnouncementsPage() {
   const [selectedChild, setSelectedChild] = useState(childrenData[0])
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
+  useEffect(() => {
+      document.title = "Announcements"
+    }, [])
+
   const filteredAnnouncements = selectedCategory === 'all'
     ? mockAnnouncements
     : mockAnnouncements.filter(a => a.category === selectedCategory)

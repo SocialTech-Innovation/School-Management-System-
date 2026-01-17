@@ -83,6 +83,7 @@ export default function AuthPage() {
       { email: "teacher@school.edu", password: "password", role: "teacher" },
       { email: "admin@school.edu", password: "password", role: "admin" },
       { email: "parent@school.edu", password: "password", role: "parent" },
+      { email: "accountant@school.edu", password: "password", role: "accountant" },
     ]
 
     const isValid = validCredentials.some(
@@ -103,6 +104,7 @@ export default function AuthPage() {
       else if (selectedRole === "admin") router.push("/dashboard/admin")
       else if (selectedRole === "teacher") router.push("/dashboard/teacher")
       else if (selectedRole === "parent") router.push("/dashboard/parent")
+      else if (selectedRole === "accountant") router.push("/dashboard/accountant")
       else router.push("/dashboard/student")
       setLoading(false)
     }, 1000)
@@ -373,6 +375,10 @@ export default function AuthPage() {
                   <p className="flex items-center justify-between">
                     <span className="font-semibold text-gray-700">Parent:</span>
                     <span className="font-mono text-gray-600">parent@school.edu / password</span>
+                  </p>
+                  <p className="flex items-center justify-between">
+                    <span className="font-semibold text-gray-700">Accountant:</span>
+                    <span className="font-mono text-gray-600">accountant@school.edu / password</span>
                   </p>
                   <p className="mt-3 pt-3 border-t border-blue-200 text-xs text-gray-600 italic">
                     💡 Remember to select the correct role above before signing in!

@@ -96,7 +96,6 @@ export default function StudentAnnouncements() {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-foreground">School Announcements</h2>
-              <p className="text-muted-foreground">Stay updated with the latest news</p>
             </div>
           </div>
           <div>

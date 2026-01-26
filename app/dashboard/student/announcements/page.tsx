@@ -87,20 +87,20 @@ export default function StudentAnnouncements() {
     filter === "all" ? announcements : announcements.filter((a) => a.category.toLowerCase() === filter)
 
   return (
-    <StudentLayout title="Announcements" showBackButton>
+    <StudentLayout title="Announcements">
       <div className="space-y-6 animate-fade-in">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
-              <Megaphone className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-foreground">School Announcements</h2>
               <p className="text-muted-foreground">Stay updated with the latest news</p>
             </div>
           </div>
-          <Select value={filter} onValueChange={setFilter}>
+          <div>
+            <Select value={filter} onValueChange={setFilter}>
             <SelectTrigger className="w-40">
               <SelectValue placeholder="Filter by" />
             </SelectTrigger>
@@ -112,6 +112,8 @@ export default function StudentAnnouncements() {
               <SelectItem value="reminder">Reminder</SelectItem>
             </SelectContent>
           </Select>
+          </div>
+          
         </div>
 
         {/* Announcements List */}

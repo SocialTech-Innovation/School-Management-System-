@@ -28,7 +28,7 @@ export function QuickLinks() {
                 className="quick-link-card"
               >
                 <Icon className={`w-6 h-6 ${link.color}`} />
-                <span className="text-sm font-medium text-foreground">{link.label}</span>
+                <span className="text-s font-medium text-foreground">{link.label}</span>
               </Link>
             )
           })}

@@ -259,7 +259,7 @@ export default function AuthPage() {
 
       {/* Right side - Form in rounded card */}
       <div className="flex items-center justify-center p-6 lg:p-12 lg:w-[480px] xl:w-[560px]">
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 lg:p-10 border border-gray-100">
+        <div className="w-full max-w-md bg-white rounded-3xl p-8 lg:p-10 border">
           
           {/* Role Selector Dropdown */}
           {currentRole && (
@@ -336,7 +336,7 @@ export default function AuthPage() {
                     Email Address
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
+                    <Mail className="absolute left-3.5 top-3.5 w-5 h-5 text-black-400" />
                     <Input
                       id="signin-email"
                       type="email"
@@ -359,11 +359,11 @@ export default function AuthPage() {
                     Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
+                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-black-400" />
                     <Input
                       id="signin-password"
                       type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
+                      placeholder="Password"
                       className="pl-11 pr-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       value={signInData.password}
                       onChange={(e) =>

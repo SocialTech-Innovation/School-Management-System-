@@ -135,17 +135,17 @@ export default function ReportsPage() {
     <AdminLayout title="Reports">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Reports & Analytics</h2>
             <p className="text-muted-foreground mt-1">Generate and view comprehensive school reports</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Filter className="w-4 h-4 mr-2" />
               Custom Report
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
               <Download className="w-4 h-4 mr-2" />
               Export All
             </Button>

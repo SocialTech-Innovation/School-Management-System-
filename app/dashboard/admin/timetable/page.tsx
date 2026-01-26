@@ -88,21 +88,21 @@ export default function TimetablePage() {
     <AdminLayout title="Timetable">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Timetable Management</h2>
             <p className="text-muted-foreground mt-1">Manage class schedules and periods</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Download className="w-4 h-4 mr-2" />
               Export
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Copy className="w-4 h-4 mr-2" />
               Duplicate
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" />
               Create Schedule
             </Button>
@@ -190,8 +190,8 @@ export default function TimetablePage() {
                 </SelectContent>
               </Select>
 
-              <Button variant="outline" className="md:ml-auto">
-                <Edit className="w-4 h-4 mr-2" />
+              <Button variant="outline" className="w-full sm:w-auto md:ml-auto">
+                <Edit className="w-full sm:w-auto w-4 h-4 mr-2" />
                 Edit Schedule
               </Button>
             </div>

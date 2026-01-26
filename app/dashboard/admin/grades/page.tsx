@@ -136,17 +136,17 @@ export default function GradesPage() {
     <AdminLayout title="Grades">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Grade Management</h2>
             <p className="text-muted-foreground mt-1">Manage student grades and academic performance</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Download className="w-4 h-4 mr-2" />
               Export Results
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
               <FileText className="w-4 h-4 mr-2" />
               Generate Report Cards
             </Button>
@@ -305,7 +305,7 @@ export default function GradesPage() {
                   <div key={student.id} className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
                         <h3 className="text-lg font-semibold text-foreground">{student.name}</h3>
                         <Badge variant="outline">{student.studentId}</Badge>
                         <Badge variant="outline">{student.class}</Badge>
@@ -366,8 +366,8 @@ export default function GradesPage() {
                       <Eye className="w-4 h-4 mr-1" />
                       View Report Card
                     </Button>
-                    <Button variant="outline" size="sm" className="ml-auto">
-                      <Download className="w-4 h-4 mr-1" />
+                    <Button variant="outline" size="sm" className="w-full sm:w-auto ml-auto">
+                      <Download className="w-full sm:w-auto w-4 h-4 mr-1" />
                       Download
                     </Button>
                   </div>
@@ -454,11 +454,11 @@ export default function GradesPage() {
 
                 {/* Action Buttons */}
                 <div className="flex justify-end gap-2 pt-4 border-t">
-                  <Button variant="outline" onClick={() => setIsReportDialogOpen(false)}>
+                  <Button className="w-full sm:w-auto" variant="outline" onClick={() => setIsReportDialogOpen(false)}>
                     Close
                   </Button>
-                  <Button className="bg-blue-600 hover:bg-blue-700">
-                    <Download className="w-4 h-4 mr-2" />
+                  <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700">
+                    <Download className="w-full sm:w-auto w-4 h-4 mr-2" />
                     Download Report
                   </Button>
                 </div>

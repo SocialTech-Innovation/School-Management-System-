@@ -236,7 +236,7 @@ export default function StudentAttendance() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold text-foreground">{getWeekRange(weekOffset)}</h3>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                     <Button 
                       variant="outline" 
                       size="sm"
@@ -249,7 +249,7 @@ export default function StudentAttendance() {
                       variant="outline" 
                       size="sm"
                       disabled
-                      className="opacity-50 cursor-not-allowed"
+                      className="w-full sm:w-auto opacity-50 cursor-not-allowed"
                     >
                       Current Week
                     </Button>
@@ -327,7 +327,7 @@ export default function StudentAttendance() {
                 <div className="lg:col-span-2 space-y-4">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="font-semibold text-foreground">{getMonthName(monthOffset)}</h3>
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                       <Button 
                         variant="outline" 
                         size="sm"
@@ -340,7 +340,7 @@ export default function StudentAttendance() {
                         variant="outline" 
                         size="sm"
                         disabled
-                        className="opacity-50 cursor-not-allowed"
+                        className="w-full sm:w-auto opacity-50 cursor-not-allowed"
                       >
                         Current Month
                       </Button>

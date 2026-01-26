@@ -108,7 +108,7 @@ export default function ProfileSettingsPage() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Sarah Johnson</h3>
                 <p className="text-sm text-muted-foreground">Parent Account</p>
-                <Button variant="outline" size="sm" className="mt-2">
+                <Button variant="outline" size="sm" className="w-full sm:w-auto mt-2">
                   Change Photo
                 </Button>
               </div>

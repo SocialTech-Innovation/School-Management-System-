@@ -196,52 +196,96 @@ export default function AuthPage() {
 
   // Step 2: Authentication Form with split screen
   return (
-    <div className="min-h-screen flex">
-      {/* Left side - Image only */}
-      <div className="hidden lg:block lg:w-1/2 relative">
-        <Image
-          src="/image-login.jpg" 
-          alt="Auth visual"
-          fill
-          className="object-cover"
-          priority
-        />
+    <div className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      {/* Left side - Branding & Visual */}
+      <div className="flex-1 flex items-center justify-center p-6 lg:p-12 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-0 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-lg text-center lg:text-left">
+          {/* Logo and branding */}
+          <div className="flex items-center gap-4 mb-8 justify-center lg:justify-start">
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl shadow-lg">
+              <BookOpen className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Skops
+            </h1>
+          </div>
+
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
+            Welcome to Your School Management System
+          </h2>
+          <p className="text-gray-600 text-lg mb-8">
+            Streamline your educational institution with our comprehensive platform designed for students, teachers, and administrators.
+          </p>
+
+          {/* Features */}
+          <div className="space-y-4 text-left hidden lg:block">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                <BookOpen className="w-4 h-4 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-800">Smart Learning</h3>
+                <p className="text-sm text-gray-600">Track progress and manage coursework efficiently</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                <Users className="w-4 h-4 text-indigo-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-800">Collaboration</h3>
+                <p className="text-sm text-gray-600">Connect students, teachers, and parents seamlessly</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+                <BarChart3 className="w-4 h-4 text-purple-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-800">Analytics</h3>
+                <p className="text-sm text-gray-600">Gain insights with powerful reporting tools</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Right side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8 bg-gray-50">
-        <div className="w-full max-w-md">
+      {/* Right side - Form in rounded card */}
+      <div className="flex items-center justify-center p-6 lg:p-12 lg:w-[480px] xl:w-[560px]">
+        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 lg:p-10 border border-gray-100">
           {/* Back button */}
           <button
             onClick={() => setStep("role")}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
+            className="flex items-center gap-2 text-gray-500 hover:text-gray-900 mb-6 transition-colors group"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             <span className="text-sm font-medium">Change Role</span>
           </button>
 
-          {/* Logo / Title */}
-          <div className="flex items-center gap-3 mb-6">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg">
-              <BookOpen className="w-6 h-6 text-white" />
-            </div>
-            <h1 className="text-2xl font-bold text-gray-900">EduManage</h1>
-          </div>
-
           {/* Role Selector Dropdown */}
           {currentRole && (
-            <div className="mb-6 p-4 rounded-xl border-2 border-gray-200 bg-white">
-              <Label className="text-sm text-gray-600 mb-2 block">Signing in as</Label>
+            <div className="mb-8 p-5 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200">
+              <Label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3 block">Signing in as</Label>
               <Select value={selectedRole} onValueChange={setSelectedRole}>
-                <SelectTrigger className="w-full border-none shadow-none p-0 h-auto focus:ring-0">
+                <SelectTrigger className="w-full border-none shadow-none p-0 h-auto focus:ring-0 hover:opacity-80 transition-opacity">
                   <SelectValue>
                     <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${currentRole.color} flex items-center justify-center`}>
-                        <currentRole.icon className="w-5 h-5 text-white" />
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${currentRole.color} flex items-center justify-center shadow-md`}>
+                        <currentRole.icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-left">
-                        <p className="font-semibold text-gray-900">{currentRole.label}</p>
-                        <p className="text-xs text-gray-500">Click to change role</p>
+                        <p className="font-bold text-gray-900 text-lg">{currentRole.label}</p>
+                        <p className="text-xs text-gray-500 flex items-center gap-1">
+                          <ChevronDown className="w-3 h-3" />
+                          Click to change
+                        </p>
                       </div>
                     </div>
                   </SelectValue>
@@ -272,40 +316,43 @@ export default function AuthPage() {
               onValueChange={(value) => setActiveTab(value as "signin" | "signup")}
               className="w-full"
             >
-              <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger value="signin" className="flex items-center gap-2">
+              <TabsList className="grid w-full grid-cols-2 mb-8 bg-gray-100 p-1 rounded-xl">
+                <TabsTrigger value="signin" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
                   <LogIn className="w-4 h-4" />
                   Sign In
                 </TabsTrigger>
-                <TabsTrigger value="signup" className="flex items-center gap-2">
+                <TabsTrigger value="signup" className="flex items-center gap-2 rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
                   <UserPlus className="w-4 h-4" />
-                  Register School
+                  Register
                 </TabsTrigger>
               </TabsList>
 
             {/* Sign In Tab */}
             <TabsContent value="signin" className="space-y-6">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
-                <p className="text-gray-600 mt-2">Sign in to your account to continue</p>
+                <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
+                <p className="text-gray-500 mt-1 text-sm">Sign in to continue to your dashboard</p>
               </div>
 
-              <form onSubmit={handleSignIn} className="space-y-4">
+              <form onSubmit={handleSignIn} className="space-y-5">
                 {error && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">{error}</div>
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700 flex items-start gap-2">
+                    <div className="w-5 h-5 rounded-full bg-red-200 flex items-center justify-center flex-shrink-0 mt-0.5">!</div>
+                    <span>{error}</span>
+                  </div>
                 )}
 
                 <div className="space-y-2">
-                  <Label htmlFor="signin-email" className="text-gray-700">
+                  <Label htmlFor="signin-email" className="text-gray-700 font-medium">
                     Email Address
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <Mail className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                     <Input
                       id="signin-email"
                       type="email"
                       placeholder="you@example.com"
-                      className="pl-10"
+                      className="pl-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       value={signInData.email}
                       onChange={(e) =>
                         setSignInData((prev) => ({
@@ -319,16 +366,16 @@ export default function AuthPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signin-password" className="text-gray-700">
+                  <Label htmlFor="signin-password" className="text-gray-700 font-medium">
                     Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                     <Input
                       id="signin-password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
-                      className="pl-10 pr-10"
+                      className="pl-11 pr-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       value={signInData.password}
                       onChange={(e) =>
                         setSignInData((prev) => ({
@@ -341,7 +388,7 @@ export default function AuthPage() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                      className="absolute right-3.5 top-3.5 text-gray-400 hover:text-gray-600 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -350,38 +397,43 @@ export default function AuthPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-2 h-auto"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold h-12 rounded-xl shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40"
                   disabled={loading}
                 >
-                  {loading ? "Signing in..." : "Sign In"}
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Signing in...
+                    </span>
+                  ) : (
+                    "Sign In"
+                  )}
                 </Button>
               </form>
 
-              <div className="pt-4 border-t border-gray-200">
-                <p className="text-sm text-gray-700 mb-3 font-semibold">Demo Credentials:</p>
-                <div className="space-y-2 text-sm bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-200">
-                  <p className="flex items-center justify-between">
-                    <span className="font-semibold text-gray-700">Student:</span>
-                    <span className="font-mono text-gray-600">student@school.edu / password</span>
-                  </p>
-                  <p className="flex items-center justify-between">
-                    <span className="font-semibold text-gray-700">Teacher:</span>
-                    <span className="font-mono text-gray-600">teacher@school.edu / password</span>
-                  </p>
-                  <p className="flex items-center justify-between">
-                    <span className="font-semibold text-gray-700">Admin:</span>
-                    <span className="font-mono text-gray-600">admin@school.edu / password</span>
-                  </p>
-                  <p className="flex items-center justify-between">
-                    <span className="font-semibold text-gray-700">Parent:</span>
-                    <span className="font-mono text-gray-600">parent@school.edu / password</span>
-                  </p>
-                  <p className="flex items-center justify-between">
-                    <span className="font-semibold text-gray-700">Accountant:</span>
-                    <span className="font-mono text-gray-600">accountant@school.edu / password</span>
-                  </p>
-                  <p className="mt-3 pt-3 border-t border-blue-200 text-xs text-gray-600 italic">
-                    💡 Remember to select the correct role above before signing in!
+              <div className="pt-5 border-t border-gray-200">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Demo Credentials</p>
+                <div className="space-y-2 text-sm bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-100">
+                  <div className="grid gap-2">
+                    <div className="flex items-center justify-between py-1">
+                      <span className="font-medium text-gray-700">Student:</span>
+                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">student@school.edu / password</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="font-medium text-gray-700">Teacher:</span>
+                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">teacher@school.edu / password</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="font-medium text-gray-700">Admin:</span>
+                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">admin@school.edu / password</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="font-medium text-gray-700">Parent:</span>
+                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">parent@school.edu / password</span>
+                    </div>
+                  </div>
+                  <p className="mt-3 pt-3 border-t border-blue-200 text-xs text-gray-600">
+                    Remember to select the correct role above before signing in
                   </p>
                 </div>
               </div>
@@ -390,31 +442,34 @@ export default function AuthPage() {
             {/* Sign Up Tab - Admin Only */}
             <TabsContent value="signup" className="space-y-6">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900">Register Your School</h2>
-                <p className="text-gray-600 mt-2">Create an administrative account for your institution</p>
+                <h2 className="text-2xl font-bold text-gray-900">Register Your School</h2>
+                <p className="text-gray-500 mt-1 text-sm">Create an admin account for your institution</p>
               </div>
 
-              <form onSubmit={handleSignUp} className="space-y-4">
+              <form onSubmit={handleSignUp} className="space-y-5">
                 {error && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">{error}</div>
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700 flex items-start gap-2">
+                    <div className="w-5 h-5 rounded-full bg-red-200 flex items-center justify-center flex-shrink-0 mt-0.5">!</div>
+                    <span>{error}</span>
+                  </div>
                 )}
 
-                <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-700">
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl text-sm text-blue-700">
                   <p className="font-semibold mb-1">Administrator Account</p>
-                  <p className="text-xs text-blue-600">You'll be able to add teachers, students, and other staff after registration.</p>
+                  <p className="text-xs text-blue-600">You'll be able to add teachers, students, and staff after registration.</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="signup-firstName" className="text-gray-700">
+                    <Label htmlFor="signup-firstName" className="text-gray-700 font-medium">
                       First Name
                     </Label>
                     <div className="relative">
-                      <User className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                      <User className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                       <Input
                         id="signup-firstName"
                         placeholder="John"
-                        className="pl-10"
+                        className="pl-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                         value={signUpData.firstName}
                         onChange={(e) =>
                           setSignUpData((prev) => ({
@@ -427,15 +482,15 @@ export default function AuthPage() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-lastName" className="text-gray-700">
+                    <Label htmlFor="signup-lastName" className="text-gray-700 font-medium">
                       Last Name
                     </Label>
                     <div className="relative">
-                      <User className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                      <User className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                       <Input
                         id="signup-lastName"
                         placeholder="Doe"
-                        className="pl-10"
+                        className="pl-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                         value={signUpData.lastName}
                         onChange={(e) =>
                           setSignUpData((prev) => ({
@@ -450,16 +505,16 @@ export default function AuthPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-email" className="text-gray-700">
+                  <Label htmlFor="signup-email" className="text-gray-700 font-medium">
                     Email Address
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <Mail className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                     <Input
                       id="signup-email"
                       type="email"
                       placeholder="you@example.com"
-                      className="pl-10"
+                      className="pl-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       value={signUpData.email}
                       onChange={(e) =>
                         setSignUpData((prev) => ({
@@ -473,16 +528,16 @@ export default function AuthPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-password" className="text-gray-700">
+                  <Label htmlFor="signup-password" className="text-gray-700 font-medium">
                     Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                     <Input
                       id="signup-password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Create a password"
-                      className="pl-10 pr-10"
+                      className="pl-11 pr-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       value={signUpData.password}
                       onChange={(e) =>
                         setSignUpData((prev) => ({
@@ -495,7 +550,7 @@ export default function AuthPage() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                      className="absolute right-3.5 top-3.5 text-gray-400 hover:text-gray-600 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -503,16 +558,16 @@ export default function AuthPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signup-confirmPassword" className="text-gray-700">
+                  <Label htmlFor="signup-confirmPassword" className="text-gray-700 font-medium">
                     Confirm Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                     <Input
                       id="signup-confirmPassword"
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Confirm your password"
-                      className="pl-10 pr-10"
+                      className="pl-11 pr-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       value={signUpData.confirmPassword}
                       onChange={(e) =>
                         setSignUpData((prev) => ({
@@ -525,7 +580,7 @@ export default function AuthPage() {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                      className="absolute right-3.5 top-3.5 text-gray-400 hover:text-gray-600 transition-colors"
                     >
                       {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -534,10 +589,17 @@ export default function AuthPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-2 h-auto"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold h-12 rounded-xl shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40"
                   disabled={loading}
                 >
-                  {loading ? "Registering school..." : "Register School"}
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Registering...
+                    </span>
+                  ) : (
+                    "Register School"
+                  )}
                 </Button>
               </form>
             </TabsContent>
@@ -546,17 +608,23 @@ export default function AuthPage() {
             /* Non-Admin: Sign In Only */
             <div className="w-full">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
-                <p className="text-gray-600 mt-2">Sign in with your provided credentials</p>
+                <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
+                <p className="text-gray-500 mt-1 text-sm">Sign in with your provided credentials</p>
               </div>
 
-              <form onSubmit={handleSignIn} className="space-y-4">
+              <form onSubmit={handleSignIn} className="space-y-5">
                 {error && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">{error}</div>
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700 flex items-start gap-2">
+                    <div className="w-5 h-5 rounded-full bg-red-200 flex items-center justify-center flex-shrink-0 mt-0.5">!</div>
+                    <span>{error}</span>
+                  </div>
                 )}
 
-                <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-700">
-                  <p className="font-semibold mb-1">🔒 Credentials Required</p>
+                <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-700">
+                  <p className="font-semibold mb-1 flex items-center gap-2">
+                    <Lock className="w-4 h-4" />
+                    Credentials Required
+                  </p>
                   <p className="text-xs text-amber-600">
                     {selectedRole === "teacher" && "Use the credentials provided by your school administrator."}
                     {selectedRole === "student" && "Use the credentials provided by your school."}
@@ -566,16 +634,16 @@ export default function AuthPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signin-email-nonadmin" className="text-gray-700">
+                  <Label htmlFor="signin-email-nonadmin" className="text-gray-700 font-medium">
                     Email Address
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <Mail className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                     <Input
                       id="signin-email-nonadmin"
                       type="email"
                       placeholder="you@example.com"
-                      className="pl-10"
+                      className="pl-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       value={signInData.email}
                       onChange={(e) =>
                         setSignInData((prev) => ({
@@ -589,16 +657,16 @@ export default function AuthPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="signin-password-nonadmin" className="text-gray-700">
+                  <Label htmlFor="signin-password-nonadmin" className="text-gray-700 font-medium">
                     Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
                     <Input
                       id="signin-password-nonadmin"
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
-                      className="pl-10 pr-10"
+                      className="pl-11 pr-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
                       value={signInData.password}
                       onChange={(e) =>
                         setSignInData((prev) => ({
@@ -611,7 +679,7 @@ export default function AuthPage() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                      className="absolute right-3.5 top-3.5 text-gray-400 hover:text-gray-600 transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -620,49 +688,56 @@ export default function AuthPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-2 h-auto"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold h-12 rounded-xl shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/40"
                   disabled={loading}
                 >
-                  {loading ? "Signing in..." : "Sign In"}
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Signing in...
+                    </span>
+                  ) : (
+                    "Sign In"
+                  )}
                 </Button>
               </form>
 
-              <div className="pt-4 border-t border-gray-200 mt-6">
-                <p className="text-sm text-gray-700 mb-3 font-semibold">Demo Credentials:</p>
-                <div className="space-y-2 text-sm bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-200">
+              <div className="pt-5 border-t border-gray-200 mt-6">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Demo Credentials</p>
+                <div className="space-y-2 text-sm bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-100">
                   {selectedRole === "student" && (
-                    <p className="flex items-center justify-between">
-                      <span className="font-semibold text-gray-700">Student:</span>
-                      <span className="font-mono text-gray-600">student@school.edu / password</span>
-                    </p>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="font-medium text-gray-700">Student:</span>
+                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">student@school.edu / password</span>
+                    </div>
                   )}
                   {selectedRole === "teacher" && (
-                    <p className="flex items-center justify-between">
-                      <span className="font-semibold text-gray-700">Teacher:</span>
-                      <span className="font-mono text-gray-600">teacher@school.edu / password</span>
-                    </p>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="font-medium text-gray-700">Teacher:</span>
+                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">teacher@school.edu / password</span>
+                    </div>
                   )}
                   {selectedRole === "parent" && (
-                    <p className="flex items-center justify-between">
-                      <span className="font-semibold text-gray-700">Parent:</span>
-                      <span className="font-mono text-gray-600">parent@school.edu / password</span>
-                    </p>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="font-medium text-gray-700">Parent:</span>
+                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">parent@school.edu / password</span>
+                    </div>
                   )}
                   {selectedRole === "accountant" && (
-                    <p className="flex items-center justify-between">
-                      <span className="font-semibold text-gray-700">Accountant:</span>
-                      <span className="font-mono text-gray-600">accountant@school.edu / password</span>
-                    </p>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="font-medium text-gray-700">Accountant:</span>
+                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">accountant@school.edu / password</span>
+                    </div>
                   )}
-                  <p className="mt-3 pt-3 border-t border-blue-200 text-xs text-gray-600 italic">
-                    💡 For demo purposes only
+                  <p className="mt-3 pt-3 border-t border-blue-200 text-xs text-gray-600">
+                    For demo purposes only
                   </p>
                 </div>
               </div>
 
-              <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-                <p className="text-sm text-gray-700 mb-2">
-                  <span className="font-semibold">Need access?</span>
+              <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <p className="text-sm text-gray-700 mb-1 font-medium">
+                  Need access?
                 </p>
                 <p className="text-xs text-gray-600">
                   Contact your school administrator to receive your login credentials.

@@ -48,17 +48,17 @@ export default function AdminClasses() {
     <AdminLayout title="Classes">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Class Management</h2>
             <p className="text-muted-foreground mt-1">Manage classes and assignments</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Download className="w-4 h-4 mr-2" />
               Export
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" />
               Create Class
             </Button>
@@ -216,8 +216,8 @@ export default function AdminClasses() {
                         </div>
 
                         <div className="flex items-center gap-2 pt-2 border-t">
-                          <Button variant="outline" size="sm" className="flex-1">
-                            <Eye className="w-4 h-4 mr-1" />
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto flex-1">
+                            <Eye className="w-full sm:w-auto w-4 h-4 mr-1" />
                             View
                           </Button>
                           <Button variant="ghost" size="sm">

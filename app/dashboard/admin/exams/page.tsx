@@ -155,19 +155,19 @@ export default function ExaminationsPage() {
     <AdminLayout title="Examinations">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Examination Management</h2>
             <p className="text-muted-foreground mt-1">Schedule and manage school examinations</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Download className="w-4 h-4 mr-2" />
               Export
             </Button>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
                   <Plus className="w-4 h-4 mr-2" />
                   Schedule Exam
                 </Button>
@@ -275,10 +275,10 @@ export default function ExaminationsPage() {
                   </div>
 
                   <div className="flex justify-end gap-2 pt-4">
-                    <Button type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                    <Button className="w-full sm:w-auto" type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
                       Cancel
                     </Button>
-                    <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                    <Button type="submit" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700">
                       Schedule Exam
                     </Button>
                   </div>
@@ -401,8 +401,8 @@ export default function ExaminationsPage() {
                 No exams found matching your criteria
               </div>
             ) : (
-              <div className="rounded-md border">
-                <Table>
+              <div className="overflow-x-auto">
+            <Table>
                   <TableHeader>
                     <TableRow>
                       <TableHead>Subject</TableHead>
@@ -437,7 +437,7 @@ export default function ExaminationsPage() {
                           </Badge>
                         </TableCell>
                         <TableCell className="text-right">
-                          <div className="flex justify-end gap-2">
+                          <div className="flex flex-col-reverse sm:flex-row justify-end gap-2">
                             <Button variant="ghost" size="sm">
                               <Eye className="w-4 h-4" />
                             </Button>

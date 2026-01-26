@@ -209,7 +209,7 @@ export default function TeacherStudents() {
           <CardHeader>
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <CardTitle>Student Directory</CardTitle>
-              <Button variant="outline" className="flex items-center gap-2">
+              <Button variant="outline" className="w-full sm:w-auto flex items-center gap-2">
                 <Download className="w-4 h-4" />
                 Export List
               </Button>

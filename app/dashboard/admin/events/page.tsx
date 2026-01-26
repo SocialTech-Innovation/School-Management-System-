@@ -112,12 +112,12 @@ export default function EventsPage() {
     <AdminLayout title="Events">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Events Management</h2>
             <p className="text-muted-foreground mt-1">Organize and manage school events</p>
           </div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
             <Plus className="w-4 h-4 mr-2" />
             Create New Event
           </Button>
@@ -198,7 +198,7 @@ export default function EventsPage() {
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <Select>
                     <SelectTrigger>
                       <SelectValue placeholder="Event Type" />
@@ -251,9 +251,9 @@ export default function EventsPage() {
         {/* Events List */}
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <CardTitle>All Events</CardTitle>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
                 <Download className="w-4 h-4 mr-2" />
                 Export Calendar
               </Button>
@@ -266,9 +266,9 @@ export default function EventsPage() {
                   key={event.id}
                   className="border rounded-lg p-4 hover:bg-muted/50 transition-colors"
                 >
-                  <div className="flex items-start justify-between">
+                  <div className="flex flex-col gap-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
                         <h3 className="text-lg font-semibold text-foreground">{event.title}</h3>
                         <Badge
                           className={
@@ -288,22 +288,22 @@ export default function EventsPage() {
                       
                       <p className="text-sm text-muted-foreground mb-3">{event.description}</p>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <Calendar className="w-4 h-4" />
-                          <span>{event.date}</span>
+                          <Calendar className="w-4 h-4 flex-shrink-0" />
+                          <span className="truncate">{event.date}</span>
                         </div>
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <Clock className="w-4 h-4" />
-                          <span>{event.time}</span>
+                          <Clock className="w-4 h-4 flex-shrink-0" />
+                          <span className="truncate">{event.time}</span>
                         </div>
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <MapPin className="w-4 h-4" />
-                          <span>{event.location}</span>
+                          <MapPin className="w-4 h-4 flex-shrink-0" />
+                          <span className="truncate">{event.location}</span>
                         </div>
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <Users className="w-4 h-4" />
-                          <span>{event.participants}</span>
+                          <Users className="w-4 h-4 flex-shrink-0" />
+                          <span className="truncate">{event.participants}</span>
                         </div>
                       </div>
                       
@@ -312,15 +312,18 @@ export default function EventsPage() {
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-2 ml-4">
-                      <Button variant="ghost" size="sm">
-                        <Eye className="w-4 h-4" />
+                    <div className="flex items-center gap-2 pt-2 border-t sm:border-0 sm:pt-0">
+                      <Button variant="ghost" size="sm" className="flex-1 sm:flex-initial">
+                        <Eye className="w-4 h-4 sm:mr-0 mr-2" />
+                        <span className="sm:hidden">View</span>
                       </Button>
-                      <Button variant="ghost" size="sm">
-                        <Edit className="w-4 h-4" />
+                      <Button variant="ghost" size="sm" className="flex-1 sm:flex-initial">
+                        <Edit className="w-4 h-4 sm:mr-0 mr-2" />
+                        <span className="sm:hidden">Edit</span>
                       </Button>
-                      <Button variant="ghost" size="sm" className="text-destructive">
-                        <Trash2 className="w-4 h-4" />
+                      <Button variant="ghost" size="sm" className="text-destructive flex-1 sm:flex-initial">
+                        <Trash2 className="w-4 h-4 sm:mr-0 mr-2" />
+                        <span className="sm:hidden">Delete</span>
                       </Button>
                     </div>
                   </div>

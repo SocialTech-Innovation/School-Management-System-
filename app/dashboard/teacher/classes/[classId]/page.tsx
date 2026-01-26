@@ -131,15 +131,15 @@ export default function ClassDetailPage() {
                 <p className="text-white/90 text-lg mb-4">{classInfo.subject}</p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <MapPin className="w-4 h-4" />
+                    <MapPin className="w-4 h-4 flex-shrink-0" />
                     <span className="text-sm font-medium">Room {classInfo.room}</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <Clock className="w-4 h-4" />
+                    <Clock className="w-4 h-4 flex-shrink-0" />
                     <span className="text-sm font-medium">{classInfo.schedule}</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <Users className="w-4 h-4" />
+                    <Users className="w-4 h-4 flex-shrink-0" />
                     <span className="text-sm font-medium">{classInfo.students} Students</span>
                   </div>
                 </div>
@@ -224,7 +224,7 @@ export default function ClassDetailPage() {
                       className="pl-9"
                     />
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                     <Button variant="outline" size="sm">
                       <Filter className="w-4 h-4 mr-2" />
                       Filter
@@ -299,7 +299,7 @@ export default function ClassDetailPage() {
 
               {/* Attendance Tab */}
               <TabsContent value="attendance" className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                   <Card>
                     <CardContent className="pt-6">
                       <div className="flex items-center justify-between">
@@ -383,7 +383,7 @@ export default function ClassDetailPage() {
 
               {/* Performance Tab */}
               <TabsContent value="performance" className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                   <Card>
                     <CardContent className="pt-6">
                       <div className="flex items-center justify-between">

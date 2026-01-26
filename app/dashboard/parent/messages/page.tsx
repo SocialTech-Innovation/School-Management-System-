@@ -219,7 +219,7 @@ export default function TeacherMessagesPage() {
                   onChange={(e) => setComposeData({...composeData, message: e.target.value})}
                   className="mb-3 min-h-[100px] bg-background"
                 />
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                   <Button onClick={handleComposeMessage} className="flex-1 bg-primary">
                     <Send size={16} className="mr-2" />
                     Send

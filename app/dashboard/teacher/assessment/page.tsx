@@ -264,7 +264,7 @@ export default function TeacherAssessment() {
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>Cancel</Button>
+                    <Button className="w-full sm:w-auto" variant="outline" onClick={() => setIsCreateDialogOpen(false)}>Cancel</Button>
                     <Button onClick={() => setIsCreateDialogOpen(false)}>Create Assessment</Button>
                   </DialogFooter>
                 </DialogContent>
@@ -292,7 +292,7 @@ export default function TeacherAssessment() {
                     <CardContent className="pt-6">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
+                          <div className="flex flex-wrap items-center gap-2 mb-2">
                             <h3 className="text-lg font-semibold text-foreground">{assessment.title}</h3>
                             <Badge variant="outline" className="bg-info-light text-info">{assessment.type}</Badge>
                           </div>
@@ -302,11 +302,11 @@ export default function TeacherAssessment() {
                               {assessment.class} - {assessment.subject}
                             </span>
                             <span className="flex items-center gap-1">
-                              <Calendar className="w-4 h-4" />
+                              <Calendar className="w-4 h-4 flex-shrink-0" />
                               {new Date(assessment.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                             </span>
                             <span className="flex items-center gap-1">
-                              <Clock className="w-4 h-4" />
+                              <Clock className="w-4 h-4 flex-shrink-0" />
                               {assessment.duration}
                             </span>
                           </div>
@@ -335,7 +335,7 @@ export default function TeacherAssessment() {
                     <CardContent className="pt-6">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
+                          <div className="flex flex-wrap items-center gap-2 mb-2">
                             <h3 className="text-lg font-semibold text-foreground">{assessment.title}</h3>
                             <Badge variant="outline" className="bg-warning-light text-warning">{assessment.type}</Badge>
                           </div>
@@ -345,7 +345,7 @@ export default function TeacherAssessment() {
                               {assessment.class} - {assessment.subject}
                             </span>
                             <span className="flex items-center gap-1">
-                              <Calendar className="w-4 h-4" />
+                              <Calendar className="w-4 h-4 flex-shrink-0" />
                               {new Date(assessment.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                             </span>
                           </div>
@@ -386,7 +386,7 @@ export default function TeacherAssessment() {
                     <CardContent className="pt-6">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
+                          <div className="flex flex-wrap items-center gap-2 mb-2">
                             <h3 className="text-lg font-semibold text-foreground">{assessment.title}</h3>
                             <Badge variant="outline" className="bg-success-light text-success">{assessment.type}</Badge>
                           </div>
@@ -396,7 +396,7 @@ export default function TeacherAssessment() {
                               {assessment.class} - {assessment.subject}
                             </span>
                             <span className="flex items-center gap-1">
-                              <Calendar className="w-4 h-4" />
+                              <Calendar className="w-4 h-4 flex-shrink-0" />
                               {new Date(assessment.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                             </span>
                           </div>
@@ -420,8 +420,8 @@ export default function TeacherAssessment() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Button variant="outline" size="sm" className="flex items-center gap-2">
-                            <Eye className="w-4 h-4" />
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center gap-2">
+                            <Eye className="w-full sm:w-auto w-4 h-4" />
                             View Report
                           </Button>
                         </div>

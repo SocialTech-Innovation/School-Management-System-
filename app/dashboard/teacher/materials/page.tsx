@@ -396,7 +396,7 @@ export default function ClassMaterialsPage() {
                         )}
                       </div>
                       <div className="flex justify-end gap-2 pt-4">
-                        <Button variant="outline" onClick={() => setShowUploadModal(false)}>
+                        <Button className="w-full sm:w-auto" variant="outline" onClick={() => setShowUploadModal(false)}>
                           Cancel
                         </Button>
                         <Button onClick={handleUpload}>
@@ -463,14 +463,14 @@ export default function ClassMaterialsPage() {
                           {material.downloads} downloads
                         </span>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                         <Button
                           size="sm"
                           variant="outline"
-                          className="flex-1"
+                          className="w-full sm:w-auto flex-1"
                           onClick={() => handleDownload(material)}
                         >
-                          <Download className="w-4 h-4 mr-1" />
+                          <Download className="w-full sm:w-auto w-4 h-4 mr-1" />
                           Download
                         </Button>
                         <Button

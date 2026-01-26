@@ -329,8 +329,8 @@ export default function ParentCommunicationPage() {
                           rows={6}
                         />
                       </div>
-                      <div className="flex justify-end gap-2">
-                        <Button variant="outline" onClick={() => setShowComposeModal(false)}>
+                      <div className="flex flex-col-reverse sm:flex-row justify-end gap-2">
+                        <Button className="w-full sm:w-auto" variant="outline" onClick={() => setShowComposeModal(false)}>
                           Cancel
                         </Button>
                         <Button onClick={handleComposeMessage}>
@@ -444,7 +444,7 @@ export default function ParentCommunicationPage() {
                         {selectedMessage.parentPhone}
                       </div>
                       <div className="flex items-center gap-1 text-muted-foreground">
-                        <Clock className="w-4 h-4" />
+                        <Clock className="w-4 h-4 flex-shrink-0" />
                         {new Date(selectedMessage.timestamp).toLocaleString()}
                       </div>
                     </div>
@@ -475,7 +475,7 @@ export default function ParentCommunicationPage() {
                       onChange={(e) => setReplyText(e.target.value)}
                       rows={5}
                     />
-                    <div className="flex justify-end gap-2">
+                    <div className="flex flex-col-reverse sm:flex-row justify-end gap-2">
                       <Button variant="outline" onClick={() => setShowMessageModal(false)}>
                         Cancel
                       </Button>

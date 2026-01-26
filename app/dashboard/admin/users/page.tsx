@@ -131,17 +131,17 @@ export default function UserManagementPage() {
     <AdminLayout title="Users">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">User Management</h2>
             <p className="text-muted-foreground mt-1">Manage user accounts and permissions</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Shield className="w-4 h-4 mr-2" />
               Manage Roles
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" />
               Add User
             </Button>
@@ -205,7 +205,7 @@ export default function UserManagementPage() {
             <CardTitle>User Roles & Permissions</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {roles.map((role) => (
                 <div key={role.name} className="border rounded-lg p-4">
                   <div className="flex items-center justify-between mb-3">

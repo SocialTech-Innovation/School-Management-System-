@@ -184,8 +184,8 @@ export default function TeacherDashboard() {
                       </span>
                       {!item.attendanceMarked && item.status !== "upcoming" && (
                         <Link href={`/dashboard/teacher/attendance?class=${encodeURIComponent(item.class)}&subject=${encodeURIComponent(item.subject)}`}>
-                          <Button size="sm" variant="outline" className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4" />
+                          <Button size="sm" variant="outline" className="w-full sm:w-auto flex items-center gap-2">
+                            <CheckCircle className="w-full sm:w-auto w-4 h-4" />
                             Mark Attendance
                           </Button>
                         </Link>

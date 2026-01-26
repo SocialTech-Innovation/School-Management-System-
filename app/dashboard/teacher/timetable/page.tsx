@@ -127,7 +127,7 @@ export default function TeacherTimetable() {
                     </TabsTrigger>
                   </TabsList>
                 </Tabs>
-                <Button variant="outline" size="sm" className="flex items-center gap-2">
+                <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center gap-2">
                   <Download className="w-4 h-4" />
                   Export
                 </Button>
@@ -221,7 +221,7 @@ export default function TeacherTimetable() {
         </Card>
 
         {/* Weekly Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <Card className="animate-slide-up" style={{ animationDelay: viewMode === 'exam' && isExamPeriod() ? "200ms" : "150ms" }}>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">

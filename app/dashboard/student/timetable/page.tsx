@@ -87,9 +87,9 @@ export default function StudentTimetable() {
             <h2 className="text-2xl font-bold text-foreground">Weekly Schedule</h2>
             <p className="text-muted-foreground">Class 10-A • Academic Year 2025-2026</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" className="gap-2">
-              <Printer className="w-4 h-4" />
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto gap-2">
+              <Printer className="w-full sm:w-auto w-4 h-4" />
               Print
             </Button>
             <Button className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground">

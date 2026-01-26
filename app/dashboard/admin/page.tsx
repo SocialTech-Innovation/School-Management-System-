@@ -145,7 +145,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card className="hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: "100ms" }}>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between mb-2">
@@ -301,7 +301,7 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white justify-start">
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white justify-start w-full sm:w-auto">
                   <Users className="w-4 h-4 mr-2" />
                   Add New Student
                 </Button>

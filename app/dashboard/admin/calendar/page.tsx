@@ -110,19 +110,19 @@ export default function AcademicCalendarPage() {
     <AdminLayout title="Academic Calendar">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Academic Calendar & Events</h2>
             <p className="text-muted-foreground mt-1">Manage academic events, terms, and important dates</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Download className="w-4 h-4 mr-2" />
               Export Calendar
             </Button>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
                   <Plus className="w-4 h-4 mr-2" />
                   Add Event
                 </Button>
@@ -228,10 +228,10 @@ export default function AcademicCalendarPage() {
                   </div>
 
                   <div className="flex justify-end gap-2 pt-4">
-                    <Button type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                    <Button className="w-full sm:w-auto" type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
                       Cancel
                     </Button>
-                    <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                    <Button type="submit" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700">
                       Add Event
                     </Button>
                   </div>
@@ -304,7 +304,7 @@ export default function AcademicCalendarPage() {
                 <CardTitle>
                   {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
                 </CardTitle>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                   <Button variant="outline" size="sm" onClick={previousMonth}>
                     <ChevronLeft className="w-4 h-4" />
                   </Button>
@@ -444,11 +444,11 @@ export default function AcademicCalendarPage() {
                         </div>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <MapPin className="w-3 h-3" />
-                          <span>{event.location}</span>
+                          <span className="truncate">{event.location}</span>
                         </div>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <Users className="w-3 h-3" />
-                          <span>{event.participants}</span>
+                          <span className="truncate">{event.participants}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 mt-3 pt-2 border-t">
@@ -486,13 +486,13 @@ export default function AcademicCalendarPage() {
                   <CalendarIcon className="w-12 h-12 mx-auto mb-3 opacity-50" />
                   <p>No events scheduled for this day</p>
                   <Button 
-                    className="mt-4 bg-blue-600 hover:bg-blue-700"
+                    className="w-full sm:w-auto mt-4 bg-blue-600 hover:bg-blue-700"
                     onClick={() => {
                       setIsDayDialogOpen(false)
                       setIsAddDialogOpen(true)
                     }}
                   >
-                    <Plus className="w-4 h-4 mr-2" />
+                    <Plus className="w-full sm:w-auto w-4 h-4 mr-2" />
                     Add Event
                   </Button>
                 </div>
@@ -513,12 +513,12 @@ export default function AcademicCalendarPage() {
                         </div>
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center gap-2 text-muted-foreground">
-                            <MapPin className="w-4 h-4" />
-                            <span>{event.location}</span>
+                            <MapPin className="w-4 h-4 flex-shrink-0" />
+                            <span className="truncate">{event.location}</span>
                           </div>
                           <div className="flex items-center gap-2 text-muted-foreground">
-                            <Users className="w-4 h-4" />
-                            <span>{event.participants}</span>
+                            <Users className="w-4 h-4 flex-shrink-0" />
+                            <span className="truncate">{event.participants}</span>
                           </div>
                         </div>
                         <div className="flex gap-2 mt-3 pt-3 border-t">
@@ -526,8 +526,8 @@ export default function AcademicCalendarPage() {
                             <Edit className="w-4 h-4 mr-1" />
                             Edit
                           </Button>
-                          <Button variant="outline" size="sm" className="text-destructive">
-                            <Trash2 className="w-4 h-4 mr-1" />
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto text-destructive">
+                            <Trash2 className="w-full sm:w-auto w-4 h-4 mr-1" />
                             Delete
                           </Button>
                         </div>

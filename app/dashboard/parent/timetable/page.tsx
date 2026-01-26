@@ -196,7 +196,7 @@ export default function TimetablePage() {
         </Card>
 
         {/* Quick Info */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate-slide-up" style={{ animationDelay: "150ms" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-slide-up" style={{ animationDelay: "150ms" }}>
           <Card>
             <CardContent className="pt-6 text-center">
               <Clock className="w-8 h-8 mx-auto mb-2 text-primary" />

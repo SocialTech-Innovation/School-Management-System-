@@ -131,7 +131,7 @@ export default function TeacherPayroll() {
                 <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <Button variant="outline" className="w-full justify-start gap-2">
+                <Button variant="outline" className="w-full sm:w-auto justify-start gap-2">
                   <Download className="w-4 h-4" />
                   Download Pay Slip
                 </Button>
@@ -171,8 +171,8 @@ export default function TeacherPayroll() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle>Payment History</CardTitle>
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
-                <Download className="w-4 h-4" />
+              <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center gap-2">
+                <Download className="w-full sm:w-auto w-4 h-4" />
                 Export All
               </Button>
             </div>
@@ -235,7 +235,7 @@ export default function TeacherPayroll() {
             <CardTitle>Tax Information (Year 2024)</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="p-4 rounded-lg bg-muted/30">
                 <p className="text-sm text-muted-foreground mb-1">Total Income</p>
                 <p className="text-2xl font-bold text-foreground">$33,000</p>

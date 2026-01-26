@@ -38,17 +38,17 @@ export default function SettingsPage() {
     <AdminLayout title="Settings">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">System Settings</h2>
             <p className="text-muted-foreground mt-1">Manage school configuration and preferences</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <RefreshCw className="w-4 h-4 mr-2" />
               Reset to Default
             </Button>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
               <Save className="w-4 h-4 mr-2" />
               Save Changes
             </Button>
@@ -113,7 +113,7 @@ export default function SettingsPage() {
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div>
                 <Label htmlFor="academicYear">Current Academic Year</Label>
                 <Select defaultValue="2025-2026">
@@ -354,8 +354,8 @@ export default function SettingsPage() {
         {/* Footer Actions */}
         <div className="flex justify-end gap-3 pb-6">
           <Button variant="outline">Cancel</Button>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-            <Save className="w-4 h-4 mr-2" />
+          <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white">
+            <Save className="w-full sm:w-auto w-4 h-4 mr-2" />
             Save All Settings
           </Button>
         </div>

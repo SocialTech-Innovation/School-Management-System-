@@ -142,14 +142,14 @@ export default function AnnouncementsPage() {
     <AdminLayout title="Announcements">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-foreground">Announcements</h2>
             <p className="text-muted-foreground mt-1">Create and manage school announcements</p>
           </div>
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto">
                 <Plus className="w-4 h-4 mr-2" />
                 Create Announcement
               </Button>
@@ -241,11 +241,11 @@ export default function AnnouncementsPage() {
                 </div>
 
                 <div className="flex justify-end gap-2 pt-4">
-                  <Button type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                  <Button className="w-full sm:w-auto" type="button" variant="outline" onClick={() => setIsAddDialogOpen(false)}>
                     Cancel
                   </Button>
-                  <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
-                    <Send className="w-4 h-4 mr-2" />
+                  <Button type="submit" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700">
+                    <Send className="w-full sm:w-auto w-4 h-4 mr-2" />
                     Publish Announcement
                   </Button>
                 </div>
@@ -398,16 +398,16 @@ export default function AnnouncementsPage() {
                               </div>
                             </div>
                           </div>
-                          <div className="flex gap-2 pt-3 border-t">
-                            <Button variant="outline" size="sm">
+                          <div className="flex flex-col sm:flex-row gap-2 pt-3 border-t w-full sm:w-auto">
+                            <Button variant="outline" size="sm" className="w-full sm:w-auto">
                               <Eye className="w-3 h-3 mr-1" />
                               View
                             </Button>
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" size="sm" className="w-full sm:w-auto">
                               <Edit className="w-3 h-3 mr-1" />
                               Edit
                             </Button>
-                            <Button variant="outline" size="sm" className="text-destructive">
+                            <Button variant="outline" size="sm" className="text-destructive w-full sm:w-auto">
                               <Trash2 className="w-3 h-3 mr-1" />
                               Delete
                             </Button>
@@ -450,16 +450,16 @@ export default function AnnouncementsPage() {
                               </div>
                             </div>
                           </div>
-                          <div className="flex gap-2 pt-3 border-t">
-                            <Button variant="outline" size="sm">
+                          <div className="flex flex-col sm:flex-row gap-2 pt-3 border-t w-full sm:w-auto">
+                            <Button variant="outline" size="sm" className="w-full sm:w-auto">
                               <Eye className="w-3 h-3 mr-1" />
                               View
                             </Button>
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" size="sm" className="w-full sm:w-auto">
                               <Edit className="w-3 h-3 mr-1" />
                               Edit
                             </Button>
-                            <Button variant="outline" size="sm" className="text-destructive">
+                            <Button variant="outline" size="sm" className="text-destructive w-full sm:w-auto">
                               <Trash2 className="w-3 h-3 mr-1" />
                               Delete
                             </Button>

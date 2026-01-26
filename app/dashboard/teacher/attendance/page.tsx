@@ -323,7 +323,7 @@ export default function TeacherAttendance() {
             <CardTitle>Mark Attendance</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Select Class</label>
                 <Select value={selectedClass} onValueChange={setSelectedClass}>
@@ -343,7 +343,7 @@ export default function TeacherAttendance() {
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">Select Date</label>
                 <div className="flex items-center gap-2">
-                  <Button 
+                  <Button className="w-full sm:w-auto" 
                     variant="outline" 
                     size="icon"
                     onClick={() => changeDate(-1)}
@@ -370,7 +370,7 @@ export default function TeacherAttendance() {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">View Mode</label>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                   <Button 
                     variant={viewMode === "list" ? "default" : "outline"}
                     onClick={() => setViewMode("list")}

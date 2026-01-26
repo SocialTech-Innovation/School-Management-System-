@@ -87,7 +87,7 @@ export default function TeacherProfile() {
                         <Save className="w-4 h-4" />
                         Save
                       </Button>
-                      <Button onClick={handleCancel} variant="outline" className="flex items-center gap-2">
+                      <Button onClick={handleCancel} variant="outline" className="w-full sm:w-auto flex items-center gap-2">
                         <X className="w-4 h-4" />
                         Cancel
                       </Button>

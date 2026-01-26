@@ -94,7 +94,7 @@ export default function FeesPage() {
         )}
 
         {/* Fee Status Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card className={`animate-slide-up ${paymentStatus.status === "paid" ? "bg-gradient-to-br from-success to-success/80 text-white" : "bg-gradient-to-br from-warning to-warning/80 text-white"}`}>
             <CardContent className="pt-6 text-center">
               <CheckCircle className="w-12 h-12 mx-auto mb-2" />
@@ -192,7 +192,7 @@ export default function FeesPage() {
                   <CreditCard size={20} />
                   Make Payment
                 </Button>
-                <Button variant="outline" className="w-full justify-start gap-3" size="lg">
+                <Button variant="outline" className="w-full justify-start gap-3 w-full sm:w-auto" size="lg">
                   <Download size={20} />
                   Download Invoice
                 </Button>

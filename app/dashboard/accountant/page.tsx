@@ -79,26 +79,26 @@ export default function AccountantDashboard() {
 
   return (
     <AccountantLayout title="Accountant Dashboard">
-      <div className="space-y-6">
-        <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 rounded-xl p-6 text-white shadow-lg">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 rounded-xl p-4 sm:p-6 text-white shadow-lg">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-wide text-white/80">Month close health</p>
-              <h1 className="text-3xl font-bold">Solid cash position for January</h1>
-              <p className="text-white/80 mt-1">Collections are up 8% vs last month and payroll is fully provisioned.</p>
-              <div className="flex gap-3 mt-4">
-                <Button className="bg-white text-amber-600 hover:bg-white/90">
-                  <Download className="w-4 h-4 mr-2" /> Export Summary
+              <p className="text-xs sm:text-sm uppercase tracking-wide text-white/80">Month close health</p>
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">Solid cash position for January</h1>
+              <p className="text-sm sm:text-base text-white/80 mt-1">Collections are up 8% vs last month and payroll is fully provisioned.</p>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4">
+                <Button className="bg-white text-amber-600 hover:bg-white/90 text-sm w-full sm:w-auto">
+                  <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" /> Export Summary
                 </Button>
-                <Button variant="outline" className="border-white/70 text-white hover:bg-white/10">
-                  <Upload className="w-4 h-4 mr-2" /> Import Bank Feed
+                <Button variant="outline" className="border-white/70 text-white hover:bg-white/10 text-sm w-full sm:w-auto">
+                  <Upload className="w-3 h-3 sm:w-4 sm:h-4 mr-2" /> Import Bank Feed
                 </Button>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur rounded-lg px-6 py-4 border border-white/20">
-              <p className="text-sm text-white/80 mb-2">Cash on hand</p>
-              <div className="flex items-end gap-3">
-                <span className="text-3xl font-bold">$482,600</span>
+            <div className="bg-white/10 backdrop-blur rounded-lg px-4 sm:px-6 py-3 sm:py-4 border border-white/20">
+              <p className="text-xs sm:text-sm text-white/80 mb-2">Cash on hand</p>
+              <div className="flex items-end gap-2 sm:gap-3">
+                <span className="text-2xl sm:text-3xl font-bold">$482,600</span>
                 <Badge className="bg-emerald-500/90 text-white">+12% MoM</Badge>
               </div>
               <p className="text-xs text-white/70 mt-1">Includes restricted funds: $42,000</p>

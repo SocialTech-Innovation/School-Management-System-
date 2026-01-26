@@ -38,37 +38,37 @@ export default function TeacherDashboard() {
     }, [])
   return (
     <TeacherLayout title="Dashboard">
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Welcome Banner */}
-        <div className="gradient-welcome p-8 rounded-2xl relative overflow-hidden animate-fade-in">
+        <div className="gradient-welcome p-4 sm:p-6 md:p-8 rounded-2xl relative overflow-hidden animate-fade-in">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
           <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-2">
-              <Avatar className="w-16 h-16 border-4 border-white/20">
+            <div className="flex flex-col sm:flex-row items-center gap-4 mb-2">
+              <Avatar className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-white/20">
                 <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=sarah" />
-                <AvatarFallback className="bg-primary text-primary-foreground text-xl">SA</AvatarFallback>
+                <AvatarFallback className="bg-primary text-primary-foreground text-lg sm:text-xl">SA</AvatarFallback>
               </Avatar>
               <div>
-                <h1 className="text-3xl font-bold text-white">Welcome back, Prof. Sarah! 👋</h1>
-                <p className="text-white/90 mt-1">Ready to inspire young minds today?</p>
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">Welcome back, Prof. Sarah! 👋</h1>
+                <p className="text-sm sm:text-base text-white/90 mt-1">Ready to inspire young minds today?</p>
               </div>
             </div>
-            <div className="flex items-center gap-4 mt-4">
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <TrendingUp className="w-4 h-4 text-white" />
-                <span className="text-sm text-white font-medium">98% Attendance Rate</span>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-4">
+              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-full">
+                <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                <span className="text-xs sm:text-sm text-white font-medium">98% Attendance Rate</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <Award className="w-4 h-4 text-white" />
-                <span className="text-sm text-white font-medium">Top Performer This Month</span>
+              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-full">
+                <Award className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                <span className="text-xs sm:text-sm text-white font-medium">Top Performer This Month</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
           <div className="kpi-card animate-slide-up opacity-0" style={{ animationDelay: "100ms" }}>
             <div className="flex items-start justify-between mb-4">
               <div className="w-10 h-10 rounded-lg bg-primary-light flex items-center justify-center">
@@ -76,8 +76,8 @@ export default function TeacherDashboard() {
               </div>
               <span className="status-badge status-success">+12</span>
             </div>
-            <p className="text-3xl font-bold text-foreground mb-1">156</p>
-            <p className="text-sm text-muted-foreground">Total Students</p>
+            <p className="text-2xl sm:text-3xl font-bold text-foreground mb-1">156</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Total Students</p>
           </div>
 
           <div className="kpi-card animate-slide-up opacity-0" style={{ animationDelay: "150ms" }}>
@@ -86,8 +86,8 @@ export default function TeacherDashboard() {
                 <BookOpen className="w-5 h-5 text-warning" />
               </div>
             </div>
-            <p className="text-3xl font-bold text-foreground mb-1">6</p>
-            <p className="text-sm text-muted-foreground">Classes Taught</p>
+            <p className="text-2xl sm:text-3xl font-bold text-foreground mb-1">6</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Classes Taught</p>
           </div>
 
           <div className="kpi-card animate-slide-up opacity-0" style={{ animationDelay: "200ms" }}>
@@ -96,8 +96,8 @@ export default function TeacherDashboard() {
                 <CalendarDays className="w-5 h-5 text-info" />
               </div>
             </div>
-            <p className="text-3xl font-bold text-foreground mb-1">4</p>
-            <p className="text-sm text-muted-foreground">Today's Classes</p>
+            <p className="text-2xl sm:text-3xl font-bold text-foreground mb-1">4</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Today's Classes</p>
           </div>
 
           <div className="kpi-card animate-slide-up opacity-0" style={{ animationDelay: "250ms" }}>
@@ -106,8 +106,8 @@ export default function TeacherDashboard() {
                 <FileText className="w-5 h-5 text-destructive" />
               </div>
             </div>
-            <p className="text-3xl font-bold text-foreground mb-1">12</p>
-            <p className="text-sm text-muted-foreground">Pending Grades</p>
+            <p className="text-2xl sm:text-3xl font-bold text-foreground mb-1">12</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Pending Grades</p>
           </div>
 
           <div className="kpi-card animate-slide-up opacity-0" style={{ animationDelay: "300ms" }}>
@@ -117,8 +117,8 @@ export default function TeacherDashboard() {
               </div>
               <span className="status-badge status-success">+2%</span>
             </div>
-            <p className="text-3xl font-bold text-foreground mb-1">94%</p>
-            <p className="text-sm text-muted-foreground">Attendance</p>
+            <p className="text-2xl sm:text-3xl font-bold text-foreground mb-1">94%</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Attendance</p>
           </div>
         </div>
 
@@ -137,11 +137,11 @@ export default function TeacherDashboard() {
                 {todaySchedule.map((item) => (
                   <div
                     key={item.id}
-                    className={`flex items-center justify-between p-4 rounded-lg border border-border hover:bg-muted/30 transition-all ${
+                    className={`flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 rounded-lg border border-border hover:bg-muted/30 transition-all gap-3 sm:gap-4 ${
                       item.status === "completed" && item.attendanceMarked ? "opacity-60" : ""
                     }`}
                   >
-                    <div className="flex items-center gap-4 flex-1">
+                    <div className="flex items-center gap-3 sm:gap-4 flex-1 w-full sm:w-auto">
                       <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
                         item.status === "completed" ? "bg-success-light" :
                         item.status === "current" ? "bg-primary-light" :
@@ -153,9 +153,9 @@ export default function TeacherDashboard() {
                           "text-muted-foreground"
                         }`} />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-foreground">{item.class}</p>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                          <p className="text-sm sm:text-base font-semibold text-foreground">{item.class}</p>
                           {item.attendanceMarked && (
                             <div className="flex items-center gap-1 bg-success/10 text-success px-2 py-0.5 rounded-full">
                               <Check className="w-3 h-3" />
@@ -173,8 +173,8 @@ export default function TeacherDashboard() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                    <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+                      <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
                         item.status === "completed" ? "bg-success text-white" :
                         item.status === "current" ? "bg-primary text-white" :
                         "bg-muted text-muted-foreground"
@@ -183,10 +183,10 @@ export default function TeacherDashboard() {
                          item.status === "current" ? "In Progress" : "Upcoming"}
                       </span>
                       {!item.attendanceMarked && item.status !== "upcoming" && (
-                        <Link href={`/dashboard/teacher/attendance?class=${encodeURIComponent(item.class)}&subject=${encodeURIComponent(item.subject)}`}>
-                          <Button size="sm" variant="outline" className="w-full sm:w-auto flex items-center gap-2">
-                            <CheckCircle className="w-full sm:w-auto w-4 h-4" />
-                            Mark Attendance
+                        <Link href={`/dashboard/teacher/attendance?class=${encodeURIComponent(item.class)}&subject=${encodeURIComponent(item.subject)}`} className="flex-1 sm:flex-initial">
+                          <Button size="sm" variant="outline" className="w-full sm:w-auto flex items-center gap-1 sm:gap-2">
+                            <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="text-xs sm:text-sm">Mark Attendance</span>
                           </Button>
                         </Link>
                       )}

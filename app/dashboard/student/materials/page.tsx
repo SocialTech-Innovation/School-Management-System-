@@ -219,12 +219,12 @@ export default function StudentMaterialsPage() {
 
   return (
     <StudentLayout title="Class Materials">
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Class Materials</h1>
-            <p className="text-muted-foreground mt-1">Access study materials shared by your teachers</p>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">Class Materials</h1>
+            <p className="text-sm md:text-base text-muted-foreground mt-1">Access study materials shared by your teachers</p>
           </div>
         </div>
 
@@ -234,10 +234,10 @@ export default function StudentMaterialsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Total Materials</p>
-                  <p className="text-3xl font-bold text-foreground">{materials.length}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Total Materials</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{materials.length}</p>
                 </div>
-                <FolderOpen className="w-10 h-10 text-primary" />
+                <FolderOpen className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
               </div>
             </CardContent>
           </Card>
@@ -246,10 +246,10 @@ export default function StudentMaterialsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">New Materials</p>
-                  <p className="text-3xl font-bold text-warning">{newMaterialsCount}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">New Materials</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-warning">{newMaterialsCount}</p>
                 </div>
-                <TrendingUp className="w-10 h-10 text-warning" />
+                <TrendingUp className="w-8 h-8 sm:w-10 sm:h-10 text-warning" />
               </div>
             </CardContent>
           </Card>
@@ -258,10 +258,10 @@ export default function StudentMaterialsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Total Size</p>
-                  <p className="text-3xl font-bold text-info">{formatFileSize(totalSize)}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Total Size</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-info">{formatFileSize(totalSize)}</p>
                 </div>
-                <Download className="w-10 h-10 text-info" />
+                <Download className="w-8 h-8 sm:w-10 sm:h-10 text-info" />
               </div>
             </CardContent>
           </Card>
@@ -270,17 +270,17 @@ export default function StudentMaterialsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Subjects</p>
-                  <p className="text-3xl font-bold text-success">{subjects.length - 1}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Subjects</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-success">{subjects.length - 1}</p>
                 </div>
-                <BookOpen className="w-10 h-10 text-success" />
+                <BookOpen className="w-8 h-8 sm:w-10 sm:h-10 text-success" />
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Filters */}
-        <Card className="animate-slide-up" style={{ animationDelay: "200ms" }}>
+        <Card className="animate-slide-up" style={{ animationDelay: "20ms" }}>
           <CardContent className="pt-6">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="relative flex-1">
@@ -292,21 +292,24 @@ export default function StudentMaterialsPage() {
                   className="pl-9"
                 />
               </div>
-              <Tabs value={filterSubject} onValueChange={setFilterSubject} className="w-full md:w-auto">
-                <TabsList className="grid grid-cols-4 lg:grid-cols-7">
-                  {subjects.map(subject => (
-                    <TabsTrigger key={subject} value={subject}>
-                      {subject === "all" ? "All" : subject}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
+              <div className="w-full md:w-auto overflow-x-auto">
+                <Tabs value={filterSubject} onValueChange={setFilterSubject} className="w-full md:w-auto">
+                  <TabsList className="grid grid-cols-4 lg:grid-cols-7 min-w-max md:min-w-0">
+                    {subjects.map(subject => (
+                      <TabsTrigger key={subject} value={subject} className="text-xs sm:text-sm">
+                        {subject === "all" ? "All" : subject}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                </Tabs>
+              </div>
             </div>
-            <div className="flex gap-2 mt-4">
+            <div className="flex gap-2 mt-4 overflow-x-auto pb-2 -mb-2">
               <Button
                 size="sm"
                 variant={filterCategory === "all" ? "default" : "outline"}
                 onClick={() => setFilterCategory("all")}
+                className="text-xs sm:text-sm whitespace-nowrap"
               >
                 All
               </Button>
@@ -314,6 +317,7 @@ export default function StudentMaterialsPage() {
                 size="sm"
                 variant={filterCategory === "notes" ? "default" : "outline"}
                 onClick={() => setFilterCategory("notes")}
+                className="text-xs sm:text-sm whitespace-nowrap"
               >
                 Notes
               </Button>
@@ -321,6 +325,7 @@ export default function StudentMaterialsPage() {
                 size="sm"
                 variant={filterCategory === "assignment" ? "default" : "outline"}
                 onClick={() => setFilterCategory("assignment")}
+                className="text-xs sm:text-sm whitespace-nowrap"
               >
                 Assignments
               </Button>
@@ -328,6 +333,7 @@ export default function StudentMaterialsPage() {
                 size="sm"
                 variant={filterCategory === "reading" ? "default" : "outline"}
                 onClick={() => setFilterCategory("reading")}
+                className="text-xs sm:text-sm whitespace-nowrap"
               >
                 Reading
               </Button>
@@ -335,6 +341,7 @@ export default function StudentMaterialsPage() {
                 size="sm"
                 variant={filterCategory === "video" ? "default" : "outline"}
                 onClick={() => setFilterCategory("video")}
+                className="text-xs sm:text-sm whitespace-nowrap"
               >
                 Videos
               </Button>
@@ -348,9 +355,9 @@ export default function StudentMaterialsPage() {
             <Card>
               <CardContent className="pt-12 pb-12">
                 <div className="text-center">
-                  <FolderOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
-                  <p className="text-lg font-medium text-muted-foreground">No materials found</p>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <FolderOpen className="w-12 h-12 sm:w-16 sm:h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
+                  <p className="text-base sm:text-lg font-medium text-muted-foreground">No materials found</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                     {searchQuery ? "Try adjusting your search or filters" : "Check back later for new materials"}
                   </p>
                 </div>
@@ -371,7 +378,7 @@ export default function StudentMaterialsPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2 mb-1">
-                          <h3 className="font-semibold text-foreground line-clamp-2">
+                          <h3 className="text-sm sm:text-base font-semibold text-foreground line-clamp-2">
                             {material.title}
                           </h3>
                           {material.isNew && (

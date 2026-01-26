@@ -127,34 +127,34 @@ export default function AdminDashboard() {
 
   return (
     <AdminLayout title="Dashboard">
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Welcome Banner */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 text-white animate-slide-up">
-          <div className="flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-4 sm:p-6 text-white animate-slide-up">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold mb-2">Welcome back, Sarah 👋</h1>
-              <p className="text-blue-100">Here's what's happening in your school today</p>
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Welcome back, Sarah 👋</h1>
+              <p className="text-sm sm:text-base text-blue-100">Here's what's happening in your school today</p>
             </div>
-            <div className="hidden md:block">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3 border border-white/20">
-                <p className="text-sm text-blue-100 mb-1">Today's Date</p>
-                <p className="text-lg font-semibold">January 14, 2026</p>
+            <div className="hidden sm:block">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3 border border-white/20">
+                <p className="text-xs sm:text-sm text-blue-100 mb-1">Today's Date</p>
+                <p className="text-base sm:text-lg font-semibold">January 14, 2026</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <Card className="hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: "100ms" }}>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm text-muted-foreground">Total Students</p>
-                <Users className="w-5 h-5 text-blue-600" />
+                <p className="text-xs sm:text-sm text-muted-foreground">Total Students</p>
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
               </div>
-              <p className="text-3xl font-bold text-foreground mb-2">2,456</p>
-              <div className="flex items-center text-sm">
-                <TrendingUp className="w-4 h-4 text-green-600 mr-1" />
+              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">2,456</p>
+              <div className="flex items-center text-xs sm:text-sm flex-wrap">
+                <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 mr-1" />
                 <span className="text-green-600 font-semibold">+12%</span>
                 <span className="text-muted-foreground ml-2">from last term</span>
               </div>
@@ -162,27 +162,27 @@ export default function AdminDashboard() {
           </Card>
 
           <Card className="hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: "150ms" }}>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm text-muted-foreground">Active Teachers</p>
-                <Briefcase className="w-5 h-5 text-purple-600" />
+                <p className="text-xs sm:text-sm text-muted-foreground">Active Teachers</p>
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
               </div>
-              <p className="text-3xl font-bold text-foreground mb-2">142</p>
-              <div className="flex items-center text-sm">
+              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">142</p>
+              <div className="flex items-center text-xs sm:text-sm">
                 <span className="text-muted-foreground">Full staff capacity</span>
               </div>
             </CardContent>
           </Card>
 
           <Card className="hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: "200ms" }}>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm text-muted-foreground">Total Classes</p>
-                <BookOpen className="w-5 h-5 text-indigo-600" />
+                <p className="text-xs sm:text-sm text-muted-foreground">Total Classes</p>
+                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
               </div>
-              <p className="text-3xl font-bold text-foreground mb-2">48</p>
-              <div className="flex items-center text-sm">
-                <TrendingUp className="w-4 h-4 text-green-600 mr-1" />
+              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">48</p>
+              <div className="flex items-center text-xs sm:text-sm flex-wrap">
+                <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 mr-1" />
                 <span className="text-green-600 font-semibold">+4</span>
                 <span className="text-muted-foreground ml-2">this semester</span>
               </div>
@@ -190,14 +190,14 @@ export default function AdminDashboard() {
           </Card>
 
           <Card className="hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: "250ms" }}>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm text-muted-foreground">Attendance Rate</p>
-                <CheckCircle className="w-5 h-5 text-green-600" />
+                <p className="text-xs sm:text-sm text-muted-foreground">Attendance Rate</p>
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
               </div>
-              <p className="text-3xl font-bold text-foreground mb-2">94.8%</p>
-              <div className="flex items-center text-sm">
-                <TrendingDown className="w-4 h-4 text-red-600 mr-1" />
+              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">94.8%</p>
+              <div className="flex items-center text-xs sm:text-sm flex-wrap">
+                <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4 text-red-600 mr-1" />
                 <span className="text-red-600 font-semibold">-0.5%</span>
                 <span className="text-muted-foreground ml-2">vs yesterday</span>
               </div>
@@ -206,13 +206,13 @@ export default function AdminDashboard() {
         </div>
 
         {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Student Enrollment Trend */}
           <Card className="animate-slide-up" style={{ animationDelay: "300ms" }}>
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Student Enrollment Trend</CardTitle>
-                <select className="text-sm border border-border rounded-lg px-3 py-2 bg-card">
+                <select className="text-xs sm:text-sm border border-border rounded-lg px-2 sm:px-3 py-1 sm:py-2 bg-card">
                   <option>This Year</option>
                   <option>Last Year</option>
                 </select>

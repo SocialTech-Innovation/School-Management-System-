@@ -65,19 +65,19 @@ export default function ParentDashboard() {
 
   return (
     <ParentLayout title="Dashboard" selectedChild={selectedChild} onChildSelect={setSelectedChild}>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Child Overview Card */}
         <Card className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground animate-slide-up">
-          <CardContent className="pt-6">
+          <CardContent className="pt-4 sm:pt-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold">{selectedChild.name}</h2>
-                <p className="text-primary-foreground/90 mt-1">
+            <h2 className="text-xl sm:text-2xl font-bold">{selectedChild.name}</h2>
+                <p className="text-sm sm:text-base text-primary-foreground/90 mt-1">
                   Class {selectedChild.class} • Roll No: {selectedChild.rollNo}
                 </p>
                 <p className="text-primary-foreground/80 text-sm mt-2">Academic Year: 2025-2026</p>
               </div>
-              <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-4xl font-bold">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/20 flex items-center justify-center text-2xl sm:text-4xl font-bold">
                 {selectedChild.name.charAt(0)}
               </div>
             </div>
@@ -87,31 +87,31 @@ export default function ParentDashboard() {
         {/* Alert Banner */}
         {kpiData.pendingFees > 0 && (
           <Card className="border-warning bg-warning/10 animate-slide-up" style={{ animationDelay: "50ms" }}>
-            <CardContent className="pt-6 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <CreditCard className="w-5 h-5 text-warning" />
+            <CardContent className="pt-4 sm:pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex items-start gap-3">
+                <CreditCard className="w-5 h-5 text-warning flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium text-foreground">Payment Due</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm sm:text-base font-medium text-foreground">Payment Due</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Term 2 fees of ${kpiData.pendingFees} are pending. Please clear by Jan 30th.
                   </p>
                 </div>
               </div>
-              <Link href="/dashboard/parent/fees">
-                <Button variant="default">Pay Now</Button>
+              <Link href="/dashboard/parent/fees" className="w-full sm:w-auto">
+                <Button variant="default" className="w-full sm:w-auto" size="sm">Pay Now</Button>
               </Link>
             </CardContent>
           </Card>
         )}
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <Card className="animate-slide-up" style={{ animationDelay: "100ms" }}>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Overall Attendance</p>
-                  <p className="text-3xl font-bold text-foreground">{kpiData.attendance}%</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Overall Attendance</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-foreground">{kpiData.attendance}%</p>
                   <Badge className="bg-success text-white mt-2">Good</Badge>
                 </div>
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -122,12 +122,12 @@ export default function ParentDashboard() {
           </Card>
 
           <Card className="animate-slide-up" style={{ animationDelay: "150ms" }}>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Average Grade</p>
-                  <p className="text-3xl font-bold text-foreground">{kpiData.averageGrade}</p>
-                  <p className="text-sm text-muted-foreground mt-2">88%</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Average Grade</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-foreground">{kpiData.averageGrade}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-2">88%</p>
                 </div>
                 <div className="w-12 h-12 rounded-xl bg-info/10 flex items-center justify-center">
                   <TrendingUp size={24} className="text-info" />
@@ -137,11 +137,11 @@ export default function ParentDashboard() {
           </Card>
 
           <Card className="animate-slide-up" style={{ animationDelay: "200ms" }}>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Pending Fees</p>
-                  <p className="text-3xl font-bold text-foreground">${kpiData.pendingFees}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Pending Fees</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-foreground">${kpiData.pendingFees}</p>
                   <Badge className="bg-warning text-white mt-2">Due Soon</Badge>
                 </div>
                 <div className="w-12 h-12 rounded-xl bg-warning/10 flex items-center justify-center">
@@ -152,12 +152,12 @@ export default function ParentDashboard() {
           </Card>
 
           <Card className="animate-slide-up" style={{ animationDelay: "250ms" }}>
-            <CardContent className="pt-6">
+            <CardContent className="pt-4 sm:pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Upcoming Events</p>
-                  <p className="text-3xl font-bold text-foreground">{kpiData.upcomingEvents}</p>
-                  <p className="text-sm text-muted-foreground mt-2">This week</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Upcoming Events</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-foreground">{kpiData.upcomingEvents}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-2">This week</p>
                 </div>
                 <div className="w-12 h-12 rounded-xl bg-success/10 flex items-center justify-center">
                   <Calendar size={24} className="text-success" />

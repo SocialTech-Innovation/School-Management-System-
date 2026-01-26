@@ -28,12 +28,12 @@ export default function StudentDashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="h-16 bg-card border-b border-border flex items-center justify-between px-8">
-          <div className="flex items-center gap-4">
+        <div className="h-14 sm:h-16 bg-card border-b border-border flex items-center justify-between px-4 sm:px-6 md:px-8">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden p-2 hover:bg-muted rounded-lg">
-              {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+              {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <h1 className="text-xl font-semibold text-foreground">Dashboard</h1>
+            <h1 className="text-base sm:text-lg md:text-xl font-semibold text-foreground">Dashboard</h1>
           </div>
 
           <div className="flex items-center gap-2">
@@ -48,8 +48,8 @@ export default function StudentDashboard() {
         </div>
 
         {/* Content */}
-        <main className="flex-1 overflow-auto p-8">
-          <div className="space-y-6 animate-fade-in">
+        <main className="flex-1 overflow-auto p-4 sm:p-6 md:p-8">
+          <div className="space-y-4 sm:space-y-6 animate-fade-in">
             {/* Welcome Card */}
             <WelcomeCard
               name="Alex"
@@ -98,8 +98,8 @@ export default function StudentDashboard() {
                 <Card>
                   <CardHeader>
                     <div className="flex items-center justify-between">
-                      <CardTitle className="text-lg">Recent Grades</CardTitle>
-                      <Link href="/dashboard/student/grades" className="text-primary hover:text-primary/80 text-sm font-medium">
+                      <CardTitle className="text-base sm:text-lg">Recent Grades</CardTitle>
+                      <Link href="/dashboard/student/grades" className="text-primary hover:text-primary/80 text-xs sm:text-sm font-medium">
                         View all
                       </Link>
                     </div>

@@ -260,15 +260,7 @@ export default function AuthPage() {
       {/* Right side - Form in rounded card */}
       <div className="flex items-center justify-center p-6 lg:p-12 lg:w-[480px] xl:w-[560px]">
         <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 lg:p-10 border border-gray-100">
-          {/* Back button */}
-          <button
-            onClick={() => setStep("role")}
-            className="flex items-center gap-2 text-gray-500 hover:text-gray-900 mb-6 transition-colors group"
-          >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm font-medium">Change Role</span>
-          </button>
-
+          
           {/* Role Selector Dropdown */}
           {currentRole && (
             <div className="mb-8 p-5 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200">

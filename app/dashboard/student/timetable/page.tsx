@@ -89,7 +89,7 @@ export default function StudentTimetable() {
           </div>
           <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <Button variant="outline" className="w-full sm:w-auto gap-2">
-              <Printer className="w-full sm:w-auto w-4 h-4" />
+              <Printer className="w-4 h-4" />
               Print
             </Button>
             <Button className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground">

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { LogOut, LayoutDashboard, BookOpen, Users, ClipboardCheck, FileText, Calendar, User, Wallet, ChevronLeft, ChevronRight, GraduationCap, Bell, MessageCircle, FolderOpen } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const menuItems = [
   { name: "Dashboard", href: "/dashboard/teacher", icon: LayoutDashboard },
@@ -33,6 +33,23 @@ export function TeacherSidebar({ open, onClose }: TeacherSidebarProps) {
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("teacherSidebarCollapsed")
+      if (saved !== null) setCollapsed(saved === "true")
+    } catch {}
+  }, [])
+
+  const toggleCollapsed = () => {
+    setCollapsed((prev) => {
+      const next = !prev
+      try {
+        localStorage.setItem("teacherSidebarCollapsed", String(next))
+      } catch {}
+      return next
+    })
+  }
+
   return (
     <>
       {/* Mobile Overlay */}
@@ -46,7 +63,7 @@ export function TeacherSidebar({ open, onClose }: TeacherSidebarProps) {
       >
         {/* Collapse Toggle Button - Top Right */}
         <button
-          onClick={() => setCollapsed(!collapsed)}
+          onClick={toggleCollapsed}
           className="absolute -right-3 top-6 w-6 h-6 rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 transition-all duration-200 flex items-center justify-center z-10 hidden lg:flex"
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >

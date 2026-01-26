@@ -208,14 +208,14 @@ export default function TimetablePage() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="w-full min-w-[900px] border-collapse">
                 <thead>
                   <tr className="border-b-2 border-border">
-                    <th className="p-3 text-left text-sm font-semibold text-muted-foreground bg-muted/50 sticky left-0 z-10">
+                    <th className="px-3 py-2 sm:p-3 text-left text-xs sm:text-sm font-semibold text-muted-foreground bg-muted/50 sticky left-0 z-10">
                       Period / Day
                     </th>
                     {days.map((day) => (
-                      <th key={day} className="p-3 text-center text-sm font-semibold text-muted-foreground bg-muted/50 min-w-[180px]">
+                      <th key={day} className="px-3 py-2 sm:p-3 text-center text-xs sm:text-sm font-semibold text-muted-foreground bg-muted/50 min-w-[160px] sm:min-w-[180px]">
                         {day}
                       </th>
                     ))}
@@ -247,7 +247,7 @@ export default function TimetablePage() {
                       )}
                       
                       <tr key={period.id} className="border-b hover:bg-muted/30 transition-colors">
-                        <td className="p-3 sticky left-0 z-10 bg-background border-r">
+                        <td className="px-3 py-2 sm:p-3 sticky left-0 z-10 bg-background border-r">
                           <div className="text-sm">
                             <p className="font-semibold text-foreground">Period {period.id}</p>
                             <p className="text-xs text-muted-foreground">{period.time}</p>
@@ -256,7 +256,7 @@ export default function TimetablePage() {
                         {days.map((day) => {
                           const slot = sampleTimetable[day]?.[period.id]
                           return (
-                            <td key={day} className="p-2">
+                            <td key={day} className="px-2 py-1 sm:p-2">
                               {slot ? (
                                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 hover:bg-blue-100 transition-colors cursor-pointer">
                                   <p className="font-semibold text-sm text-blue-900">{slot.subject}</p>

@@ -59,21 +59,21 @@ export default function ChildProfilePage() {
       <div className="space-y-6">
         {/* Profile Header Card */}
         <Card className="animate-slide-up">
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-6">
-              <Avatar className="h-24 w-24 border-4 border-primary/20">
+          <CardContent className="pt-4 sm:pt-6">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+              <Avatar className="h-20 w-20 sm:h-24 sm:w-24 border-4 border-primary/20">
                 <AvatarImage src={studentInfo.avatar} alt={studentInfo.name} />
-                <AvatarFallback className="bg-primary text-primary-foreground text-2xl">
+                <AvatarFallback className="bg-primary text-primary-foreground text-xl sm:text-2xl">
                   {studentInfo.name.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
-              <div className="flex-1">
-                <h2 className="text-2xl font-bold text-foreground">{studentInfo.name}</h2>
-                <p className="text-muted-foreground">Student ID: {studentInfo.studentId}</p>
-                <div className="flex items-center gap-4 mt-3">
-                  <Badge className="bg-success text-white">Active Student</Badge>
-                  <span className="text-sm text-muted-foreground">Class {academicInfo.class}</span>
-                  <span className="text-sm text-muted-foreground">Roll No: {academicInfo.rollNo}</span>
+              <div className="flex-1 text-center sm:text-left">
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground">{studentInfo.name}</h2>
+                <p className="text-sm sm:text-base text-muted-foreground">Student ID: {studentInfo.studentId}</p>
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-4 mt-3">
+                  <Badge className="bg-success text-white text-xs sm:text-sm">Active Student</Badge>
+                  <span className="text-xs sm:text-sm text-muted-foreground">Class {academicInfo.class}</span>
+                  <span className="text-xs sm:text-sm text-muted-foreground">Roll No: {academicInfo.rollNo}</span>
                 </div>
               </div>
             </div>
@@ -90,34 +90,34 @@ export default function ChildProfilePage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <p className="text-sm text-muted-foreground">Full Name</p>
-                  <p className="font-medium text-foreground">{studentInfo.name}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Full Name</p>
+                  <p className="font-medium text-sm sm:text-base text-foreground">{studentInfo.name}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Date of Birth</p>
-                  <p className="font-medium text-foreground">{studentInfo.dateOfBirth}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Date of Birth</p>
+                  <p className="font-medium text-sm sm:text-base text-foreground">{studentInfo.dateOfBirth}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Gender</p>
-                  <p className="font-medium text-foreground">{studentInfo.gender}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Gender</p>
+                  <p className="font-medium text-sm sm:text-base text-foreground">{studentInfo.gender}</p>
                 </div>
                 
               </div>
               <Separator />
               <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <MapPin size={18} className="text-muted-foreground" />
-                  <span className="text-foreground">{studentInfo.address}</span>
+                <div className="flex items-start gap-3">
+                  <MapPin size={18} className="text-muted-foreground flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base text-foreground break-words">{studentInfo.address}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone size={18} className="text-muted-foreground" />
-                  <span className="text-foreground">{studentInfo.phone}</span>
+                  <Phone size={18} className="text-muted-foreground flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-foreground">{studentInfo.phone}</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Mail size={18} className="text-muted-foreground" />
-                  <span className="text-foreground">{studentInfo.email}</span>
+                <div className="flex items-start gap-3">
+                  <Mail size={18} className="text-muted-foreground flex-shrink-0 mt-0.5" />
+                  <span className="text-sm sm:text-base text-foreground break-all">{studentInfo.email}</span>
                 </div>
               </div>
             </CardContent>
@@ -167,29 +167,29 @@ export default function ChildProfilePage() {
         {/* Class Teacher Contact */}
         <Card className="animate-slide-up" style={{ animationDelay: "150ms" }}>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Award size={20} className="text-primary" />
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <Award size={18} className="text-primary" />
               Class Teacher
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
               <Avatar className="h-16 w-16">
                 <AvatarImage src={teacherContact.avatar} alt={teacherContact.name} />
                 <AvatarFallback className="bg-primary text-primary-foreground">
                   {teacherContact.name.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
-              <div className="flex-1">
-                <p className="font-semibold text-foreground text-lg">{teacherContact.name}</p>
-                <p className="text-sm text-muted-foreground">{teacherContact.role} • {teacherContact.subject}</p>
-                <div className="flex items-center gap-4 mt-2">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Mail size={14} className="text-muted-foreground" />
-                    <span className="text-muted-foreground">{teacherContact.email}</span>
+              <div className="flex-1 text-center sm:text-left">
+                <p className="font-semibold text-foreground text-base sm:text-lg">{teacherContact.name}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">{teacherContact.role} • {teacherContact.subject}</p>
+                <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mt-2">
+                  <div className="flex items-center gap-2 text-xs sm:text-sm">
+                    <Mail size={14} className="text-muted-foreground flex-shrink-0" />
+                    <span className="text-muted-foreground break-all">{teacherContact.email}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone size={14} className="text-muted-foreground" />
+                  <div className="flex items-center gap-2 text-xs sm:text-sm">
+                    <Phone size={14} className="text-muted-foreground flex-shrink-0" />
                     <span className="text-muted-foreground">{teacherContact.phone}</span>
                   </div>
                 </div>

@@ -209,8 +209,8 @@ export default function StudentGrades() {
                 <CardTitle>Performance Over Time</CardTitle>
                 <p className="text-sm text-muted-foreground">Track your academic progress throughout the year</p>
               </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={400}>
+              <CardContent className="-mx-2 sm:mx-0">
+                <ResponsiveContainer width="100%" height={250}>
                   <LineChart data={performanceData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                     <XAxis 
@@ -235,8 +235,8 @@ export default function StudentGrades() {
                       dataKey="grade"
                       stroke="hsl(var(--primary))"
                       strokeWidth={3}
-                      dot={{ fill: "hsl(var(--primary))", r: 6 }}
-                      activeDot={{ r: 8 }}
+                      dot={{ fill: "hsl(var(--primary))", r: 4 }}
+                      activeDot={{ r: 6 }}
                     />
                   </LineChart>
                 </ResponsiveContainer>

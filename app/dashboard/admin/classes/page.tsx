@@ -217,7 +217,7 @@ export default function AdminClasses() {
 
                         <div className="flex items-center gap-2 pt-2 border-t">
                           <Button variant="outline" size="sm" className="w-full sm:w-auto flex-1">
-                            <Eye className="w-full sm:w-auto w-4 h-4 mr-1" />
+                            <Eye className="w-4 h-4 mr-1" />
                             View
                           </Button>
                           <Button variant="ghost" size="sm">
@@ -235,43 +235,43 @@ export default function AdminClasses() {
             ) : (
               /* List View */
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full min-w-[900px]">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Class ID</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Name</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Subject</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Teacher</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Room</th>
-                      <th className="text-center py-3 px-4 text-sm font-semibold text-muted-foreground">Enrollment</th>
-                      <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Actions</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground whitespace-nowrap">Class ID</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground whitespace-nowrap">Name</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Subject</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Teacher</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground whitespace-nowrap">Room</th>
+                      <th className="text-center px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Enrollment</th>
+                      <th className="text-right px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredClasses.map((classItem) => (
                       <tr key={classItem.id} className="border-b hover:bg-muted/50 transition-colors">
-                        <td className="py-4 px-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4 whitespace-nowrap">
                           <span className="font-semibold text-foreground">{classItem.id}</span>
                         </td>
-                        <td className="py-4 px-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4 whitespace-nowrap">
                           <span className="font-semibold text-foreground">{classItem.name}</span>
                         </td>
-                        <td className="py-4 px-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4">
                           <Badge variant="outline" className="font-medium">{classItem.subject}</Badge>
                         </td>
-                        <td className="py-4 px-4">
-                          <span className="text-sm text-foreground">{classItem.teacher}</span>
+                        <td className="px-3 py-2 sm:px-4 sm:py-4">
+                          <span className="text-xs sm:text-sm text-foreground">{classItem.teacher}</span>
                         </td>
-                        <td className="py-4 px-4">
-                          <span className="text-sm text-muted-foreground">{classItem.room}</span>
+                        <td className="px-3 py-2 sm:px-4 sm:py-4 whitespace-nowrap">
+                          <span className="text-xs sm:text-sm text-muted-foreground">{classItem.room}</span>
                         </td>
-                        <td className="py-4 px-4 text-center">
-                          <span className="text-sm font-medium text-foreground">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4 text-center">
+                          <span className="text-xs sm:text-sm font-medium text-foreground">
                             {classItem.students}/{classItem.capacity}
                           </span>
                         </td>
-                        <td className="py-4 px-4">
-                          <div className="flex items-center justify-end gap-2">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4">
+                          <div className="flex items-center justify-end gap-1 sm:gap-2">
                             <Button variant="ghost" size="sm">
                               <Eye className="w-4 h-4" />
                             </Button>

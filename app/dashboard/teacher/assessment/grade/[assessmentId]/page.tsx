@@ -218,14 +218,14 @@ export default function GradeAssessmentPage({ params }: { params: { assessmentId
           <CardContent>
             <div className="rounded-lg border overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full min-w-[900px]">
                   <thead className="bg-muted/50">
                     <tr>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground w-12">#</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Student</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground w-32">Roll Number</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground w-48">Grade (out of {assessmentDetails.totalMarks})</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground w-24">Status</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground w-12">#</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Student</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground w-32 whitespace-nowrap">Roll Number</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground w-48">Grade (out of {assessmentDetails.totalMarks})</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground w-24">Status</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
@@ -235,22 +235,22 @@ export default function GradeAssessmentPage({ params }: { params: { assessmentId
                         className={`hover:bg-muted/30 transition-colors animate-slide-up`}
                         style={{ animationDelay: `${300 + index * 30}ms` }}
                       >
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <span className="text-muted-foreground font-medium">{index + 1}</span>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <div className="flex items-center gap-3">
                             <Avatar className="w-10 h-10">
                               <AvatarImage src={student.avatar} />
                               <AvatarFallback>{student.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                             </Avatar>
-                            <span className="font-medium text-foreground">{student.name}</span>
+                            <span className="font-medium text-foreground truncate max-w-[160px] sm:max-w-none">{student.name}</span>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap">
                           <Badge variant="outline">{student.rollNumber}</Badge>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <Input
                             type="number"
                             min="0"
@@ -261,7 +261,7 @@ export default function GradeAssessmentPage({ params }: { params: { assessmentId
                             className="w-full"
                           />
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           {student.status === "graded" ? (
                             <Badge className="bg-success">Graded</Badge>
                           ) : (

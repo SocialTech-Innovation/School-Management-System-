@@ -402,42 +402,42 @@ export default function ExaminationsPage() {
               </div>
             ) : (
               <div className="overflow-x-auto">
-            <Table>
+            <Table className="min-w-[900px]">
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Subject</TableHead>
-                      <TableHead>Type</TableHead>
-                      <TableHead>Class</TableHead>
-                      <TableHead>Date & Time</TableHead>
-                      <TableHead>Duration</TableHead>
-                      <TableHead>Total Marks</TableHead>
-                      <TableHead>Students</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Subject</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Type</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Class</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Date & Time</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Duration</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Total Marks</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Students</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Status</TableHead>
+                      <TableHead className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {filteredExams.map((exam) => (
                       <TableRow key={exam.id}>
-                        <TableCell className="font-medium">{exam.subject}</TableCell>
-                        <TableCell>{exam.type}</TableCell>
-                        <TableCell>{exam.class}</TableCell>
-                        <TableCell>
-                          <div className="text-sm">
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-medium">{exam.subject}</TableCell>
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">{exam.type}</TableCell>
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">{exam.class}</TableCell>
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3">
+                          <div className="text-xs sm:text-sm">
                             <div>{exam.date}</div>
                             <div className="text-muted-foreground">{exam.time}</div>
                           </div>
                         </TableCell>
-                        <TableCell>{exam.duration}</TableCell>
-                        <TableCell>{exam.totalMarks}</TableCell>
-                        <TableCell>{exam.students}</TableCell>
-                        <TableCell>
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">{exam.duration}</TableCell>
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">{exam.totalMarks}</TableCell>
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">{exam.students}</TableCell>
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3">
                           <Badge className={getStatusColor(exam.status)}>
                             {exam.status}
                           </Badge>
                         </TableCell>
-                        <TableCell className="text-right">
-                          <div className="flex flex-col-reverse sm:flex-row justify-end gap-2">
+                        <TableCell className="px-3 py-2 sm:px-4 sm:py-3 text-right">
+                          <div className="flex flex-col-reverse sm:flex-row justify-end gap-1 sm:gap-2">
                             <Button variant="ghost" size="sm">
                               <Eye className="w-4 h-4" />
                             </Button>

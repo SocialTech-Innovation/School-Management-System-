@@ -90,7 +90,7 @@ export default function StudentAnnouncements() {
     <StudentLayout title="Announcements">
       <div className="space-y-6 animate-fade-in">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
             </div>
@@ -98,9 +98,9 @@ export default function StudentAnnouncements() {
               <h2 className="text-2xl font-bold text-foreground">School Announcements</h2>
             </div>
           </div>
-          <div>
+          <div className="w-full sm:w-auto">
             <Select value={filter} onValueChange={setFilter}>
-            <SelectTrigger className="w-40">
+            <SelectTrigger className="w-full sm:w-40">
               <SelectValue placeholder="Filter by" />
             </SelectTrigger>
             <SelectContent>

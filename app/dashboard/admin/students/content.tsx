@@ -317,50 +317,50 @@ export default function StudentPageContent() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[900px]">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Student ID</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Name</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Email</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Class</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Guardian</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
-                    <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Actions</th>
+                    <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground whitespace-nowrap">Student ID</th>
+                    <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Name</th>
+                    <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground whitespace-nowrap">Email</th>
+                    <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Class</th>
+                    <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Guardian</th>
+                    <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Status</th>
+                    <th className="text-right px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredStudents.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="py-8 text-center text-muted-foreground">
+                      <td colSpan={7} className="px-3 py-6 sm:px-4 sm:py-8 text-center text-muted-foreground">
                         No students found matching your criteria
                       </td>
                     </tr>
                   ) : (
                     filteredStudents.map((student) => (
                       <tr key={student.id} className="border-b hover:bg-muted/50 transition-colors">
-                        <td className="py-4 px-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4 whitespace-nowrap">
                           <span className="font-semibold text-foreground">{student.id}</span>
                         </td>
-                        <td className="py-4 px-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4">
                           <div>
                             <p className="font-semibold text-foreground">{student.name}</p>
                             <p className="text-xs text-muted-foreground">Joined {student.joinDate}</p>
                           </div>
                         </td>
-                        <td className="py-4 px-4">
-                          <span className="text-sm text-muted-foreground">{student.email}</span>
+                        <td className="px-3 py-2 sm:px-4 sm:py-4 whitespace-nowrap">
+                          <span className="text-xs sm:text-sm text-muted-foreground truncate max-w-[160px] sm:max-w-none inline-block">{student.email}</span>
                         </td>
-                        <td className="py-4 px-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4">
                           <Badge variant="outline" className="font-medium">{student.class}</Badge>
                         </td>
-                        <td className="py-4 px-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4">
                           <div>
-                            <p className="text-sm text-foreground">{student.guardian}</p>
+                            <p className="text-xs sm:text-sm text-foreground">{student.guardian}</p>
                             <p className="text-xs text-muted-foreground">{student.phone}</p>
                           </div>
                         </td>
-                        <td className="py-4 px-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4">
                           <Badge
                             className={`${
                               student.status === "Active" 
@@ -371,8 +371,8 @@ export default function StudentPageContent() {
                             {student.status}
                           </Badge>
                         </td>
-                        <td className="py-4 px-4">
-                          <div className="flex items-center justify-end gap-2">
+                        <td className="px-3 py-2 sm:px-4 sm:py-4">
+                          <div className="flex items-center justify-end gap-1 sm:gap-2">
                             <Button 
                               variant="ghost" 
                               size="sm"

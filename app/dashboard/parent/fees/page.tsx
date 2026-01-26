@@ -144,36 +144,36 @@ export default function FeesPage() {
           {/* Fee Structure */}
           <Card className="lg:col-span-2 animate-slide-up" style={{ animationDelay: "200ms" }}>
             <CardHeader>
-              <CardTitle>Annual Fee Structure (2025-2026)</CardTitle>
+              <CardTitle className="text-base sm:text-lg">Annual Fee Structure (2025-2026)</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <table className="w-full">
+            <CardContent className="p-3 sm:p-6">
+              <div className="overflow-x-auto -mx-3 sm:mx-0">
+                <table className="w-full min-w-[500px]">
                   <thead>
                     <tr className="border-b border-border">
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-foreground">Category</th>
-                      <th className="text-right py-3 px-4 text-sm font-semibold text-foreground">Term 1</th>
-                      <th className="text-right py-3 px-4 text-sm font-semibold text-foreground">Term 2</th>
-                      <th className="text-right py-3 px-4 text-sm font-semibold text-foreground">Term 3</th>
-                      <th className="text-right py-3 px-4 text-sm font-semibold text-foreground">Total</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold text-foreground">Category</th>
+                      <th className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold text-foreground">Term 1</th>
+                      <th className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold text-foreground">Term 2</th>
+                      <th className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold text-foreground">Term 3</th>
+                      <th className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold text-foreground">Total</th>
                     </tr>
                   </thead>
                   <tbody>
                     {feeStructure.map((item, index) => (
                       <tr key={index} className="border-b border-border">
-                        <td className="py-3 px-4 text-sm text-foreground">{item.category}</td>
-                        <td className="text-right py-3 px-4 text-sm text-muted-foreground">${item.term1}</td>
-                        <td className="text-right py-3 px-4 text-sm text-muted-foreground">${item.term2}</td>
-                        <td className="text-right py-3 px-4 text-sm text-muted-foreground">${item.term3}</td>
-                        <td className="text-right py-3 px-4 text-sm font-semibold text-foreground">${item.total}</td>
+                        <td className="py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-foreground">{item.category}</td>
+                        <td className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-muted-foreground">${item.term1}</td>
+                        <td className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-muted-foreground">${item.term2}</td>
+                        <td className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-muted-foreground">${item.term3}</td>
+                        <td className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold text-foreground">${item.total}</td>
                       </tr>
                     ))}
                     <tr className="bg-muted/50 font-semibold">
-                      <td className="py-3 px-4 text-sm text-foreground">Total Per Term</td>
-                      <td className="text-right py-3 px-4 text-sm text-foreground">${totalPerTerm}</td>
-                      <td className="text-right py-3 px-4 text-sm text-foreground">${totalPerTerm}</td>
-                      <td className="text-right py-3 px-4 text-sm text-foreground">${totalPerTerm}</td>
-                      <td className="text-right py-3 px-4 text-sm text-foreground">${totalPerTerm * 3}</td>
+                      <td className="py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-foreground">Total Per Term</td>
+                      <td className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-foreground">${totalPerTerm}</td>
+                      <td className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-foreground">${totalPerTerm}</td>
+                      <td className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-foreground">${totalPerTerm}</td>
+                      <td className="text-right py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-foreground">${totalPerTerm * 3}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -192,7 +192,7 @@ export default function FeesPage() {
                   <CreditCard size={20} />
                   Make Payment
                 </Button>
-                <Button variant="outline" className="w-full justify-start gap-3 w-full sm:w-auto" size="lg">
+                <Button variant="outline" className="w-full justify-start gap-3" size="lg">
                   <Download size={20} />
                   Download Invoice
                 </Button>

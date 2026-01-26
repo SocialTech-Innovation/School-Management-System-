@@ -194,72 +194,37 @@ export default function AuthPage() {
     )
   }
 
-  // Step 2: Authentication Form with split screen
+  // Step 2: Authentication Form with centered card on blurred background
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      {/* Left side - Branding & Visual */}
-      <div className="flex-1 flex items-center justify-center p-6 lg:p-12 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-0 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl"></div>
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-lg text-center lg:text-left">
-          {/* Logo and branding */}
-          <div className="flex items-center gap-4 mb-8 justify-center lg:justify-start">
-            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl shadow-lg">
-              <BookOpen className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              Skops
-            </h1>
-          </div>
-
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
-            Welcome to Your School Management System
-          </h2>
-          <p className="text-gray-600 text-lg mb-8">
-            Streamline your educational institution with our comprehensive platform designed for students, teachers, and administrators.
-          </p>
-
-          {/* Features */}
-          <div className="space-y-4 text-left hidden lg:block">
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-                <BookOpen className="w-4 h-4 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800">Smart Learning</h3>
-                <p className="text-sm text-gray-600">Track progress and manage coursework efficiently</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                <Users className="w-4 h-4 text-indigo-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800">Collaboration</h3>
-                <p className="text-sm text-gray-600">Connect students, teachers, and parents seamlessly</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
-                <BarChart3 className="w-4 h-4 text-purple-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-800">Analytics</h3>
-                <p className="text-sm text-gray-600">Gain insights with powerful reporting tools</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      {/* Background Image with Blur */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/image_login.png"
+          alt="School students"
+          fill
+          className="object-cover"
+          priority
+          quality={90}
+        />
+        {/* Blur overlay */}
+        <div className="absolute inset-0 backdrop-blur-2xl bg-black/40"></div>
       </div>
 
-      {/* Right side - Form in rounded card */}
-      <div className="flex items-center justify-center p-6 lg:p-12 lg:w-[480px] xl:w-[560px]">
-        <div className="w-full max-w-md bg-white rounded-3xl p-8 lg:p-10 border">
+      {/* Centered Content */}
+      <div className="relative z-10 w-full max-w-md">
+        {/* Logo and branding - visible on mobile */}
+        <div className="flex items-center gap-3 mb-6 justify-center">
+          <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl shadow-lg">
+            <BookOpen className="w-6 h-6 text-white" />
+          </div>
+          <h1 className="text-3xl font-bold text-white drop-shadow-lg">
+            Skops
+          </h1>
+        </div>
+
+        {/* Form Card */}
+        <div className="w-full bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border border-white/20">
           
           {/* Role Selector Dropdown */}
           {currentRole && (
@@ -336,7 +301,7 @@ export default function AuthPage() {
                     Email Address
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3.5 top-3.5 w-5 h-5 text-black-400" />
+              
                     <Input
                       id="signin-email"
                       type="email"
@@ -359,7 +324,7 @@ export default function AuthPage() {
                     Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-black-400" />
+          
                     <Input
                       id="signin-password"
                       type={showPassword ? "text" : "password"}
@@ -406,24 +371,21 @@ export default function AuthPage() {
                   <div className="grid gap-2">
                     <div className="flex items-center justify-between py-1">
                       <span className="font-medium text-gray-700">Student:</span>
-                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">student@school.edu / password</span>
+                      <span className="font-mono text-xs text-gray-600">student@school.edu / password</span>
                     </div>
                     <div className="flex items-center justify-between py-1">
                       <span className="font-medium text-gray-700">Teacher:</span>
-                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">teacher@school.edu / password</span>
+                      <span className="font-mono text-xs text-gray-600">teacher@school.edu / password</span>
                     </div>
                     <div className="flex items-center justify-between py-1">
                       <span className="font-medium text-gray-700">Admin:</span>
-                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">admin@school.edu / password</span>
+                      <span className="font-mono text-xs text-gray-600">admin@school.edu / password</span>
                     </div>
                     <div className="flex items-center justify-between py-1">
                       <span className="font-medium text-gray-700">Parent:</span>
-                      <span className="font-mono text-xs text-gray-600 bg-white px-2 py-1 rounded">parent@school.edu / password</span>
+                      <span className="font-mono text-xs text-gray-600">parent@school.edu / password</span>
                     </div>
                   </div>
-                  <p className="mt-3 pt-3 border-t border-blue-200 text-xs text-gray-600">
-                    Remember to select the correct role above before signing in
-                  </p>
                 </div>
               </div>
             </TabsContent>

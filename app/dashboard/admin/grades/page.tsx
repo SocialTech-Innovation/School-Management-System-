@@ -367,7 +367,7 @@ export default function GradesPage() {
                       View Report Card
                     </Button>
                     <Button variant="outline" size="sm" className="w-full sm:w-auto ml-auto">
-                      <Download className="w-full sm:w-auto w-4 h-4 mr-1" />
+                      <Download className="w-4 h-4 mr-1" />
                       Download
                     </Button>
                   </div>
@@ -420,35 +420,37 @@ export default function GradesPage() {
                 <div>
                   <h4 className="font-semibold text-foreground mb-3">Subject Performance</h4>
                   <div className="border rounded-lg overflow-hidden">
-                    <table className="w-full">
+                    <div className="overflow-x-auto">
+                      <table className="w-full min-w-[700px]">
                       <thead className="bg-blue-50">
                         <tr>
-                          <th className="text-left py-3 px-4 text-sm font-semibold text-blue-900">Subject</th>
-                          <th className="text-left py-3 px-4 text-sm font-semibold text-blue-900">Teacher</th>
-                          <th className="text-center py-3 px-4 text-sm font-semibold text-blue-900">Marks</th>
-                          <th className="text-center py-3 px-4 text-sm font-semibold text-blue-900">Grade</th>
+                          <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-blue-900">Subject</th>
+                          <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-blue-900">Teacher</th>
+                          <th className="text-center px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-blue-900">Marks</th>
+                          <th className="text-center px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-blue-900">Grade</th>
                         </tr>
                       </thead>
                       <tbody>
                         {selectedStudent.subjects.map((subj: any, idx: number) => (
                           <tr key={idx} className="border-t hover:bg-muted/50">
-                            <td className="py-3 px-4 font-medium text-foreground">{subj.subject}</td>
-                            <td className="py-3 px-4 text-muted-foreground">{subj.teacher}</td>
-                            <td className="py-3 px-4 text-center font-semibold text-foreground">{subj.marks}</td>
-                            <td className="py-3 px-4 text-center">
+                            <td className="px-3 py-2 sm:px-4 sm:py-3 font-medium text-foreground">{subj.subject}</td>
+                            <td className="px-3 py-2 sm:px-4 sm:py-3 text-muted-foreground">{subj.teacher}</td>
+                            <td className="px-3 py-2 sm:px-4 sm:py-3 text-center font-semibold text-foreground">{subj.marks}</td>
+                            <td className="px-3 py-2 sm:px-4 sm:py-3 text-center">
                               <Badge variant="outline" className="font-medium">{subj.grade}</Badge>
                             </td>
                           </tr>
                         ))}
                         <tr className="border-t bg-blue-50 font-semibold">
-                          <td className="py-3 px-4 text-blue-900" colSpan={2}>Overall</td>
-                          <td className="py-3 px-4 text-center text-blue-900">{selectedStudent.average}%</td>
-                          <td className="py-3 px-4 text-center">
+                          <td className="px-3 py-2 sm:px-4 sm:py-3 text-blue-900" colSpan={2}>Overall</td>
+                          <td className="px-3 py-2 sm:px-4 sm:py-3 text-center text-blue-900">{selectedStudent.average}%</td>
+                          <td className="px-3 py-2 sm:px-4 sm:py-3 text-center">
                             <Badge className="bg-blue-600 text-white font-medium">{selectedStudent.overall}</Badge>
                           </td>
                         </tr>
                       </tbody>
-                    </table>
+                      </table>
+                    </div>
                   </div>
                 </div>
 
@@ -458,7 +460,7 @@ export default function GradesPage() {
                     Close
                   </Button>
                   <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700">
-                    <Download className="w-full sm:w-auto w-4 h-4 mr-2" />
+                    <Download className="w-4 h-4 mr-2" />
                     Download Report
                   </Button>
                 </div>

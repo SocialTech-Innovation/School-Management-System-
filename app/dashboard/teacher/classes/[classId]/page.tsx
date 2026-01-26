@@ -238,15 +238,15 @@ export default function ClassDetailPage() {
 
                 <div className="rounded-lg border overflow-hidden">
                   <div className="overflow-x-auto">
-                    <table className="w-full">
+                    <table className="w-full min-w-[900px]">
                       <thead className="bg-muted/50">
                         <tr>
-                          <th className="text-left p-4 text-sm font-semibold text-foreground">#</th>
-                          <th className="text-left p-4 text-sm font-semibold text-foreground">Student</th>
-                          <th className="text-left p-4 text-sm font-semibold text-foreground">Roll Number</th>
-                          <th className="text-left p-4 text-sm font-semibold text-foreground">Attendance</th>
-                          <th className="text-left p-4 text-sm font-semibold text-foreground">Avg Score</th>
-                          <th className="text-left p-4 text-sm font-semibold text-foreground">Grade</th>
+                          <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">#</th>
+                          <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Student</th>
+                          <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">Roll Number</th>
+                          <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Attendance</th>
+                          <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">Avg Score</th>
+                          <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Grade</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border">
@@ -257,22 +257,22 @@ export default function ClassDetailPage() {
                             className="hover:bg-muted/30 cursor-pointer transition-colors animate-slide-up"
                             style={{ animationDelay: `${300 + index * 30}ms` }}
                           >
-                            <td className="p-4">
+                            <td className="px-3 py-2 sm:px-4 sm:py-3">
                               <span className="text-muted-foreground font-medium">{index + 1}</span>
                             </td>
-                            <td className="p-4">
+                            <td className="px-3 py-2 sm:px-4 sm:py-3">
                               <div className="flex items-center gap-3">
                                 <Avatar className="w-10 h-10">
                                   <AvatarImage src={student.avatar} />
                                   <AvatarFallback>{student.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                                 </Avatar>
-                                <span className="font-medium text-foreground">{student.name}</span>
+                                <span className="font-medium text-foreground truncate max-w-[160px] sm:max-w-none">{student.name}</span>
                               </div>
                             </td>
-                            <td className="p-4">
+                            <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap">
                               <Badge variant="outline">{student.rollNumber}</Badge>
                             </td>
-                            <td className="p-4">
+                            <td className="px-3 py-2 sm:px-4 sm:py-3">
                               <div className="flex items-center gap-2">
                                 <div className="w-20 h-2 bg-muted rounded-full overflow-hidden">
                                   <div 
@@ -280,13 +280,13 @@ export default function ClassDetailPage() {
                                     style={{ width: `${student.attendance}%` }}
                                   />
                                 </div>
-                                <span className="text-sm font-medium text-foreground">{student.attendance}%</span>
+                                <span className="text-xs sm:text-sm font-medium text-foreground">{student.attendance}%</span>
                               </div>
                             </td>
-                            <td className="p-4">
-                              <span className="font-medium text-foreground">{student.avgScore}</span>
+                            <td className="px-3 py-2 sm:px-4 sm:py-3">
+                              <span className="text-xs sm:text-sm font-medium text-foreground">{student.avgScore}</span>
                             </td>
-                            <td className="p-4">
+                            <td className="px-3 py-2 sm:px-4 sm:py-3">
                               <Badge className={getGradeColor(student.grade)}>{student.grade}</Badge>
                             </td>
                           </tr>

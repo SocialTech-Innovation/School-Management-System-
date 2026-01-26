@@ -22,7 +22,7 @@ import {
   CalendarDays,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const menuItems = [
   { name: "Dashboard", href: "/dashboard/admin", icon: LayoutDashboard, section: "main" },
@@ -57,6 +57,11 @@ export function AdminSidebar({ open, onClose, collapsed, onToggleCollapse }: Adm
     acc[item.section].push(item)
     return acc
   }, {} as Record<string, typeof menuItems>)
+
+  // Ensure collapsed state doesn't reset on navigation by persisting in parent layout
+  useEffect(() => {
+    // No-op: collapse handled by parent; keep component client-only to avoid hydration issues
+  }, [])
 
   return (
     <>

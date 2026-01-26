@@ -243,21 +243,21 @@ export default function TeacherStudents() {
             {/* Students Table */}
             <div className="border rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full min-w-[900px]">
                   <thead className="bg-muted/50">
                     <tr>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Student</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Roll No</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Class</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Attendance</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Avg Score</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Actions</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Student</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">Roll No</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Class</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Attendance</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">Avg Score</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
                     {filteredStudents.map((student) => (
                       <tr key={student.id} className="hover:bg-muted/30 transition-colors">
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <div className="flex items-center gap-3">
                             <Avatar className="w-10 h-10">
                               <AvatarImage src={student.avatar} />
@@ -265,17 +265,17 @@ export default function TeacherStudents() {
                             </Avatar>
                             <div>
                               <p className="font-medium text-foreground">{student.name}</p>
-                              <p className="text-sm text-muted-foreground">{student.email}</p>
+                              <p className="text-xs sm:text-sm text-muted-foreground truncate max-w-[160px] sm:max-w-none">{student.email}</p>
                             </div>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap">
                           <Badge variant="outline">{student.rollNo}</Badge>
                         </td>
-                        <td className="p-4">
-                          <span className="text-sm text-foreground">{student.class}</span>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
+                          <span className="text-xs sm:text-sm text-foreground">{student.class}</span>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <div className="flex items-center gap-2">
                             <div className="w-full max-w-[80px] h-2 bg-muted rounded-full overflow-hidden">
                               <div 
@@ -283,17 +283,17 @@ export default function TeacherStudents() {
                                 style={{ width: `${student.attendanceRate}%` }}
                               />
                             </div>
-                            <span className={`text-sm font-semibold ${getAttendanceColor(student.attendanceRate)}`}>
+                            <span className={`text-xs sm:text-sm font-semibold ${getAttendanceColor(student.attendanceRate)}`}>
                               {student.attendanceRate}%
                             </span>
                           </div>
                         </td>
-                        <td className="p-4">
-                          <span className={`text-sm font-semibold ${getScoreColor(student.averageScore)}`}>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
+                          <span className={`text-xs sm:text-sm font-semibold ${getScoreColor(student.averageScore)}`}>
                             {student.averageScore}%
                           </span>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <Dialog>
                             <DialogTrigger asChild>
                               <Button 

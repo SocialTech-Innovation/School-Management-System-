@@ -276,34 +276,34 @@ export default function UserManagementPage() {
               </div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full min-w-[900px]">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">User</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Email</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Role</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Department</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
-                      <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Last Login</th>
-                      <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">Actions</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">User</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground whitespace-nowrap">Email</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Role</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Department</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Status</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground whitespace-nowrap">Last Login</th>
+                      <th className="text-right px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredUsers.map((user) => (
                       <tr key={user.id} className="border-b hover:bg-muted/50 transition-colors">
-                      <td className="py-4 px-4">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4">
                         <div>
                           <p className="font-semibold text-foreground">{user.name}</p>
                           <p className="text-xs text-muted-foreground">{user.permissions.slice(0, 2).join(", ")}</p>
                         </div>
                       </td>
-                      <td className="py-4 px-4">
-                        <div className="flex items-center gap-2">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4 whitespace-nowrap">
+                        <div className="flex items-center gap-2 min-w-0">
                           <Mail className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-sm text-muted-foreground">{user.email}</span>
+                          <span className="text-xs sm:text-sm text-muted-foreground truncate max-w-[160px] sm:max-w-none">{user.email}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-4">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4">
                         <Badge
                           className={
                             user.role === "Admin"
@@ -318,10 +318,10 @@ export default function UserManagementPage() {
                           {user.role}
                         </Badge>
                       </td>
-                      <td className="py-4 px-4">
-                        <span className="text-sm text-foreground">{user.department}</span>
+                      <td className="px-3 py-2 sm:px-4 sm:py-4">
+                        <span className="text-xs sm:text-sm text-foreground">{user.department}</span>
                       </td>
-                      <td className="py-4 px-4">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4">
                         <Badge
                           className={
                             user.status === "Active"
@@ -332,11 +332,11 @@ export default function UserManagementPage() {
                           {user.status}
                         </Badge>
                       </td>
-                      <td className="py-4 px-4">
-                        <span className="text-sm text-muted-foreground">{user.lastLogin}</span>
+                      <td className="px-3 py-2 sm:px-4 sm:py-4 whitespace-nowrap">
+                        <span className="text-xs sm:text-sm text-muted-foreground">{user.lastLogin}</span>
                       </td>
-                      <td className="py-4 px-4">
-                        <div className="flex items-center justify-end gap-2">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4">
+                        <div className="flex items-center justify-end gap-1 sm:gap-2">
                           <Button variant="ghost" size="sm" title="Reset Password">
                             <Key className="w-4 h-4" />
                           </Button>

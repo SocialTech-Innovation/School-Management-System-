@@ -224,47 +224,47 @@ export default function AttendancePage() {
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[800px]">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Class</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Date</th>
-                    <th className="text-center py-3 px-4 text-sm font-semibold text-muted-foreground">Present</th>
-                    <th className="text-center py-3 px-4 text-sm font-semibold text-muted-foreground">Absent</th>
-                    <th className="text-center py-3 px-4 text-sm font-semibold text-muted-foreground">Late</th>
-                    <th className="text-center py-3 px-4 text-sm font-semibold text-muted-foreground">Total</th>
-                    <th className="text-center py-3 px-4 text-sm font-semibold text-muted-foreground">Rate</th>
+                    <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Class</th>
+                    <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Date</th>
+                    <th className="text-center px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Present</th>
+                    <th className="text-center px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Absent</th>
+                    <th className="text-center px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Late</th>
+                    <th className="text-center px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Total</th>
+                    <th className="text-center px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground">Rate</th>
                   </tr>
                 </thead>
                 <tbody>
                   {recentRecords.map((record, idx) => (
                     <tr key={idx} className="border-b hover:bg-muted/50 transition-colors">
-                      <td className="py-4 px-4">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4">
                         <span className="font-semibold text-foreground">{record.class}</span>
                       </td>
-                      <td className="py-4 px-4">
-                        <span className="text-sm text-muted-foreground">{record.date}</span>
+                      <td className="px-3 py-2 sm:px-4 sm:py-4 whitespace-nowrap">
+                        <span className="text-xs sm:text-sm text-muted-foreground">{record.date}</span>
                       </td>
-                      <td className="py-4 px-4 text-center">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4 text-center">
                         <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
                           {record.present}
                         </Badge>
                       </td>
-                      <td className="py-4 px-4 text-center">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4 text-center">
                         <Badge className="bg-red-100 text-red-800 hover:bg-red-100">
                           {record.absent}
                         </Badge>
                       </td>
-                      <td className="py-4 px-4 text-center">
+                      <td className="px-3 py-2 sm:px-4 sm:py-4 text-center">
                         <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100">
                           {record.late}
                         </Badge>
                       </td>
-                      <td className="py-4 px-4 text-center">
-                        <span className="text-sm font-medium text-foreground">{record.total}</span>
+                      <td className="px-3 py-2 sm:px-4 sm:py-4 text-center">
+                        <span className="text-xs sm:text-sm font-medium text-foreground">{record.total}</span>
                       </td>
-                      <td className="py-4 px-4 text-center">
-                        <span className="text-sm font-semibold text-foreground">{record.rate}%</span>
+                      <td className="px-3 py-2 sm:px-4 sm:py-4 text-center">
+                        <span className="text-xs sm:text-sm font-semibold text-foreground">{record.rate}%</span>
                       </td>
                     </tr>
                   ))}

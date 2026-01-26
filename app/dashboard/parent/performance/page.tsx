@@ -80,27 +80,27 @@ export default function PerformancePage() {
       <div className="space-y-6">
         {/* Overall Performance Card */}
         <Card className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground animate-slide-up">
-          <CardContent className="pt-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <CardContent className="pt-4 sm:pt-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
               <div className="text-center">
-                <Trophy className="w-12 h-12 mx-auto mb-2 text-yellow-300" />
-                <p className="text-4xl font-bold">{overallGrade.grade}</p>
-                <p className="text-primary-foreground/80 mt-1">Overall Grade</p>
+                <Trophy className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 text-yellow-300" />
+                <p className="text-2xl sm:text-4xl font-bold">{overallGrade.grade}</p>
+                <p className="text-xs sm:text-sm text-primary-foreground/80 mt-1">Overall Grade</p>
               </div>
               <div className="text-center">
-                <Star className="w-12 h-12 mx-auto mb-2 text-yellow-300" />
-                <p className="text-4xl font-bold">{overallGrade.percentage}%</p>
-                <p className="text-primary-foreground/80 mt-1">Average Score</p>
+                <Star className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 text-yellow-300" />
+                <p className="text-2xl sm:text-4xl font-bold">{overallGrade.percentage}%</p>
+                <p className="text-xs sm:text-sm text-primary-foreground/80 mt-1">Average Score</p>
               </div>
               <div className="text-center">
-                <Award className="w-12 h-12 mx-auto mb-2 text-yellow-300" />
-                <p className="text-4xl font-bold">#{overallGrade.rank}</p>
-                <p className="text-primary-foreground/80 mt-1">Class Rank</p>
+                <Award className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 text-yellow-300" />
+                <p className="text-2xl sm:text-4xl font-bold">#{overallGrade.rank}</p>
+                <p className="text-xs sm:text-sm text-primary-foreground/80 mt-1">Class Rank</p>
               </div>
               <div className="text-center">
-                <BookOpen className="w-12 h-12 mx-auto mb-2 text-yellow-300" />
-                <p className="text-4xl font-bold">{overallGrade.gpa}</p>
-                <p className="text-primary-foreground/80 mt-1">GPA</p>
+                <BookOpen className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 text-yellow-300" />
+                <p className="text-2xl sm:text-4xl font-bold">{overallGrade.gpa}</p>
+                <p className="text-xs sm:text-sm text-primary-foreground/80 mt-1">GPA</p>
               </div>
             </div>
           </CardContent>
@@ -110,10 +110,10 @@ export default function PerformancePage() {
           {/* Performance Trend Line Chart */}
           <Card className="animate-slide-up" style={{ animationDelay: "50ms" }}>
             <CardHeader>
-              <CardTitle>Performance Trend (6 Months)</CardTitle>
+              <CardTitle className="text-base sm:text-lg">Performance Trend (6 Months)</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
+            <CardContent className="-mx-2 sm:mx-0">
+              <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={performanceTrend}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                   <XAxis 
@@ -149,10 +149,10 @@ export default function PerformancePage() {
           {/* Subject Comparison Bar Chart */}
           <Card className="animate-slide-up" style={{ animationDelay: "100ms" }}>
             <CardHeader>
-              <CardTitle>Subject Performance vs Class Average</CardTitle>
+              <CardTitle className="text-base sm:text-lg">Subject Performance vs Class Average</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
+            <CardContent className="-mx-2 sm:mx-0">
+              <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={subjectComparisonData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                   <XAxis 

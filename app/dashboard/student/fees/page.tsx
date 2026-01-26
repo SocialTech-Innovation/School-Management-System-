@@ -107,7 +107,7 @@ export default function StudentFees() {
 
             {/* Payment Due Alert */}
             {feeStatus.pending > 0 && (
-              <div className="p-4 bg-warning-light border border-warning/30 rounded-lg flex items-center justify-between">
+              <div className="p-4 bg-warning-light border border-warning/30 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <AlertCircle className="w-5 h-5 text-warning flex-shrink-0" />
                   <div>
@@ -117,7 +117,7 @@ export default function StudentFees() {
                     </p>
                   </div>
                 </div>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto">
                   Pay Now
                 </Button>
               </div>

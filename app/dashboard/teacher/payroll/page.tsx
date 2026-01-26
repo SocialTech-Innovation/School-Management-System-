@@ -172,7 +172,7 @@ export default function TeacherPayroll() {
             <div className="flex items-center justify-between">
               <CardTitle>Payment History</CardTitle>
               <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center gap-2">
-                <Download className="w-full sm:w-auto w-4 h-4" />
+                <Download className="w-4 h-4" />
                 Export All
               </Button>
             </div>
@@ -180,41 +180,41 @@ export default function TeacherPayroll() {
           <CardContent>
             <div className="border rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full min-w-[800px]">
                   <thead className="bg-muted/50">
                     <tr>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Month</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Gross Salary</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Deductions</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Net Salary</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Status</th>
-                      <th className="text-left p-4 text-sm font-semibold text-foreground">Actions</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Month</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Gross Salary</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Deductions</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Net Salary</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Status</th>
+                      <th className="text-left px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold text-foreground">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
                     {paymentHistory.map((payment) => (
                       <tr key={payment.id} className="hover:bg-muted/30 transition-colors">
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <div>
                             <p className="font-medium text-foreground">{payment.month}</p>
                             <p className="text-xs text-muted-foreground">Paid on {payment.paidDate}</p>
                           </div>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap">
                           <span className="font-medium text-foreground">${payment.grossSalary.toLocaleString()}</span>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap">
                           <span className="text-destructive font-medium">-${payment.deductions.toLocaleString()}</span>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 whitespace-nowrap">
                           <span className="font-bold text-success">${payment.netSalary.toLocaleString()}</span>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <Badge className={payment.status === "Paid" ? "bg-success" : "bg-warning"}>
                             {payment.status}
                           </Badge>
                         </td>
-                        <td className="p-4">
+                        <td className="px-3 py-2 sm:px-4 sm:py-3">
                           <Button variant="ghost" size="sm" className="flex items-center gap-2">
                             <Download className="w-4 h-4" />
                             Download

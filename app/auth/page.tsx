@@ -274,10 +274,7 @@ export default function AuthPage() {
                       </div>
                       <div className="text-left">
                         <p className="font-bold text-gray-900 text-lg">{currentRole.label}</p>
-                        <p className="text-xs text-gray-500 flex items-center gap-1">
-                          <ChevronDown className="w-3 h-3" />
-                          Click to change
-                        </p>
+                        
                       </div>
                     </div>
                   </SelectValue>

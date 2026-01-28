@@ -1,7 +1,7 @@
 "use client"
-
+import { getAdminStats } from "../../lib/api/admin" 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -30,6 +30,8 @@ import {
   ChevronDown,
   ArrowLeft,
 } from "lucide-react"
+
+import { supabase } from "../../lib/supabaseClient"
 
 const roles = [
   { value: "student", label: "Student", icon: BookOpen, color: "from-blue-500 to-cyan-500", bgColor: "bg-blue-500" },
@@ -77,38 +79,51 @@ export default function AuthPage() {
     setError("")
     setLoading(true)
 
-    // Mock authentication validation
-    const validCredentials = [
-      { email: "student@school.edu", password: "password", role: "student" },
-      { email: "teacher@school.edu", password: "password", role: "teacher" },
-      { email: "admin@school.edu", password: "password", role: "admin" },
-      { email: "parent@school.edu", password: "password", role: "parent" },
-      { email: "accountant@school.edu", password: "password", role: "accountant" },
-    ]
+    try {
+      //authenticate with Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+        email: signInData.email,
+        password: signInData.password,
+      })
 
-    const isValid = validCredentials.some(
-      (cred) =>
-        cred.email === signInData.email &&
-        cred.password === signInData.password &&
-        cred.role === selectedRole
-    )
+      if (authError) throw authError
 
-    setTimeout(() => {
-      if (!isValid) {
-        setError("Invalid credentials. Please check your email, password, and selected role.")
-        setLoading(false)
-        return
+      //fetch the user's role from your custom 'users' table
+      const { data: profile, error: profileError } = await supabase
+        .from('users')
+        .select('role')
+        .eq('id', authData.user.id)
+        .single()
+
+      if (profileError) throw profileError
+
+      //role validation: Ensure they are logging in with the role they selected on the UI
+      if (profile.role !== selectedRole) {
+        throw new Error(`Access denied. You are not registered as a ${selectedRole}.`)
       }
 
-      if (selectedRole === "student") router.push("/dashboard/student")
-      else if (selectedRole === "admin") router.push("/dashboard/admin")
-      else if (selectedRole === "teacher") router.push("/dashboard/teacher")
-      else if (selectedRole === "parent") router.push("/dashboard/parent")
-      else if (selectedRole === "accountant") router.push("/dashboard/accountant")
-      else router.push("/dashboard/student")
+      //redirect to the correct dashboard based on role
+      const dashboardPaths: Record<string, string> = {
+        student: "/dashboard/student",
+        admin: "/dashboard/admin",
+        teacher: "/dashboard/teacher",
+        parent: "/dashboard/parent",
+        accountant: "/dashboard/accountant",
+      }
+
+      console.log("DB Role:", profile.role);
+      console.log("Selected UI Role:", selectedRole);
+      console.log("Target Path:", dashboardPaths[profile.role]);
+
+      router.push(dashboardPaths[profile.role] || "/dashboard/student")
+
+    } catch (err: any) {
+      setError(err.message || "An error occurred during sign in.")
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
   }
+
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -119,25 +134,38 @@ export default function AuthPage() {
       return
     }
 
-    if (signUpData.password.length < 6) {
-      setError("Password must be at least 6 characters")
-      return
-    }
-
     setLoading(true)
 
-    setTimeout(() => {
-      setActiveTab("signin")
-      setSignInData({ email: signUpData.email, password: "" })
-      setSignUpData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+    try {
+      //create the user in Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: signUpData.email,
+        password: signUpData.password,
       })
+
+      if (authError) throw authError
+
+      //create the entry in your 'users' table
+      if (authData.user) {
+        const { error: dbError } = await supabase.from('users').insert({
+          id: authData.user.id,
+          email: signUpData.email,
+          first_name: signUpData.firstName,
+          last_name: signUpData.lastName,
+          role: 'admin', //registration is only for Admins
+          status: 'active'
+        })
+
+        if (dbError) throw dbError
+      }
+
+      alert("Registration successful! Please sign in.")
+      setActiveTab("signin")
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
   }
 
   const currentRole = getCurrentRoleData()

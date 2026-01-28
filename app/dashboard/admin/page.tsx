@@ -1,6 +1,6 @@
 "use client"
-
-import { useEffect } from "react"
+import { getAdminStats, getAllUsers } from "../../../lib/api/admin" 
+import { useEffect, useState } from "react"
 import { AdminLayout } from "@/components/dashboard/admin-layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -120,10 +120,39 @@ const systemAlerts = [
   },
 ]
 
+
+
 export default function AdminDashboard() {
-  useEffect(() => {
-    document.title = "Dashboard"
-  }, [])
+const [loading, setLoading] = useState(true)
+const [stats, setStats] = useState({
+  total_students: 0,
+  total_teachers: 0,
+  total_classes: 0,
+  daily_attendance_rate: 0
+})
+const [users, setUsers] = useState<any[]>([])
+
+useEffect(() => {
+  async function fetchDashboardData() {
+    try {
+      setLoading(true)
+      // Fetch both at once for speed
+      const [statsData, usersData] = await Promise.all([
+        getAdminStats(),
+        getAllUsers()
+      ])
+      if (statsData) setStats(statsData)
+      if (usersData) setUsers(usersData)
+    } catch (error) {
+      console.error("Data load failed:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+  fetchDashboardData()
+}, []);
+
+// ... your existing code (roles, tabs, etc.)
 
   return (
     <AdminLayout title="Dashboard">
@@ -152,7 +181,9 @@ export default function AdminDashboard() {
                 <p className="text-xs sm:text-sm text-muted-foreground">Total Students</p>
                 <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
               </div>
-              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">2,456</p>
+                <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+                  {loading ? "..." : stats.total_students.toLocaleString()}
+                </p>
               <div className="flex items-center text-xs sm:text-sm flex-wrap">
                 <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 mr-1" />
                 <span className="text-green-600 font-semibold">+12%</span>
@@ -167,7 +198,9 @@ export default function AdminDashboard() {
                 <p className="text-xs sm:text-sm text-muted-foreground">Active Teachers</p>
                 <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
               </div>
-              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">142</p>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+                {loading ? "..." : stats.total_teachers.toLocaleString()}
+              </p>
               <div className="flex items-center text-xs sm:text-sm">
                 <span className="text-muted-foreground">Full staff capacity</span>
               </div>
@@ -180,7 +213,9 @@ export default function AdminDashboard() {
                 <p className="text-xs sm:text-sm text-muted-foreground">Total Classes</p>
                 <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
               </div>
-              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">48</p>
+                <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+                    {loading ? "..." : stats.total_classes.toLocaleString()}
+                </p>
               <div className="flex items-center text-xs sm:text-sm flex-wrap">
                 <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 mr-1" />
                 <span className="text-green-600 font-semibold">+4</span>
@@ -195,7 +230,9 @@ export default function AdminDashboard() {
                 <p className="text-xs sm:text-sm text-muted-foreground">Attendance Rate</p>
                 <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
               </div>
-              <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">94.8%</p>
+                <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+                  {loading ? "..." : `${stats.daily_attendance_rate}%`}
+                </p>
               <div className="flex items-center text-xs sm:text-sm flex-wrap">
                 <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4 text-red-600 mr-1" />
                 <span className="text-red-600 font-semibold">-0.5%</span>
@@ -478,6 +515,59 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </CardContent>
+          </Card>
+          {/* User Management Table Section */}
+          <Card className="mt-6 animate-slide-up" style={{ animationDelay: "650ms" }}>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle>User Management</CardTitle>
+                <div className="flex gap-2">
+                  <Badge variant="outline">{users.length} Total Users</Badge>
+                  <Button variant="outline" size="sm">Export CSV</Button>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="rounded-md border overflow-hidden">
+                <table className="w-full text-sm text-left">
+                  <thead className="bg-muted/50 text-muted-foreground font-medium border-b">
+                    <tr>
+                      <th className="py-3 px-4">Name</th>
+                      <th className="py-3 px-4">Email</th>
+                      <th className="py-3 px-4">Role</th>
+                      <th className="py-3 px-4 text-right">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {loading ? (
+                      <tr><td colSpan={4} className="py-8 text-center text-muted-foreground">Loading users...</td></tr>
+                    ) : users.length === 0 ? (
+                      <tr><td colSpan={4} className="py-8 text-center text-muted-foreground">No users found.</td></tr>
+                    ) : (
+                      users.map((user) => (
+                        <tr key={user.id} className="hover:bg-muted/30 transition-colors">
+                          <td className="py-3 px-4 font-medium">
+                            {user.first_name} {user.last_name}
+                          </td>
+                          <td className="py-3 px-4 text-muted-foreground">{user.email}</td>
+                          <td className="py-3 px-4">
+                            <Badge variant={user.role === 'admin' ? 'destructive' : 'secondary'} className="capitalize">
+                              {user.role}
+                            </Badge>
+                          </td>
+                          <td className="py-3 px-4 text-right">
+                            <span className="inline-flex items-center gap-1.5 text-green-600">
+                              <span className="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                              {user.status || 'Active'}
+                            </span>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
               </div>
             </CardContent>
           </Card>

@@ -234,35 +234,31 @@ export default function FeesPage() {
           <CardContent>
             <div className="space-y-3">
               {paymentHistory.map((payment) => (
-                <div
-                  key={payment.id}
-                  className="p-4 rounded-lg border border-border hover:border-primary transition-colors"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center">
-                        <CheckCircle size={20} className="text-success" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-foreground">{payment.description}</p>
-                        <p className="text-sm text-muted-foreground">{payment.date}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xl font-bold text-foreground">${payment.amount}</p>
-                      <Badge className="bg-success text-white mt-1">Paid</Badge>
-                    </div>
+              <div
+                key={payment.id}
+                className="p-4 rounded-lg border border-border hover:border-primary transition-colors"
+              >
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center">
+                  <CheckCircle size={20} className="text-success" />
                   </div>
-                  <div className="flex items-center gap-4 mt-3 text-sm text-muted-foreground">
-                    <span>Invoice: {payment.id}</span>
-                    <span>•</span>
-                    <span>Method: {payment.method}</span>
-                    <Button variant="ghost" size="sm" className="ml-auto">
-                      <Download size={16} className="mr-2" />
-                      Download
-                    </Button>
+                  <div className="min-w-0 break-words">
+                  <p className="font-semibold text-foreground">{payment.description}</p>
+                  <p className="text-sm text-muted-foreground">{payment.date}</p>
                   </div>
                 </div>
+                <div className="flex items-center justify-between sm:justify-end gap-3">
+                  <div className="text-right">
+                  <p className="text-xl font-bold text-foreground">${payment.amount}</p>
+                  <Badge className="bg-success text-white mt-1">Paid</Badge>
+                  </div>
+                  <Button variant="ghost" className="h-10 w-10 p-0">
+                  <Download size={24} />
+                  </Button>
+                </div>
+                </div>
+              </div>
               ))}
             </div>
           </CardContent>

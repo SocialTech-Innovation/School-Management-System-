@@ -101,79 +101,108 @@ export default function TimetablePage() {
         </Card>
 
         {/* Day Selector */}
-        <Tabs value={selectedDay} onValueChange={(value) => setSelectedDay(value as keyof typeof timetableData)} className="animate-slide-up" style={{ animationDelay: "50ms" }}>
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="Monday">Monday</TabsTrigger>
-            <TabsTrigger value="Tuesday">Tuesday</TabsTrigger>
-            <TabsTrigger value="Wednesday">Wednesday</TabsTrigger>
-            <TabsTrigger value="Thursday">Thursday</TabsTrigger>
-            <TabsTrigger value="Friday">Friday</TabsTrigger>
+        <Tabs
+          value={selectedDay}
+          onValueChange={(value) => setSelectedDay(value as keyof typeof timetableData)}
+          className="animate-slide-up"
+          style={{ animationDelay: "50ms" }}
+        >
+          <TabsList className="flex w-full gap-2 overflow-x-auto p-1 rounded-md bg-muted">
+            {Object.keys(timetableData).map((day) => (
+              <TabsTrigger
+          key={day}
+          value={day}
+          className="min-w-[90px] shrink-0 rounded-md px-3 py-2 text-sm"
+              >
+          {day}
+              </TabsTrigger>
+            ))}
           </TabsList>
 
           {Object.entries(timetableData).map(([day, schedule]) => (
-            <TabsContent key={day} value={day} className="mt-6">
-              <div className="space-y-3">
-                {schedule.map((slot, index) => {
-                  const isBreak = slot.subject === "Break" || slot.subject === "Lunch"
-                  const subjectColor = subjectColors[slot.subject] || "gray-500"
+            <TabsContent key={day} value={day} className="mt-4 sm:mt-6">
+              {/* color map for inline styles to ensure responsive and consistent rendering */}
+              {(() => {
+          const tailwindHex: Record<string, string> = {
+            "blue-500": "#3B82F6",
+            "purple-500": "#A855F7",
+            "green-500": "#22C55E",
+            "orange-500": "#F97316",
+            "indigo-500": "#6366F1",
+            "emerald-500": "#10B981",
+            "amber-500": "#F59E0B",
+            "pink-500": "#EC4899",
+            "gray-500": "#6B7280",
+          }
 
-                  return (
-                    <Card
-                      key={index}
-                      className={`hover:shadow-md transition-shadow ${
-                        isBreak ? "bg-muted/50 border-dashed" : ""
-                      }`}
-                    >
-                      <CardContent className="p-4">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-4 flex-1">
-                            {/* Time */}
-                            <div className="flex items-center gap-2 min-w-[120px]">
-                              <Clock size={16} className="text-muted-foreground" />
-                              <span className="text-sm font-medium text-foreground">{slot.time}</span>
-                            </div>
+          return (
+            <div className="space-y-3">
+              {schedule.map((slot, index) => {
+                const isBreak = slot.subject === "Break" || slot.subject === "Lunch"
+                const colorKey = subjectColors[slot.subject] || "gray-500"
+                const colorHex = tailwindHex[colorKey] || "#6B7280"
 
-                            {/* Subject */}
-                            {!isBreak ? (
-                              <>
-                                <div className={`w-1 h-12 rounded-full bg-${subjectColor}`}></div>
-                                <div className="flex-1">
-                                  <div className="flex items-center gap-2 mb-1">
-                                    <BookOpen size={18} className={`text-${subjectColor}`} />
-                                    <h4 className="font-semibold text-foreground">{slot.subject}</h4>
-                                  </div>
-                                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                                    <div className="flex items-center gap-1">
-                                      <User size={14} />
-                                      <span>{slot.teacher}</span>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <MapPin size={14} />
-                                      <span>{slot.room}</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            ) : (
-                              <div className="flex items-center gap-2 flex-1">
-                                <Coffee size={18} className="text-muted-foreground" />
-                                <h4 className="font-semibold text-muted-foreground">{slot.subject}</h4>
-                              </div>
-                            )}
-                          </div>
+                return (
+            <Card
+              key={`${day}-${index}`}
+              className={`transition-shadow hover:shadow-md ${
+                isBreak ? "bg-muted/50 border-dashed" : ""
+              }`}
+              style={!isBreak ? { borderLeft: `4px solid ${colorHex}` } : undefined}
+            >
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4 flex-1">
+              {/* Subject / Break */}
+              {!isBreak ? (
+                <div className="flex items-start sm:items-center gap-3">
+                  <BookOpen size={18} style={{ color: colorHex }} />
+                  <div>
+                    <h4 className="font-semibold text-foreground">{slot.subject}</h4>
+                    <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                <div className="flex items-center gap-1">
+                  <User size={14} />
+                  <span>{slot.teacher}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <MapPin size={14} />
+                  <span>{slot.room}</span>
+                </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Coffee size={18} className="text-muted-foreground" />
+                  <h4 className="font-semibold text-muted-foreground">{slot.subject}</h4>
+                </div>
+              )}
 
-                          {/* Status Badge */}
-                          {!isBreak && (
-                            <Badge variant="outline" className={`border-${subjectColor} text-${subjectColor}`}>
-                              {slot.subject.split(' ')[0]}
-                            </Badge>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )
-                })}
+              {/* Time */}
+              <div className="mt-2 sm:mt-0 flex items-center gap-2 text-sm text-muted-foreground">
+                <Clock size={16} />
+                <span className="font-medium text-foreground">{slot.time}</span>
               </div>
+                  </div>
+
+                  {/* Status Badge */}
+                  {!isBreak && (
+              <Badge
+                variant="outline"
+                className="self-start sm:self-center"
+                style={{ borderColor: colorHex, color: colorHex }}
+              >
+                {slot.subject.split(" ")[0]}
+              </Badge>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+                )
+              })}
+            </div>
+          )
+              })()}
             </TabsContent>
           ))}
         </Tabs>
@@ -184,14 +213,33 @@ export default function TimetablePage() {
             <CardTitle>Subject Color Legend</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {Object.entries(subjectColors).map(([subject, color]) => (
+            {(() => {
+              const tailwindHex: Record<string, string> = {
+          "blue-500": "#3B82F6",
+          "purple-500": "#A855F7",
+          "green-500": "#22C55E",
+          "orange-500": "#F97316",
+          "indigo-500": "#6366F1",
+          "emerald-500": "#10B981",
+          "amber-500": "#F59E0B",
+          "pink-500": "#EC4899",
+          "gray-500": "#6B7280",
+              }
+
+              return (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {Object.entries(subjectColors).map(([subject, colorKey]) => {
+              const hex = tailwindHex[colorKey] || "#6B7280"
+              return (
                 <div key={subject} className="flex items-center gap-2">
-                  <div className={`w-4 h-4 rounded-full bg-${color}`}></div>
-                  <span className="text-sm text-foreground">{subject}</span>
+            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: hex }}></div>
+            <span className="text-sm text-foreground">{subject}</span>
                 </div>
-              ))}
-            </div>
+              )
+            })}
+          </div>
+              )
+            })()}
           </CardContent>
         </Card>
 

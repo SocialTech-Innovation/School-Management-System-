@@ -281,30 +281,30 @@ export default function ParentDashboard() {
                 <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <Link href="/dashboard/parent/attendance">
-                    <Button variant="outline" className="w-full justify-start">
-                      <CheckCircle className="w-4 h-4 mr-2" />
-                      View Attendance
-                    </Button>
+                  <Button variant="outline" size="lg" className="w-full justify-start text-base">
+                    <CheckCircle className="w-5 h-5 mr-3" />
+                    View Attendance
+                  </Button>
                   </Link>
                   <Link href="/dashboard/parent/fees">
-                    <Button variant="outline" className="w-full justify-start">
-                      <CreditCard className="w-4 h-4 mr-2" />
-                      Pay Fees
-                    </Button>
+                  <Button variant="outline" size="lg" className="w-full justify-start text-base">
+                    <CreditCard className="w-5 h-5 mr-3" />
+                    Pay Fees
+                  </Button>
                   </Link>
                   <Link href="/dashboard/parent/timetable">
-                    <Button variant="outline" className="w-full justify-start">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      View Timetable
-                    </Button>
+                  <Button variant="outline" size="lg" className="w-full justify-start text-base">
+                    <Calendar className="w-5 h-5 mr-3" />
+                    View Timetable
+                  </Button>
                   </Link>
                   <Link href="/dashboard/parent/announcements">
-                    <Button variant="outline" className="w-full justify-start">
-                      <Bell className="w-4 h-4 mr-2" />
-                      Announcements
-                    </Button>
+                  <Button variant="outline" size="lg" className="w-full justify-start text-base">
+                    <Bell className="w-5 h-5 mr-3" />
+                    Announcements
+                  </Button>
                   </Link>
                 </div>
               </CardContent>

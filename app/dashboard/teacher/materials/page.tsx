@@ -8,11 +8,12 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 import { 
-  Upload, FileText, Download, Trash2, Search, Filter,
-  File, Image, Video, BookOpen, Eye, Calendar, FolderOpen
+  Upload, FileText, Download, Trash2, Search,
+  File as FileIcon, Image, Video, BookOpen, Calendar, FolderOpen
 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
@@ -98,8 +99,9 @@ const classes = [
 
 export default function ClassMaterialsPage() {
   useEffect(() => {
-      document.title = "Class Materials"
-    }, [])
+    document.title = "Class Materials"
+  }, [])
+  
   const { toast } = useToast()
   const [materials, setMaterials] = useState<Material[]>(mockMaterials)
   const [searchQuery, setSearchQuery] = useState("")
@@ -126,7 +128,6 @@ export default function ClassMaterialsPage() {
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      // Validate file size (50MB limit)
       if (file.size > 50 * 1024 * 1024) {
         toast({
           title: "File Too Large",
@@ -174,7 +175,6 @@ export default function ClassMaterialsPage() {
       description: `"${uploadTitle}" has been uploaded successfully.`
     })
 
-    // Reset form
     setSelectedClass("")
     setUploadTitle("")
     setUploadDescription("")
@@ -192,7 +192,6 @@ export default function ClassMaterialsPage() {
   }
 
   const handleDownload = (material: Material) => {
-    // Simulate download
     setMaterials(prev => prev.map(m => 
       m.id === material.id ? { ...m, downloads: m.downloads + 1 } : m
     ))
@@ -212,7 +211,7 @@ export default function ClassMaterialsPage() {
     if (fileType === "pdf" || fileType === "doc" || fileType === "docx") return <FileText className="w-8 h-8" />
     if (fileType === "jpg" || fileType === "png" || fileType === "gif") return <Image className="w-8 h-8" />
     if (fileType === "mp4" || fileType === "avi" || fileType === "mov") return <Video className="w-8 h-8" />
-    return <File className="w-8 h-8" />
+    return <FileIcon className="w-8 h-8" />
   }
 
   const getCategoryBadge = (category: string) => {
@@ -285,21 +284,112 @@ export default function ClassMaterialsPage() {
 
         {/* Materials List */}
         <Card className="animate-slide-up" style={{ animationDelay: "200ms" }}>
-          <CardHeader>
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <CardTitle>Uploaded Materials</CardTitle>
-              <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-                <div className="relative flex-1 md:flex-initial">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search materials..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-9 w-full md:w-64"
-                  />
-                </div>
+          <CardHeader className="space-y-4">
+            {/* Top row: Title left, Upload button right */}
+            <div className="flex items-center justify-between gap-3">
+              <CardTitle className="truncate">Uploaded Materials</CardTitle>
+
+              <Dialog open={showUploadModal} onOpenChange={setShowUploadModal}>
+                <DialogTrigger asChild>
+                  <Button className="flex items-center gap-2 flex-shrink-0">
+                    <Upload className="w-4 h-4" />
+                    Upload
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle>Upload Class Material</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div>
+                      <Label>Select Class *</Label>
+                      <Select value={selectedClass} onValueChange={setSelectedClass}>
+                        <SelectTrigger className="mt-2">
+                          <SelectValue placeholder="Choose a class..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {classes.map(cls => (
+                            <SelectItem key={cls.id} value={cls.id}>{cls.name}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label>Title *</Label>
+                      <Input
+                        className="mt-2"
+                        placeholder="e.g., Chapter 5 Notes"
+                        value={uploadTitle}
+                        onChange={(e) => setUploadTitle(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label>Description</Label>
+                      <Textarea
+                        className="mt-2"
+                        placeholder="Brief description of the material..."
+                        value={uploadDescription}
+                        onChange={(e) => setUploadDescription(e.target.value)}
+                        rows={3}
+                      />
+                    </div>
+                    <div>
+                      <Label>Category *</Label>
+                      <Select value={uploadCategory} onValueChange={(v) => setUploadCategory(v as Material["category"])}>
+                        <SelectTrigger className="mt-2">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="notes">Notes</SelectItem>
+                          <SelectItem value="assignment">Assignment</SelectItem>
+                          <SelectItem value="reading">Reading Material</SelectItem>
+                          <SelectItem value="video">Video</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label>Select File * (Max 50MB)</Label>
+                      <Input
+                        type="file"
+                        className="mt-2"
+                        onChange={handleFileSelect}
+                        accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.png,.mp4,.avi"
+                      />
+                      {selectedFile && (
+                        <p className="text-sm text-muted-foreground mt-2">
+                          Selected: {selectedFile.name} ({formatFileSize(selectedFile.size)})
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-col-reverse sm:flex-row justify-end gap-2 pt-4">
+                      <Button className="w-full sm:w-auto" variant="outline" onClick={() => setShowUploadModal(false)}>
+                        Cancel
+                      </Button>
+                      <Button className="w-full sm:w-auto" onClick={handleUpload}>
+                        <Upload className="w-4 h-4 mr-2" />
+                        Upload Material
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            {/* Controls row: search + filters below */}
+            <div className="flex flex-col gap-3">
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search materials..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9 w-full"
+                />
+              </div>
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Select value={filterClass} onValueChange={setFilterClass}>
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-full sm:w-[180px]">
                     <SelectValue placeholder="All Classes" />
                   </SelectTrigger>
                   <SelectContent>
@@ -310,7 +400,7 @@ export default function ClassMaterialsPage() {
                   </SelectContent>
                 </Select>
                 <Select value={filterCategory} onValueChange={setFilterCategory}>
-                  <SelectTrigger className="w-[150px]">
+                  <SelectTrigger className="w-full sm:w-[150px]">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -322,91 +412,6 @@ export default function ClassMaterialsPage() {
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
-                <Dialog open={showUploadModal} onOpenChange={setShowUploadModal}>
-                  <DialogTrigger asChild>
-                    <Button>
-                      <Upload className="w-4 h-4 mr-2" />
-                      Upload
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl">
-                    <DialogHeader>
-                      <DialogTitle>Upload Class Material</DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4">
-                      <div>
-                        <Label>Select Class *</Label>
-                        <Select value={selectedClass} onValueChange={setSelectedClass}>
-                          <SelectTrigger className="mt-2">
-                            <SelectValue placeholder="Choose a class..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {classes.map(cls => (
-                              <SelectItem key={cls.id} value={cls.id}>{cls.name}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label>Title *</Label>
-                        <Input
-                          className="mt-2"
-                          placeholder="e.g., Chapter 5 Notes"
-                          value={uploadTitle}
-                          onChange={(e) => setUploadTitle(e.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <Label>Description</Label>
-                        <Textarea
-                          className="mt-2"
-                          placeholder="Brief description of the material..."
-                          value={uploadDescription}
-                          onChange={(e) => setUploadDescription(e.target.value)}
-                          rows={3}
-                        />
-                      </div>
-                      <div>
-                        <Label>Category *</Label>
-                        <Select value={uploadCategory} onValueChange={(v) => setUploadCategory(v as Material["category"])}>
-                          <SelectTrigger className="mt-2">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="notes">Notes</SelectItem>
-                            <SelectItem value="assignment">Assignment</SelectItem>
-                            <SelectItem value="reading">Reading Material</SelectItem>
-                            <SelectItem value="video">Video</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label>Select File * (Max 50MB)</Label>
-                        <Input
-                          type="file"
-                          className="mt-2"
-                          onChange={handleFileSelect}
-                          accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.png,.mp4,.avi"
-                        />
-                        {selectedFile && (
-                          <p className="text-sm text-muted-foreground mt-2">
-                            Selected: {selectedFile.name} ({formatFileSize(selectedFile.size)})
-                          </p>
-                        )}
-                      </div>
-                      <div className="flex justify-end gap-2 pt-4">
-                        <Button className="w-full sm:w-auto" variant="outline" onClick={() => setShowUploadModal(false)}>
-                          Cancel
-                        </Button>
-                        <Button onClick={handleUpload}>
-                          <Upload className="w-4 h-4 mr-2" />
-                          Upload Material
-                        </Button>
-                      </div>
-                    </div>
-                  </DialogContent>
-                </Dialog>
               </div>
             </div>
           </CardHeader>
@@ -429,7 +434,7 @@ export default function ClassMaterialsPage() {
                   >
                     <CardContent className="pt-6">
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center text-primary">
+                        <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center text-primary flex-shrink-0">
                           {getFileIcon(material.fileType)}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -442,7 +447,7 @@ export default function ClassMaterialsPage() {
                       <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
                         {material.description}
                       </p>
-                      <div className="flex items-center gap-2 mb-3">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
                         <Badge className={getCategoryBadge(material.category)}>
                           {material.category}
                         </Badge>
@@ -463,23 +468,40 @@ export default function ClassMaterialsPage() {
                           {material.downloads} downloads
                         </span>
                       </div>
-                      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                      <div className="flex gap-2">
                         <Button
                           size="sm"
                           variant="outline"
-                          className="w-full sm:w-auto flex-1"
+                          className="flex-1"
                           onClick={() => handleDownload(material)}
                         >
-                          <Download className="w-full sm:w-auto w-4 h-4 mr-1" />
+                          <Download className="w-4 h-4 mr-1" />
                           Download
                         </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleDelete(material.id)}
-                        >
-                          <Trash2 className="w-4 h-4 text-destructive" />
-                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button size="sm" variant="outline">
+                              <Trash2 className="w-4 h-4 text-destructive" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Delete material?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                Are you sure you want to delete &quot;{material.title}&quot;? This action cannot be undone.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction
+                                onClick={() => handleDelete(material.id)}
+                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                              >
+                                Delete
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
                       </div>
                     </CardContent>
                   </Card>

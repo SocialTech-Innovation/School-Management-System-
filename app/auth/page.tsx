@@ -332,64 +332,62 @@ export default function AuthPage() {
                 <p className="text-gray-500 mt-1 text-sm">Sign in to continue to your dashboard</p>
               </div>
 
-              <form onSubmit={handleSignIn} className="space-y-5">
+                <form onSubmit={handleSignIn} className="space-y-5">
                 {error && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700 flex items-start gap-2">
-                    <div className="w-5 h-5 rounded-full bg-red-200 flex items-center justify-center flex-shrink-0 mt-0.5">!</div>
-                    <span>{error}</span>
+                  <div className="w-5 h-5 rounded-full bg-red-200 flex items-center justify-center flex-shrink-0 mt-0.5">!</div>
+                  <span>{error}</span>
                   </div>
                 )}
 
                 <div className="space-y-2">
                   <Label htmlFor="signin-email" className="text-gray-700 font-medium">
-                    Email Address
+                  Email Address
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
-                    <Input
-                      id="signin-email"
-                      type="email"
-                      placeholder="you@example.com"
-                      className="pl-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                      value={signInData.email}
-                      onChange={(e) =>
-                        setSignInData((prev) => ({
-                          ...prev,
-                          email: e.target.value,
-                        }))
-                      }
-                      required
-                    />
+                  <Input
+                    id="signin-email"
+                    type="email"
+                    placeholder="you@example.com"
+                    className="h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                    value={signInData.email}
+                    onChange={(e) =>
+                    setSignInData((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                    }
+                    required
+                  />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="signin-password" className="text-gray-700 font-medium">
-                    Password
+                  Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
-                    <Input
-                      id="signin-password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
-                      className="pl-11 pr-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                      value={signInData.password}
-                      onChange={(e) =>
-                        setSignInData((prev) => ({
-                          ...prev,
-                          password: e.target.value,
-                        }))
-                      }
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-3.5 text-gray-400 hover:text-gray-600 transition-colors"
-                    >
-                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                    </button>
+                  <Input
+                    id="signin-password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    className="pr-11 h-12 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                    value={signInData.password}
+                    onChange={(e) =>
+                    setSignInData((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                    }))
+                    }
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3.5 top-3.5 text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
                   </div>
                 </div>
 
@@ -399,15 +397,15 @@ export default function AuthPage() {
                   disabled={loading}
                 >
                   {loading ? (
-                    <span className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      Signing in...
-                    </span>
+                  <span className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Signing in...
+                  </span>
                   ) : (
-                    "Sign In"
+                  "Sign In"
                   )}
                 </Button>
-              </form>
+                </form>
 
               <div className="pt-5 border-t border-gray-200">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Demo Credentials</p>

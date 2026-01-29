@@ -50,18 +50,8 @@ export default function TeacherDashboard() {
                 <AvatarFallback className="bg-primary text-primary-foreground text-xl">SA</AvatarFallback>
               </Avatar>
               <div>
-                <h1 className="text-3xl font-bold text-white">Welcome back, Prof. Sarah! 👋</h1>
-                <p className="text-white/90 mt-1">Ready to inspire young minds today?</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 mt-4">
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <TrendingUp className="w-4 h-4 text-white" />
-                <span className="text-sm text-white font-medium">98% Attendance Rate</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                <Award className="w-4 h-4 text-white" />
-                <span className="text-sm text-white font-medium">Top Performer This Month</span>
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">Welcome back, Prof. Sarah!</h1>
+                <p className="text-sm sm:text-base text-white/90 mt-1">Ready to inspire young minds today?</p>
               </div>
             </div>
           </div>

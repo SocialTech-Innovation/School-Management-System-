@@ -171,65 +171,11 @@ export default function AnnouncementsPage() {
   return (
     <TeacherLayout title="Announcements & Notifications">
       <div className="space-y-6">
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="animate-slide-up">
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Total</p>
-                  <p className="text-3xl font-bold text-foreground">{notifications.length}</p>
-                </div>
-                <Bell className="w-10 h-10 text-primary" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="animate-slide-up" style={{ animationDelay: "50ms" }}>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Unread</p>
-                  <p className="text-3xl font-bold text-warning">{unreadCount}</p>
-                </div>
-                <AlertCircle className="w-10 h-10 text-warning" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="animate-slide-up" style={{ animationDelay: "100ms" }}>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Grade Submissions</p>
-                  <p className="text-3xl font-bold text-success">
-                    {notifications.filter(n => n.type === "grade_submitted").length}
-                  </p>
-                </div>
-                <CheckCircle className="w-10 h-10 text-success" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="animate-slide-up" style={{ animationDelay: "150ms" }}>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Announcements</p>
-                  <p className="text-3xl font-bold text-info">
-                    {notifications.filter(n => n.type === "announcement").length}
-                  </p>
-                </div>
-                <Bell className="w-10 h-10 text-info" />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
+        
         {/* Notifications Card */}
         <Card className="animate-slide-up" style={{ animationDelay: "200ms" }}>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex wrap">
               <CardTitle>All Notifications</CardTitle>
               <div className="flex items-center gap-2">
                 <div className="relative">
@@ -246,18 +192,45 @@ export default function AnnouncementsPage() {
           </CardHeader>
           <CardContent>
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-5 mb-6">
-                <TabsTrigger value="all">All ({notifications.length})</TabsTrigger>
-                <TabsTrigger value="unread">Unread ({unreadCount})</TabsTrigger>
-                <TabsTrigger value="grade_submitted">
+              {/* Mobile filter dropdown */}
+              <div className="sm:hidden mb-4">
+              <label htmlFor="notifications-filter" className="sr-only">Filter notifications</label>
+              <div className="relative">
+                <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <select
+                id="notifications-filter"
+                value={activeTab}
+                onChange={(e) => setActiveTab(e.target.value)}
+                className="pl-9 pr-3 py-2 w-full rounded-md border border-input bg-background text-sm"
+                >
+                <option value="all">All ({notifications.length})</option>
+                <option value="unread">Unread ({unreadCount})</option>
+                <option value="grade_submitted">
                   Grades ({notifications.filter(n => n.type === "grade_submitted").length})
-                </TabsTrigger>
-                <TabsTrigger value="announcement">
+                </option>
+                <option value="announcement">
                   Announcements ({notifications.filter(n => n.type === "announcement").length})
-                </TabsTrigger>
-                <TabsTrigger value="reminder">
+                </option>
+                <option value="reminder">
                   Reminders ({notifications.filter(n => n.type === "reminder").length})
-                </TabsTrigger>
+                </option>
+                </select>
+              </div>
+              </div>
+
+              {/* Desktop tabs */}
+              <TabsList className="hidden sm:grid w-full grid-cols-5 mb-6">
+              <TabsTrigger value="all">All ({notifications.length})</TabsTrigger>
+              <TabsTrigger value="unread">Unread ({unreadCount})</TabsTrigger>
+              <TabsTrigger value="grade_submitted">
+                Grades ({notifications.filter(n => n.type === "grade_submitted").length})
+              </TabsTrigger>
+              <TabsTrigger value="announcement">
+                Announcements ({notifications.filter(n => n.type === "announcement").length})
+              </TabsTrigger>
+              <TabsTrigger value="reminder">
+                Reminders ({notifications.filter(n => n.type === "reminder").length})
+              </TabsTrigger>
               </TabsList>
 
               <TabsContent value={activeTab} className="space-y-3">

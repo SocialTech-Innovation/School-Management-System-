@@ -110,11 +110,11 @@ export default function TeacherTimetable() {
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div>
                 <CardTitle className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-5 h-5" />
+                
                   {viewMode === 'regular' ? 'Regular Teaching Schedule' : 'Exam Period Schedule'}
                 </CardTitle>
                 <p className="text-sm text-muted-foreground">
-                  {viewMode === 'regular' ? 'Your fixed weekly timetable' : 'Exam supervision schedule (Mar 15-25, 2024)'}
+                  {viewMode === 'regular' ? 'Your fixed weekly timetable' : 'Exam supervision schedule'}
                 </p>
               </div>
               <div className="flex items-center gap-3">
@@ -127,10 +127,12 @@ export default function TeacherTimetable() {
                     </TabsTrigger>
                   </TabsList>
                 </Tabs>
-                <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center gap-2">
-                  <Download className="w-4 h-4" />
-                  Export
-                </Button>
+                <div className="mt-3 w-full sm:mt-0">
+                  <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center gap-2 justify-center">
+                    <Download className="w-4 h-4" />
+                    Export Timetable
+                  </Button>
+                </div>
               </div>
             </div>
           </CardHeader>
@@ -153,21 +155,21 @@ export default function TeacherTimetable() {
 
         {/* Subject Legend */}
         <Card className="animate-slide-up" style={{ animationDelay: viewMode === 'exam' && isExamPeriod() ? "100ms" : "50ms" }}>
-          <CardContent className="pt-6">
-            <div className="flex flex-wrap items-center gap-4">
-              <span className="text-sm font-medium text-muted-foreground">
-                {viewMode === 'regular' ? 'Subjects:' : 'Exam Sessions:'}
-              </span>
-              {viewMode === 'regular' ? (
-                <>
-                  <Badge className="bg-blue-500 text-white">Mathematics</Badge>
-                  <Badge className="bg-purple-500 text-white">Physics</Badge>
-                  <Badge className="bg-green-500 text-white">Chemistry</Badge>
-                </>
-              ) : (
-                <Badge className="bg-red-500 text-white">Exam Supervision</Badge>
-              )}
-            </div>
+          <CardHeader className="pb-2">
+            <CardTitle>Subjects</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0">
+            {viewMode === 'regular' ? (
+              <div className="flex flex-wrap gap-2">
+          <Badge className="bg-blue-500 text-white">Mathematics</Badge>
+          <Badge className="bg-purple-500 text-white">Physics</Badge>
+          <Badge className="bg-green-500 text-white">Chemistry</Badge>
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-2">
+          <Badge className="bg-red-500 text-white">Exam Supervision</Badge>
+              </div>
+            )}
           </CardContent>
         </Card>
 

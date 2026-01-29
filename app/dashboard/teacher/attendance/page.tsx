@@ -323,72 +323,71 @@ export default function TeacherAttendance() {
             <CardTitle>Mark Attendance</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Select Class</label>
-                <Select value={selectedClass} onValueChange={setSelectedClass}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {classSchedules.map(cls => (
-                      <SelectItem key={cls.id} value={cls.id}>
-                        {cls.name} - {cls.subject}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <label className="text-sm font-medium text-foreground">Select Class</label>
+              <Select value={selectedClass} onValueChange={setSelectedClass}>
+                <SelectTrigger>
+                <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                {classSchedules.map(cls => (
+                  <SelectItem key={cls.id} value={cls.id}>
+                  {cls.name} - {cls.subject}
+                  </SelectItem>
+                ))}
+                </SelectContent>
+              </Select>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Select Date</label>
-                <div className="flex items-center gap-2">
-                  <Button className="w-full sm:w-auto" 
-                    variant="outline" 
-                    size="icon"
-                    onClick={() => changeDate(-1)}
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </Button>
-                  <input
-                    type="date"
-                    value={selectedDate.toISOString().split('T')[0]}
-                    max={new Date().toISOString().split('T')[0]}
-                    onChange={(e) => setSelectedDate(new Date(e.target.value))}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                  />
-                  <Button 
-                    variant="outline" 
-                    size="icon"
-                    onClick={() => changeDate(1)}
-                    disabled={isFutureDate || isToday}
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </Button>
-                </div>
+              <label className="text-sm font-medium text-foreground">Select Date</label>
+              <div className="flex items-center gap-2">
+                <Button
+                className="shrink-0"
+                variant="outline"
+                size="icon"
+                onClick={() => changeDate(-1)}
+                >
+                <ChevronLeft className="w-4 h-4" />
+                </Button>
+                <input
+                type="date"
+                value={selectedDate.toISOString().split('T')[0]}
+                max={new Date().toISOString().split('T')[0]}
+                onChange={(e) => setSelectedDate(new Date(e.target.value))}
+                className="h-10 flex-1 min-w-0 rounded-md border border-input bg-background px-3 py-2 text-sm"
+                />
+                <Button
+                className="shrink-0"
+                variant="outline"
+                size="icon"
+                onClick={() => changeDate(1)}
+                disabled={isFutureDate || isToday}
+                >
+                <ChevronRight className="w-4 h-4" />
+                </Button>
               </div>
+              </div>
+            </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">View Mode</label>
-                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                  <Button 
-                    variant={viewMode === "list" ? "default" : "outline"}
-                    onClick={() => setViewMode("list")}
-                    className="flex-1"
-                  >
-                    <List className="w-4 h-4 mr-2" />
-                    List
-                  </Button>
-                  <Button 
-                    variant={viewMode === "grid" ? "default" : "outline"}
-                    onClick={() => setViewMode("grid")}
-                    className="flex-1"
-                  >
-                    <Grid3x3 className="w-4 h-4 mr-2" />
-                    Grid
-                  </Button>
-                </div>
-              </div>
+            <div className="flex items-center gap-2 mb-4">
+              <Button
+              variant={viewMode === "list" ? "default" : "outline"}
+              size="icon"
+              onClick={() => setViewMode("list")}
+              aria-label="List view"
+              >
+              <List className="w-4 h-4" />
+              </Button>
+              <Button
+              variant={viewMode === "grid" ? "default" : "outline"}
+              size="icon"
+              onClick={() => setViewMode("grid")}
+              aria-label="Grid view"
+              >
+              <Grid3x3 className="w-4 h-4" />
+              </Button>
             </div>
 
             <div className="flex flex-wrap gap-3">

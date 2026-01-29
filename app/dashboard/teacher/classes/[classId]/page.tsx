@@ -81,12 +81,13 @@ const performanceData = [
 ]
 
 export default function ClassDetailPage() {
-  useEffect(() => {
-      document.title = `${classData[classId].name}`
-    }, [])
   const params = useParams()
   const classId = params.classId as string
   const classInfo = classData[classId]
+
+  useEffect(() => {
+      document.title = classInfo?.name ?? "Class Not Found"
+    }, [classInfo?.name])
 
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedStudent, setSelectedStudent] = useState<any>(null)
@@ -138,14 +139,7 @@ export default function ClassDetailPage() {
                     <Clock className="w-4 h-4 flex-shrink-0" />
                     <span className="text-sm font-medium">{classInfo.schedule}</span>
                   </div>
-                  <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <Users className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm font-medium">{classInfo.students} Students</span>
-                  </div>
                 </div>
-              </div>
-              <div className="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                <BookOpen className="w-10 h-10 text-white" />
               </div>
             </div>
           </CardContent>
@@ -213,26 +207,26 @@ export default function ClassDetailPage() {
               </TabsList>
 
               {/* Students Tab */}
-              <TabsContent value="students" className="space-y-4">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="relative flex-1 max-w-md">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Search students..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-9"
-                    />
+                <TabsContent value="students" className="space-y-4">
+                <div className="flex flex-col gap-2 mb-4">
+                  <div className="flex gap-2">
+                  <Button variant="outline" size="sm">
+                    <Filter className="w-4 h-4 mr-2" />
+                    Filter
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <Download className="w-4 h-4 mr-2" />
+                    Export
+                  </Button>
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                    <Button variant="outline" size="sm">
-                      <Filter className="w-4 h-4 mr-2" />
-                      Filter
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Download className="w-4 h-4 mr-2" />
-                      Export
-                    </Button>
+                  <div className="relative w-full sm:max-w-md">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search students..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-9 w-full"
+                  />
                   </div>
                 </div>
 

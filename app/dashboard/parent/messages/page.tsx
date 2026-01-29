@@ -264,73 +264,85 @@ export default function TeacherMessagesPage() {
           </Card>
 
           {/* Main Chat Area */}
-          <Card className="col-span-12 lg:col-span-8 flex flex-col h-full">
-            {/* Chat Header */}
-            <div className="p-4 border-b border-border bg-gradient-to-r from-primary/10 to-blue-50 dark:from-primary/20 dark:to-blue-950/30">
-              <div className="flex items-center justify-between">
+            {/* Chat Area as Modal on mobile, regular pane on desktop */}
+            <div id="chat-overlay" className="col-span-12 lg:col-span-8">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm lg:static lg:z-auto lg:p-0 lg:bg-transparent lg:backdrop-blur-0">
+              <Card className="relative w-full max-w-md sm:max-w-lg lg:max-w-none lg:w-auto lg:flex lg:flex-col lg:h-full overflow-hidden">
+              {/* Chat Header */}
+              <div className="p-4 border-b border-border bg-gradient-to-r from-primary/10 to-blue-50 dark:from-primary/20 dark:to-blue-950/30 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12 border-2 border-primary/30">
-                    <AvatarImage src={selectedConversation.avatar} alt={selectedConversation.teacher} />
-                    <AvatarFallback className="bg-primary text-primary-foreground">
-                      {selectedConversation.teacher.split(' ').map(n => n[0]).join('')}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold text-foreground">{selectedConversation.teacher}</p>
-                    <p className="text-sm text-muted-foreground">{selectedConversation.role}</p>
-                  </div>
+                <Avatar className="h-12 w-12 border-2 border-primary/30">
+                  <AvatarImage src={selectedConversation.avatar} alt={selectedConversation.teacher} />
+                  <AvatarFallback className="bg-primary text-primary-foreground">
+                  {selectedConversation.teacher.split(' ').map(n => n[0]).join('')}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="font-semibold text-foreground">{selectedConversation.teacher}</p>
+                  <p className="text-sm text-muted-foreground">{selectedConversation.role}</p>
+                </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/10">
-                    <Phone size={20} />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/10">
-                    <Video size={20} />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/10">
-                    <MoreVertical size={20} />
-                  </Button>
+                <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/10 hidden lg:inline-flex">
+                  <Phone size={20} />
+                </Button>
+                <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/10 hidden lg:inline-flex">
+                  <Video size={20} />
+                </Button>
+                <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/10 hidden lg:inline-flex">
+                  <MoreVertical size={20} />
+                </Button>
+                {/* Medium sized exit button for mobile */}
+                <Button
+                  variant="outline"
+                  className="lg:hidden h-10 px-4"
+                  onClick={() => {
+                  const el = document.getElementById('chat-overlay')
+                  if (el) el.classList.add('hidden')
+                  }}
+                >
+                  Exit
+                </Button>
                 </div>
               </div>
-            </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-white to-blue-50/30 dark:from-gray-950 dark:to-blue-950/10">
-              <div className="space-y-4 max-w-4xl mx-auto">
+              {/* Messages */}
+              <div className="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-white to-blue-50/30 dark:from-gray-950 dark:to-blue-950/10">
+                <div className="space-y-4 max-w-4xl mx-auto">
                 {selectedConversation.messages.map((msg) => (
                   <div
-                    key={msg.id}
-                    className={`flex ${msg.sender === 'parent' ? 'justify-end' : 'justify-start'}`}
+                  key={msg.id}
+                  className={`flex ${msg.sender === 'parent' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div
-                      className={`max-w-[70%] rounded-2xl px-4 py-3 ${
-                        msg.sender === 'parent'
-                          ? 'bg-primary text-primary-foreground ml-auto rounded-br-sm'
-                          : 'bg-white dark:bg-gray-800 text-foreground border border-border rounded-bl-sm'
-                      }`}
-                    >
-                      <p className="text-sm leading-relaxed">{msg.text}</p>
-                      <p className={`text-xs mt-1 ${msg.sender === 'parent' ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
-                        {msg.time}
-                      </p>
-                    </div>
+                  <div
+                    className={`max-w-[70%] rounded-2xl px-4 py-3 ${
+                    msg.sender === 'parent'
+                      ? 'bg-primary text-primary-foreground ml-auto rounded-br-sm'
+                      : 'bg-white dark:bg-gray-800 text-foreground border border-border rounded-bl-sm'
+                    }`}
+                  >
+                    <p className="text-sm leading-relaxed">{msg.text}</p>
+                    <p className={`text-xs mt-1 ${msg.sender === 'parent' ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
+                    {msg.time}
+                    </p>
+                  </div>
                   </div>
                 ))}
+                </div>
               </div>
-            </div>
 
-            {/* Message Input */}
-            <div className="p-4 border-t border-border bg-gradient-to-r from-primary/5 to-blue-50/50 dark:from-primary/10 dark:to-blue-950/20">
-              <div className="flex items-end gap-3 max-w-4xl mx-auto">
+              {/* Message Input */}
+              <div className="p-4 border-t border-border bg-gradient-to-r from-primary/5 to-blue-50/50 dark:from-primary/10 dark:to-blue-950/20">
+                <div className="flex items-end gap-3 max-w-4xl mx-auto">
                 <Textarea
                   placeholder="Type your message..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyPress={(e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                      e.preventDefault()
-                      handleSendMessage()
-                    }
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault()
+                    handleSendMessage()
+                  }
                   }}
                   className="flex-1 min-h-[50px] max-h-[120px] resize-none bg-background"
                 />
@@ -342,9 +354,11 @@ export default function TeacherMessagesPage() {
                   <Send size={18} className="mr-2" />
                   Send
                 </Button>
+                </div>
               </div>
+              </Card>
             </div>
-          </Card>
+            </div>
         </div>
       </div>
     </ParentLayout>

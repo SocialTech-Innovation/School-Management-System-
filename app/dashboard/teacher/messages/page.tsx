@@ -276,69 +276,61 @@ export default function ParentCommunicationPage() {
             <div className="flex items-center justify-between">
               <CardTitle>Messages</CardTitle>
               <div className="flex items-center gap-2">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search messages..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-9 w-64"
-                  />
-                </div>
+                {/* Search moved below the Messages title */}
                 <Dialog open={showComposeModal} onOpenChange={setShowComposeModal}>
                   <DialogTrigger asChild>
-                    <Button>
-                      <Send className="w-4 h-4 mr-2" />
-                      Compose
-                    </Button>
+                  <Button size="sm" className="whitespace-nowrap">
+                    <Send className="w-4 h-4 mr-2" />
+                    Compose
+                  </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-2xl">
-                    <DialogHeader>
-                      <DialogTitle>Send Message to Parent</DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4">
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Select Student</label>
-                        <Select value={selectedStudent} onValueChange={setSelectedStudent}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Choose a student..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {students.map(student => (
-                              <SelectItem key={student.id} value={student.id}>
-                                {student.name} - Parent: {student.parent}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Subject</label>
-                        <Input
-                          placeholder="Enter subject..."
-                          value={composeSubject}
-                          onChange={(e) => setComposeSubject(e.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Message</label>
-                        <Textarea
-                          placeholder="Type your message..."
-                          value={composeMessage}
-                          onChange={(e) => setComposeMessage(e.target.value)}
-                          rows={6}
-                        />
-                      </div>
-                      <div className="flex flex-col-reverse sm:flex-row justify-end gap-2">
-                        <Button className="w-full sm:w-auto" variant="outline" onClick={() => setShowComposeModal(false)}>
-                          Cancel
-                        </Button>
-                        <Button onClick={handleComposeMessage}>
-                          <Send className="w-4 h-4 mr-2" />
-                          Send Message
-                        </Button>
-                      </div>
+                  <DialogHeader>
+                    <DialogTitle>Send Message to Parent</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div>
+                    <label className="text-sm font-medium mb-2 block">Select Student</label>
+                    <Select value={selectedStudent} onValueChange={setSelectedStudent}>
+                      <SelectTrigger>
+                      <SelectValue placeholder="Choose a student..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                      {students.map(student => (
+                        <SelectItem key={student.id} value={student.id}>
+                        {student.name} - Parent: {student.parent}
+                        </SelectItem>
+                      ))}
+                      </SelectContent>
+                    </Select>
                     </div>
+                    <div>
+                    <label className="text-sm font-medium mb-2 block">Subject</label>
+                    <Input
+                      placeholder="Enter subject..."
+                      value={composeSubject}
+                      onChange={(e) => setComposeSubject(e.target.value)}
+                    />
+                    </div>
+                    <div>
+                    <label className="text-sm font-medium mb-2 block">Message</label>
+                    <Textarea
+                      placeholder="Type your message..."
+                      value={composeMessage}
+                      onChange={(e) => setComposeMessage(e.target.value)}
+                      rows={6}
+                    />
+                    </div>
+                    <div className="flex flex-col-reverse sm:flex-row justify-end gap-2">
+                    <Button className="w-full sm:w-auto" variant="outline" onClick={() => setShowComposeModal(false)}>
+                      Cancel
+                    </Button>
+                    <Button onClick={handleComposeMessage}>
+                      <Send className="w-4 h-4 mr-2" />
+                      Send Message
+                    </Button>
+                    </div>
+                  </div>
                   </DialogContent>
                 </Dialog>
               </div>
@@ -346,17 +338,14 @@ export default function ParentCommunicationPage() {
           </CardHeader>
           <CardContent>
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-6">
-                <TabsTrigger value="inbox">
-                  Inbox ({messages.filter(m => m.status === "unread").length})
-                </TabsTrigger>
-                <TabsTrigger value="read">
-                  Read ({messages.filter(m => m.status === "read").length})
-                </TabsTrigger>
-                <TabsTrigger value="replied">
-                  Replied ({messages.filter(m => m.status === "replied").length})
-                </TabsTrigger>
-                <TabsTrigger value="all">All ({messages.length})</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 mb-6">
+              <TabsTrigger value="all">All ({messages.length})</TabsTrigger>
+              <TabsTrigger value="inbox">
+                Unread ({messages.filter(m => m.status === "unread").length})
+              </TabsTrigger>
+              <TabsTrigger value="replied">
+                Replied ({messages.filter(m => m.status === "replied").length})
+              </TabsTrigger>
               </TabsList>
 
               <TabsContent value={activeTab} className="space-y-3">

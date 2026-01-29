@@ -176,98 +176,98 @@ export default function TeacherAssessment() {
             <div className="flex items-center justify-between">
               <CardTitle>Assessments</CardTitle>
               <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-                <DialogTrigger asChild>
+              <DialogTrigger asChild>
                   <Button className="flex items-center gap-2">
-                    <Plus className="w-4 h-4" />
-                    Create Assessment
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <DialogTitle>Create New Assessment</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-4 py-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="title">Title</Label>
-                        <Input id="title" placeholder="e.g., Mid-Term Exam" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="type">Type</Label>
-                        <Select>
-                          <SelectTrigger id="type">
-                            <SelectValue placeholder="Select type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="exam">Exam</SelectItem>
-                            <SelectItem value="quiz">Quiz</SelectItem>
-                            <SelectItem value="assignment">Assignment</SelectItem>
-                            <SelectItem value="practical">Practical</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="class">Class</Label>
-                        <Select>
-                          <SelectTrigger id="class">
-                            <SelectValue placeholder="Select class" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="10a">Class 10-A</SelectItem>
-                            <SelectItem value="9b">Class 9-B</SelectItem>
-                            <SelectItem value="11c">Class 11-C</SelectItem>
-                            <SelectItem value="10b">Class 10-B</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="subject">Subject</Label>
-                        <Select>
-                          <SelectTrigger id="subject">
-                            <SelectValue placeholder="Select subject" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="math">Mathematics</SelectItem>
-                            <SelectItem value="physics">Physics</SelectItem>
-                            <SelectItem value="chemistry">Chemistry</SelectItem>
-                            <SelectItem value="biology">Biology</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="date">Date</Label>
-                        <Input id="date" type="date" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="duration">Duration</Label>
-                        <Input id="duration" placeholder="e.g., 2 hours" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="marks">Total Marks</Label>
-                        <Input id="marks" type="number" placeholder="100" />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="description">Description</Label>
-                      <Textarea 
-                        id="description" 
-                        placeholder="Add details about the assessment..."
-                        rows={3}
-                      />
-                    </div>
+                <Plus className="w-4 h-4" />
+                Create Assessment
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                <DialogTitle>Create New Assessment</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                  <Label htmlFor="title">Title</Label>
+                  <Input id="title" placeholder="e.g., Mid-Term Exam" />
                   </div>
-                  <DialogFooter>
-                    <Button className="w-full sm:w-auto" variant="outline" onClick={() => setIsCreateDialogOpen(false)}>Cancel</Button>
-                    <Button onClick={() => setIsCreateDialogOpen(false)}>Create Assessment</Button>
-                  </DialogFooter>
-                </DialogContent>
+                  <div className="space-y-2">
+                  <Label htmlFor="type">Type</Label>
+                  <Select>
+                    <SelectTrigger id="type">
+                    <SelectValue placeholder="Select type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                    <SelectItem value="exam">Exam</SelectItem>
+                    <SelectItem value="quiz">Quiz</SelectItem>
+                    <SelectItem value="assignment">Assignment</SelectItem>
+                    <SelectItem value="practical">Practical</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                  <Label htmlFor="class">Class</Label>
+                  <Select>
+                    <SelectTrigger id="class">
+                    <SelectValue placeholder="Select class" />
+                    </SelectTrigger>
+                    <SelectContent>
+                    <SelectItem value="10a">Class 10-A</SelectItem>
+                    <SelectItem value="9b">Class 9-B</SelectItem>
+                    <SelectItem value="11c">Class 11-C</SelectItem>
+                    <SelectItem value="10b">Class 10-B</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  </div>
+                  <div className="space-y-2">
+                  <Label htmlFor="subject">Subject</Label>
+                  <Select>
+                    <SelectTrigger id="subject">
+                    <SelectValue placeholder="Select subject" />
+                    </SelectTrigger>
+                    <SelectContent>
+                    <SelectItem value="math">Mathematics</SelectItem>
+                    <SelectItem value="physics">Physics</SelectItem>
+                    <SelectItem value="chemistry">Chemistry</SelectItem>
+                    <SelectItem value="biology">Biology</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="space-y-2">
+                  <Label htmlFor="date">Date</Label>
+                  <Input id="date" type="date" />
+                  </div>
+                  <div className="space-y-2">
+                  <Label htmlFor="duration">Duration</Label>
+                  <Input id="duration" placeholder="e.g., 2 hours" />
+                  </div>
+                  <div className="space-y-2">
+                  <Label htmlFor="marks">Total Marks</Label>
+                  <Input id="marks" type="number" placeholder="100" />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="description">Description</Label>
+                  <Textarea 
+                  id="description" 
+                  placeholder="Add details about the assessment..."
+                  rows={3}
+                  />
+                </div>
+                </div>
+                <DialogFooter>
+                <Button className="w-full sm:w-auto" variant="outline" onClick={() => setIsCreateDialogOpen(false)}>Cancel</Button>
+                <Button onClick={() => setIsCreateDialogOpen(false)}>Create Assessment</Button>
+                </DialogFooter>
+              </DialogContent>
               </Dialog>
             </div>
           </CardHeader>
@@ -290,36 +290,36 @@ export default function TeacherAssessment() {
                 {assessmentsData.upcoming.map((assessment) => (
                   <Card key={assessment.id} className="border-l-4 border-l-info">
                     <CardContent className="pt-6">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6">
+                        <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 mb-2">
-                            <h3 className="text-lg font-semibold text-foreground">{assessment.title}</h3>
-                            <Badge variant="outline" className="bg-info-light text-info">{assessment.type}</Badge>
+                            <h3 className="text-lg font-semibold text-foreground break-words">{assessment.title}</h3>
+                            <Badge variant="outline" className="bg-success-light text-success">{assessment.type}</Badge>
                           </div>
-                          <div className="flex items-center gap-6 text-sm text-muted-foreground mb-3">
-                            <span className="flex items-center gap-1">
-                              <BookOpen className="w-4 h-4" />
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mb-3">
+                            <span className="flex items-center gap-1 min-w-0">
+                              <BookOpen className="w-4 h-4 flex-shrink-0" />
                               {assessment.class} - {assessment.subject}
                             </span>
-                            <span className="flex items-center gap-1">
+                            <span className="flex items-center gap-1 min-w-0">
                               <Calendar className="w-4 h-4 flex-shrink-0" />
                               {new Date(assessment.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                             </span>
-                            <span className="flex items-center gap-1">
-                              <Clock className="w-4 h-4 flex-shrink-0" />
-                              {assessment.duration}
-                            </span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-medium text-foreground">Total Marks: {assessment.totalMarks}</span>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-3">
+                            
+                            
+                          
+                            <div className="bg-muted/50 p-3 rounded-lg">
+                              <p className="text-xs text-muted-foreground mb-1">Total Marks</p>
+                              <p className="text-xl font-bold text-foreground">{assessment.totalMarks}</p>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Button variant="ghost" size="sm">
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          <Button variant="ghost" size="sm">
-                            <Trash2 className="w-4 h-4 text-destructive" />
+                        <div className="flex items-center gap-2 sm:flex-shrink-0 mt-4 sm:mt-0 w-full sm:w-auto">
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center gap-2">
+                            <Eye className="w-4 h-4" />
+                            View Report
                           </Button>
                         </div>
                       </div>
@@ -351,8 +351,8 @@ export default function TeacherAssessment() {
                           </div>
                           <div className="flex items-center gap-4 mb-3">
                             <span className="text-sm font-medium text-foreground">Total Marks: {assessment.totalMarks}</span>
-                            <div className="flex items-center gap-2">
-                              <Users className="w-4 h-4 text-muted-foreground" />
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Users className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                               <span className="text-sm text-foreground">
                                 {assessment.submissions}/{assessment.totalStudents} submitted
                               </span>
@@ -366,12 +366,10 @@ export default function TeacherAssessment() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Link href={`/dashboard/teacher/assessment/grade/${assessment.id}`}>
-                            <Button variant="default" size="sm" className="flex items-center gap-2">
-                              <Eye className="w-4 h-4" />
-                              Grade Now
-                            </Button>
-                          </Link>
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto flex items-center gap-2">
+                            <Eye className="w-full sm:w-auto w-4 h-4" />
+                            View Report
+                          </Button>
                         </div>
                       </div>
                     </CardContent>
